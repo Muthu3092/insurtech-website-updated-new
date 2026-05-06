@@ -169,7 +169,7 @@ export default function Home() {
                     <defs>
                       <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
-                    <text fill="#d2ed3c" fontSize="9" letterSpacing="2">
+                    <text fill="#deb25e" fontSize="9" letterSpacing="2">
                       <textPath href="#circle">DRIVING POSITIVE CHANGE · WORLDWIDE · </textPath>
                     </text>
                   </svg>

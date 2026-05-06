@@ -20,8 +20,8 @@ module.exports = {
         creamlight: "#faf7f0",
         ink: "#0e0e0c",
         inksoft: "#1a1a17",
-        lime: "#d2ed3c", // chartreuse primary
-        limesoft: "#e7f99a",
+        lime: "#deb25e", // chartreuse primary
+        limesoft: "#f0dab1",
         clay: "#e8e1ce",
         sand: "#cec4a8",
         // shadcn passthrough
@@ -31,7 +31,7 @@ module.exports = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         primary: {
-          DEFAULT: "#d2ed3c",
+          DEFAULT: "#deb25e",
           foreground: "#0e0e0c",
         },
         secondary: {
@@ -43,7 +43,7 @@ module.exports = {
           foreground: "#5a5a52",
         },
         accent: {
-          DEFAULT: "#d2ed3c",
+          DEFAULT: "#deb25e",
           foreground: "#0e0e0c",
         },
         destructive: {
