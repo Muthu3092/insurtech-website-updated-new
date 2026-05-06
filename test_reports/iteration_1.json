@@ -1,0 +1,26 @@
+{
+  "summary": "Frontend-only UI testing for the Afinity InsurTech rebuild (Covar template). All routes, navigation, animated headings, counters, FAQ accordion, contact form, mobile menu, swiper testimonials, marquees and shield cards verified end-to-end on the deployed preview URL. No backend involved.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Home.jsx is ~816 lines — consider splitting each section (Hero/Shields/Pricing/FAQ/Testimonials/Blog) into discrete section components under components/site/sections for maintainability.",
+    "Footer 'Quick Links' / 'Shields' / social links use href='#' which navigates to top of same page — fine for placeholders but should be confirmed as intended.",
+    "Counters that are below the fold show '0+' / '0K+' until scrolled into view — expected behaviour with IntersectionObserver, but worth ensuring the threshold (0.4) doesn't strand counters on very tall screens.",
+    "Hero family image relies on /family.png in /public — confirmed present and rendered correctly.",
+    "Mobile menu drawer is positioned with fixed top:72px and mx-4 — works, but verify on iOS Safari with safe-area insets in real device QA."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (frontend-only)", "frontend": "100%"},
+  "test_credentials": "N/A — no auth in app",
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Frontend at https://insurtech-ui-upgrade.preview.emergentagent.com. Routes verified: /, /about, /services, /services/:slug, /pricing, /team, /blog, /blog/:slug, /testimonials, /contact, and 404 catch-all. Key data-testids: home-page, site-header, logo-link, cta-quote, nav-{label}, mobile-menu-toggle, hero-cta-explore, animated-heading, counter, shield-{travel|health|motor|pa}, pricing-card-{basic|standard|premium}-plan, faq-toggle-{0..4}, marquee, site-footer, contact-page, contact-form, form-first/last/phone/email/message/submit, team-{firstname}, blog-card-{i}, social-link-{i}, header-phone. Contact form is purely client-side; submit button toggles to 'Message Sent ✓' for 4s. FAQ Q1 starts open via useState(0) — clicking again with -1 closes. AnimatedHeading uses react-intersection-observer triggerOnce; Counter uses requestAnimationFrame with 2200ms easeOutCubic.",
+  "rca of the issue": "No bugs found. All requested features render and behave as specified — animated letter reveal, scroll counters (120k+, 80+, 4K+, 50K+, 25K+, 50+), 4 shield cards, 3 pricing cards (Standard popular), FAQ accordion expand/collapse, contact form confirmation, mobile drawer toggle <1024px, swiper testimonials, marquees on home + footer, all 11 routes load with content, 404 handled."
+}
