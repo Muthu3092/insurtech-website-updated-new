@@ -30,6 +30,15 @@ import {
 import AnimatedHeading from "../../components/site/AnimatedHeading";
 import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
+import { endpoints } from "../../lib/apiClient";
+
+const CATEGORY_META = {
+  travel: { icon: Plane, fallbackImg: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" },
+  health: { icon: HeartPulse, fallbackImg: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" },
+  motor: { icon: Car, fallbackImg: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" },
+  pa: { icon: Activity, fallbackImg: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80" },
+  home: { icon: HomeIcon, fallbackImg: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" },
+};
 
 const SHIELDS = [
   { icon: Plane, slug: "travel", title: "Travel Shield", desc: "Worldwide cover with auto-claim triage in under 2 minutes.", img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80", tag: "Travel" },
@@ -67,6 +76,33 @@ const BLOGS = [
 
 export default function Home() {
   const [openFaq, setOpenFaq] = React.useState(0);
+  const [shields, setShields] = React.useState(FALLBACK_SHIELDS);
+
+  React.useEffect(() => {
+    endpoints
+      .products()
+      .then((res) => {
+        const list = (res.data || [])
+          .filter((p) => p.active !== false)
+          .sort((a, b) => (a.display_order || 999) - (b.display_order || 999))
+          .slice(0, 4)
+          .map((p) => {
+            const meta = CATEGORY_META[p.category] || CATEGORY_META.travel;
+            return {
+              icon: meta.icon,
+              slug: p.category,
+              title: p.name,
+              desc: p.description,
+              img: p.image_url || meta.fallbackImg,
+              tag: p.category.charAt(0).toUpperCase() + p.category.slice(1),
+            };
+          });
+        if (list.length) setShields(list);
+      })
+      .catch(() => {
+        // keep fallback on error
+      });
+  }, []);
 
   return (
     <div data-testid="home-page">
@@ -293,7 +329,7 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {SHIELDS.map((s) => (
+            {shields.map((s) => (
               <Link
                 key={s.slug}
                 to={`/services/${s.slug}`}

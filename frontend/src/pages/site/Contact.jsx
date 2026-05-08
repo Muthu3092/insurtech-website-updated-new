@@ -1,16 +1,54 @@
 import React from "react";
-import { Mail, MapPin, Phone, Send, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, Send, ArrowUpRight, AlertCircle, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
+import { endpoints, auth } from "../../lib/apiClient";
 
 export default function Contact() {
-  const [sent, setSent] = React.useState(false);
+  const [status, setStatus] = React.useState({ state: "idle", message: "" });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    e.target.reset();
+    setStatus({ state: "loading", message: "" });
+    const fd = new FormData(e.target);
+    const first = fd.get("first")?.toString().trim() || "";
+    const last = fd.get("last")?.toString().trim() || "";
+    const phone = fd.get("phone")?.toString().trim() || "";
+    const email = fd.get("email")?.toString().trim() || "";
+    const message = fd.get("message")?.toString().trim() || "";
+
+    // Use signup endpoint to capture lead in CRM. Auto-generate a temp password
+    // so the visitor becomes a customer in the backend's lead pipeline.
+    const tempPassword =
+      "Aura" + Math.random().toString(36).slice(-8) + "!" + Date.now().toString().slice(-3);
+
+    try {
+      const res = await endpoints.signup({
+        email,
+        phone,
+        full_name: `${first} ${last}`.trim() || email,
+        password: tempPassword,
+        role: "customer",
+      });
+      auth.setSession(res.data.token, res.data.user);
+      setStatus({
+        state: "success",
+        message:
+          message
+            ? "Thanks — we received your message. Aura will follow up by email shortly."
+            : "Thanks — your account is ready. Aura will be in touch shortly.",
+      });
+      e.target.reset();
+    } catch (err) {
+      const detail = err?.response?.data?.detail;
+      const msg =
+        typeof detail === "string"
+          ? detail
+          : err?.message?.includes("Network")
+          ? "Couldn't reach the server. Please check your connection and try again."
+          : "We couldn't send your message. Please try again or call us.";
+      setStatus({ state: "error", message: msg });
+    }
   };
 
   return (
@@ -56,20 +94,23 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <form onSubmit={onSubmit} className="card-soft p-8 md:p-10" data-testid="contact-form">
               <h2 className="font-display text-3xl mb-2">Send us a message</h2>
-              <p className="text-ink/65 text-sm mb-8">We typically reply within an hour during business hours.</p>
+              <p className="text-ink/65 text-sm mb-8">
+                We'll create your free Aura profile and one of our advisors will follow up within an hour.
+              </p>
 
               <div className="grid sm:grid-cols-2 gap-4 mb-4">
                 {[
-                  { name: "first", label: "First Name *", type: "text" },
-                  { name: "last", label: "Last Name *", type: "text" },
-                  { name: "phone", label: "Phone Number *", type: "tel" },
-                  { name: "email", label: "Email Address *", type: "email" },
+                  { name: "first", label: "First Name *", type: "text", required: true },
+                  { name: "last", label: "Last Name *", type: "text", required: true },
+                  { name: "phone", label: "Phone Number *", type: "tel", required: true },
+                  { name: "email", label: "Email Address *", type: "email", required: true },
                 ].map((f) => (
                   <label key={f.name} className="block">
                     <span className="block text-xs uppercase tracking-widest text-ink/60 mb-2">{f.label}</span>
                     <input
                       type={f.type}
-                      required
+                      name={f.name}
+                      required={f.required}
                       data-testid={`form-${f.name}`}
                       className="w-full px-5 py-4 rounded-2xl border border-ink/15 bg-cream/50 focus:border-ink focus:bg-white outline-none transition"
                     />
@@ -80,6 +121,7 @@ export default function Contact() {
               <label className="block mb-6">
                 <span className="block text-xs uppercase tracking-widest text-ink/60 mb-2">Message</span>
                 <textarea
+                  name="message"
                   rows={5}
                   data-testid="form-message"
                   className="w-full px-5 py-4 rounded-2xl border border-ink/15 bg-cream/50 focus:border-ink focus:bg-white outline-none transition resize-none"
@@ -87,8 +129,26 @@ export default function Contact() {
                 />
               </label>
 
-              <button type="submit" className="btn-covar dark" data-testid="form-submit">
-                {sent ? "Message Sent ✓" : "Submit Message"}
+              {status.state === "success" && (
+                <div className="mb-5 flex items-start gap-3 p-4 rounded-2xl bg-lime/30 border border-lime" data-testid="form-success">
+                  <CheckCircle2 className="w-5 h-5 text-ink shrink-0 mt-0.5" />
+                  <p className="text-sm text-ink/85">{status.message}</p>
+                </div>
+              )}
+              {status.state === "error" && (
+                <div className="mb-5 flex items-start gap-3 p-4 rounded-2xl bg-red-50 border border-red-200" data-testid="form-error">
+                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                  <p className="text-sm text-red-700">{status.message}</p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status.state === "loading"}
+                className="btn-covar dark disabled:opacity-60"
+                data-testid="form-submit"
+              >
+                {status.state === "loading" ? "Sending…" : "Submit Message"}
                 <span className="btn-icon"><Send className="w-4 h-4" /></span>
               </button>
             </form>
