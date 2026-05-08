@@ -85,7 +85,11 @@ export default function Contact() {
             <div className="card-soft p-7 bg-ink text-cream">
               <h3 className="font-display text-2xl mb-2">Aura is online 24/7</h3>
               <p className="text-cream/70 text-sm mb-5">Need an answer right now? Aura our AI copilot replies instantly via chat or voice.</p>
-              <button className="btn-covar w-full justify-center">
+              <button
+                className="btn-covar w-full justify-center"
+                onClick={() => window.dispatchEvent(new Event("aura:open"))}
+                data-testid="open-aura-chat"
+              >
                 Chat with Aura <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
               </button>
             </div>

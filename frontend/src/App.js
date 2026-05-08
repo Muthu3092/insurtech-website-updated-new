@@ -33,6 +33,7 @@ import TravelQuote from "@/pages/TravelQuote";
 // New Covar-style marketing pages
 import SiteHeader from "@/components/site/Header";
 import SiteFooter from "@/components/site/Footer";
+import AuraChat from "@/components/site/AuraChat";
 import SiteHome from "@/pages/site/Home";
 import SiteAbout from "@/pages/site/About";
 import SiteServices from "@/pages/site/Services";
@@ -136,6 +137,7 @@ function SiteShell({ children }) {
       <SiteHeader />
       <main className="pt-20">{children}</main>
       <SiteFooter />
+      <AuraChat />
     </div>
   );
 }

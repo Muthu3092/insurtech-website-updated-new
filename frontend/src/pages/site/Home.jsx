@@ -31,6 +31,7 @@ import AnimatedHeading from "../../components/site/AnimatedHeading";
 import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
 import { endpoints } from "../../lib/apiClient";
+import { quoteRouteFor } from "../../lib/quoteRoutes";
 
 const CATEGORY_META = {
   travel: { icon: Plane, fallbackImg: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" },
@@ -91,6 +92,7 @@ export default function Home() {
             return {
               icon: meta.icon,
               slug: p.category,
+              productId: p.id,
               title: p.name,
               desc: p.description,
               img: p.image_url || meta.fallbackImg,
@@ -332,7 +334,7 @@ export default function Home() {
             {shields.map((s) => (
               <Link
                 key={s.slug}
-                to={`/services/${s.slug}`}
+                to={quoteRouteFor(s.slug, s.productId)}
                 data-testid={`shield-${s.slug}`}
                 className="card-soft group p-6 flex flex-col"
               >

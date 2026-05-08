@@ -4,6 +4,7 @@ import { ArrowUpRight, Plane, HeartPulse, Car, Activity, Home as HomeIcon, Shiel
 import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
 import { endpoints } from "../../lib/apiClient";
+import { quoteRouteFor } from "../../lib/quoteRoutes";
 
 const ICON_MAP = {
   travel: Plane,
@@ -35,6 +36,7 @@ export default function Services() {
           .map((p) => ({
             icon: ICON_MAP[p.category] || Shield,
             slug: p.category,
+            productId: p.id,
             title: p.name,
             desc: p.description,
             img: p.image_url || FALLBACK.find((f) => f.slug === p.category)?.img,
@@ -67,7 +69,7 @@ export default function Services() {
                 return (
                   <Link
                     key={s.slug + s.title}
-                    to={`/services/${s.slug}`}
+                    to={quoteRouteFor(s.slug, s.productId)}
                     data-testid={`service-${s.slug}`}
                     className="card-soft group overflow-hidden flex flex-col"
                   >
@@ -86,7 +88,7 @@ export default function Services() {
                       <h3 className="font-display text-2xl mb-2">{s.title}</h3>
                       <p className="text-sm text-ink/65 leading-relaxed mb-6 flex-1 line-clamp-3">{s.desc}</p>
                       <span className="inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all">
-                        Learn more <ArrowUpRight className="w-4 h-4" />
+                        Get a quote <ArrowUpRight className="w-4 h-4" />
                       </span>
                     </div>
                   </Link>
