@@ -2,7 +2,8 @@
 export function quoteRouteFor(category, productId) {
   switch ((category || "").toLowerCase()) {
     case "travel":
-      return productId ? `/travel-quote/${productId}` : "/products/travel";
+      // First go to Covar-style detail page; "Buy Now" there hands off to /travel-quote/:id
+      return productId ? `/products/travel/${productId}` : "/products/travel";
     case "motor":
       return "/products/motor-easy";
     case "pa":

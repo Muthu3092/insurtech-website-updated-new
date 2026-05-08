@@ -38,6 +38,7 @@ import SiteHome from "@/pages/site/Home";
 import SiteAbout from "@/pages/site/About";
 import SiteServices from "@/pages/site/Services";
 import SiteServiceSingle from "@/pages/site/ServiceSingle";
+import SiteShieldDetail from "@/pages/site/ShieldDetail";
 import SitePricing from "@/pages/site/Pricing";
 import SiteTeam from "@/pages/site/Team";
 import SiteBlog from "@/pages/site/Blog";
@@ -161,19 +162,36 @@ function AppRoutes() {
       <Route path="/login" element={<CustomerShell><Login /></CustomerShell>} />
       <Route path="/signup" element={<CustomerShell><Signup /></CustomerShell>} />
       <Route path="/products" element={<CustomerShell><Products /></CustomerShell>} />
-      <Route path="/products/motor-easy" element={<CustomerShell><MotorInsurance /></CustomerShell>} />
+      <Route path="/products/motor-easy" element={<SiteShell><SiteShieldDetail category="motor" /></SiteShell>} />
       <Route path="/motor-quote" element={<CustomerShell><MotorQuote /></CustomerShell>} />
       <Route path="/motor-quote/:productId" element={<CustomerShell><MotorQuote /></CustomerShell>} />
-      <Route path="/products/pa-easy" element={<CustomerShell><PAInsurance /></CustomerShell>} />
+      <Route path="/products/pa-easy" element={<SiteShell><SiteShieldDetail category="pa" /></SiteShell>} />
       <Route path="/pa-quote" element={<CustomerShell><PAQuote /></CustomerShell>} />
       <Route path="/pa-quote/:productId" element={<CustomerShell><PAQuote /></CustomerShell>} />
-      <Route path="/products/health-secure-plus" element={<CustomerShell><HealthInsurance /></CustomerShell>} />
+      <Route path="/products/health-secure-plus" element={<SiteShell><SiteShieldDetail category="health" /></SiteShell>} />
       <Route path="/health-quote/:productId" element={<CustomerShell><HealthQuote /></CustomerShell>} />
-      <Route path="/products/home-easy" element={<CustomerShell><HomeInsurance /></CustomerShell>} />
+      <Route path="/products/home-easy" element={<SiteShell><SiteShieldDetail category="home" /></SiteShell>} />
       <Route path="/home-quote/:productId" element={<CustomerShell><HomeQuote /></CustomerShell>} />
-      <Route path="/products/travel" element={<CustomerShell><TravelQuote /></CustomerShell>} />
+      <Route path="/products/travel" element={<SiteShell><SiteShieldDetail category="travel" /></SiteShell>} />
+      <Route path="/products/travel/:productId" element={<SiteShell><SiteShieldDetail category="travel" /></SiteShell>} />
       <Route path="/products/travel/:productId/quote" element={<CustomerShell><TravelQuote /></CustomerShell>} />
       <Route path="/travel-quote/:productId" element={<CustomerShell><TravelQuote /></CustomerShell>} />
+      <Route
+        path="/legacy-products/motor-easy"
+        element={<CustomerShell><MotorInsurance /></CustomerShell>}
+      />
+      <Route
+        path="/legacy-products/pa-easy"
+        element={<CustomerShell><PAInsurance /></CustomerShell>}
+      />
+      <Route
+        path="/legacy-products/health-secure-plus"
+        element={<CustomerShell><HealthInsurance /></CustomerShell>}
+      />
+      <Route
+        path="/legacy-products/home-easy"
+        element={<CustomerShell><HomeInsurance /></CustomerShell>}
+      />
       <Route
         path="/dashboard"
         element={
