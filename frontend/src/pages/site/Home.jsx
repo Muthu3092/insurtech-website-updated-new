@@ -40,7 +40,7 @@ const CATEGORY_META = {
   home: { icon: HomeIcon, fallbackImg: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80" },
 };
 
-const SHIELDS = [
+const FALLBACK_SHIELDS = [
   { icon: Plane, slug: "travel", title: "Travel Shield", desc: "Worldwide cover with auto-claim triage in under 2 minutes.", img: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80", tag: "Travel" },
   { icon: HeartPulse, slug: "health", title: "Health Cover", desc: "Cashless hospitalization, critical illness, AI-led wellness.", img: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80", tag: "Health" },
   { icon: Car, slug: "motor", title: "Motor Insurance", desc: "Comprehensive car & bike protection with instant FNOL.", img: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80", tag: "Motor" },
