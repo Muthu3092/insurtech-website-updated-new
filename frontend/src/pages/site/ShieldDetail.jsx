@@ -31,7 +31,7 @@ const HERO_IMG = {
   health: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80",
   motor:  "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1400&q=80",
   pa:     "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1400&q=80",
-  home:   "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1400&q=80",
+  home:   "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=srgb&fm=jpg&w=1200&q=80",
 };
 
 const COPY = {
@@ -112,22 +112,37 @@ const COPY = {
     ],
   },
   home: {
-    eyebrow: "Home Protection",
-    title: "Smart home cover with Aura monitoring",
-    italic: ["Aura", "monitoring"],
-    intro: "All-risk home cover protecting your building, contents and liability — with smart-device discounts, 24/7 home assistance and a 10% online rebate.",
+    eyebrow: "Home Insurance",
+    title: "Sleep easy. Home protected.",
+    italic: ["Home", "protected."],
+    intro: "Home Easy covers your building, contents and liability against fire, flood, storm and theft — from RM 120 / year.",
     highlights: [
-      { icon: ShieldCheck, title: "Building + Contents cover",  body: "Full reinstatement after fire, flood, storm and burglary." },
-      { icon: Clock,       title: "24h home assistance",        body: "Plumber, electrician, locksmith dispatched any time." },
-      { icon: FileText,    title: "Public liability up to RM 1M", body: "Protection if a guest is injured at your property." },
-      { icon: Headphones,  title: "Smart-device discount",       body: "Connected smoke/water sensors? Get an extra 5% off." },
-      { icon: Star,        title: "Flexible Basic / Enhanced / Premier", body: "Pick the level that suits your home and budget." },
-      { icon: CreditCard,  title: "10% online discount",         body: "Buy online through afinity.ai for instant savings." },
+      { icon: ShieldCheck, title: "Fire & Lightning",     body: "Core protection against fire, lightning, and explosions — fully reinstated after a valid claim." },
+      { icon: Clock,       title: "Flood & Storm",        body: "Enhanced plans cover flood, windstorm and water damage, critical for Malaysian monsoon seasons." },
+      { icon: FileText,    title: "Theft & Burglary",     body: "Cover against burglary, theft, vandalism and malicious acts up to your plan limit." },
+      { icon: Star,        title: "10% Online Discount",  body: "Instant online discount applied to your quote. SST 8% clearly itemised — no surprises." },
+      { icon: Headphones,  title: "24/7 Home Assistance", body: "Emergency plumber, electrician and locksmith dispatched at any time. Add-on available." },
+      { icon: CreditCard,  title: "Instant digital policy",body: "Receive your digital policy card by email the moment you pay — Stripe-secured checkout." },
     ],
     plans: [
-      { name: "Basic",    price: 120, popular: false, features: ["Fire & lightning", "Theft up to RM 5k", "Liability up to RM 100k", "Standard claims"] },
-      { name: "Enhanced", price: 188, popular: true,  features: ["All Basic", "Flood & windstorm", "Theft up to RM 20k", "Liability up to RM 500k"] },
-      { name: "Premier",  price: 269, popular: false, features: ["All Enhanced", "Accidental damage", "Alt. accommodation", "Liability up to RM 1M"] },
+      { name: "Basic",    price: 120, popular: false, features: ["Fire & Lightning", "Theft up to RM 5,000", "Public liability up to RM 100,000", "Standard claims handling"] },
+      { name: "Enhanced", price: 188, popular: true,  features: ["All Basic benefits", "Flood & Windstorm", "Theft up to RM 20,000", "Liability up to RM 500,000"] },
+      { name: "Premier",  price: 269, popular: false, features: ["All Enhanced benefits", "Accidental Damage", "Alternative Accommodation", "Liability up to RM 1,000,000"] },
+    ],
+    sectionHeadings: {
+      highlights:    { eyebrow: "Key benefits",                title: "Why Home Easy.",                       italic: ["Home", "Easy."] },
+      plans:         { eyebrow: "Plans",                       title: "Basic · Enhanced · Premier.",          italic: ["Premier."] },
+      plansIntro:    "Three tiers of protection — pick what matches your peace of mind.",
+      faq:           { eyebrow: "FAQ",                         title: "Your questions, answered.",            italic: ["answered."] },
+      cta:           { eyebrow: "Ready when you are",          title: "Instant home protection. Under 3 minutes.", italic: ["Under", "3", "minutes."] },
+      ctaSubtitle:   "12 months cover · from RM 120/year · Secure Stripe checkout",
+    },
+    faqs: [
+      { q: "What does Home Easy cover?",          a: "Home Easy covers Building (structure, roof, walls, built-in fittings) and Contents (furniture, electronics, personal items) against fire, flood, storm, burglary, and public liability. The exact perils depend on your chosen plan — Basic, Enhanced, or Premier." },
+      { q: "Who is eligible to buy Home Easy?",   a: "Open to Malaysian citizens, Permanent Residents, and legal residents. Covers Landed houses, Apartments/Condos, Terrace houses, and Commercial properties across Malaysia." },
+      { q: "How is my premium calculated?",       a: "We combine your Building sum insured (per RM 100,000) × plan loading × property-type loading, plus Contents sum insured × plan loading. An instant 10% online discount applies, then SST 8% on the net premium." },
+      { q: "Is there a discount for buying online?", a: "Yes — a 10% online discount is applied automatically when you purchase through this site." },
+      { q: "Can I cancel or change my policy?",   a: "Yes. You may cancel in writing any time; provided no claim has been made you'll receive a short-period refund subject to a minimum retained premium. Mid-term adjustments are supported." },
     ],
   },
 };
@@ -168,6 +183,10 @@ export default function ShieldDetail({ category }) {
   const cat = (category || params.category || "travel").toLowerCase();
   const copy = COPY[cat] || COPY.travel;
   const Icon = ICON_MAP[cat] || Shield;
+
+  // Optional per-category overrides
+  const sh = copy.sectionHeadings || {};
+  const faqsList = copy.faqs || FAQS;
 
   React.useEffect(() => {
     endpoints
@@ -281,18 +300,18 @@ export default function ShieldDetail({ category }) {
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
             <div className="lg:col-span-7">
-              <span className="eyebrow mb-5">Product Highlights</span>
+              <span className="eyebrow mb-5">{sh.highlights?.eyebrow || "Product Highlights"}</span>
               <AnimatedHeading
                 as="h2"
-                text="Everything you'd expect, faster than ever"
-                italicWords={["faster", "than", "ever"]}
+                text={sh.highlights?.title || "Everything you'd expect, faster than ever"}
+                italicWords={sh.highlights?.italic || ["faster", "than", "ever"]}
                 className="display-h mt-5"
               />
             </div>
             <div className="lg:col-span-5">
               <p className="text-ink/70 leading-relaxed">
-                Six core benefits that combine real coverage, transparent pricing and Aura's
-                always-on AI engine.
+                {sh.highlights?.intro ||
+                  "Six core benefits that combine real coverage, transparent pricing and Aura's always-on AI engine."}
               </p>
             </div>
           </div>
@@ -316,18 +335,18 @@ export default function ShieldDetail({ category }) {
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
             <div className="lg:col-span-7">
-              <span className="eyebrow mb-5">Premium Pricing</span>
+              <span className="eyebrow mb-5">{sh.plans?.eyebrow || "Premium Pricing"}</span>
               <AnimatedHeading
                 as="h2"
-                text={`Pick the ${copy.eyebrow.toLowerCase()} plan that fits`}
-                italicWords={["that", "fits"]}
+                text={sh.plans?.title || `Pick the ${copy.eyebrow.toLowerCase()} plan that fits`}
+                italicWords={sh.plans?.italic || ["that", "fits"]}
                 className="display-h mt-5"
               />
             </div>
             <div className="lg:col-span-5">
               <p className="text-ink/70 leading-relaxed">
-                All plans include the core protection. Step up for richer benefits, family bundling
-                and concierge claims.
+                {sh.plansIntro ||
+                  "All plans include the core protection. Step up for richer benefits, family bundling and concierge claims."}
               </p>
             </div>
           </div>
@@ -408,16 +427,16 @@ export default function ShieldDetail({ category }) {
       <section className="py-24 md:py-32 bg-creamlight">
         <div className="container grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <span className="eyebrow mb-5">Frequently Asked</span>
+            <span className="eyebrow mb-5">{sh.faq?.eyebrow || "Frequently Asked"}</span>
             <AnimatedHeading
               as="h2"
-              text="Answers to your shield questions"
-              italicWords={["shield", "questions"]}
+              text={sh.faq?.title || "Answers to your shield questions"}
+              italicWords={sh.faq?.italic || ["shield", "questions"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed">
-              Quick answers about coverage, claims, and Aura AI. Still curious? Chat with Aura at the
-              bottom right of any page.
+              {sh.faq?.intro ||
+                "Quick answers about coverage, claims, and Aura AI. Still curious? Chat with Aura at the bottom right of any page."}
             </p>
             <div className="mt-8 p-6 rounded-3xl bg-white border border-ink/10 flex items-center gap-4 max-w-md">
               <div className="w-12 h-12 rounded-full bg-lime/30 flex items-center justify-center">
@@ -431,7 +450,7 @@ export default function ShieldDetail({ category }) {
           </div>
 
           <div className="lg:col-span-7 space-y-3">
-            {FAQS.map((f, i) => (
+            {faqsList.map((f, i) => (
               <div
                 key={i}
                 className={`acc-item rounded-2xl px-6 py-5 transition ${
@@ -468,16 +487,16 @@ export default function ShieldDetail({ category }) {
         <div className="container">
           <div className="rounded-[2.5rem] bg-ink text-cream p-10 md:p-16 grid lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-8">
-              <span className="eyebrow light mb-5">Ready when you are</span>
+              <span className="eyebrow light mb-5">{sh.cta?.eyebrow || "Ready when you are"}</span>
               <AnimatedHeading
                 as="h2"
-                text={`Get your ${copy.eyebrow.toLowerCase()} quote in 60 seconds`}
-                italicWords={["60", "seconds"]}
+                text={sh.cta?.title || `Get your ${copy.eyebrow.toLowerCase()} quote in 60 seconds`}
+                italicWords={sh.cta?.italic || ["60", "seconds"]}
                 className="display-h mt-5 text-cream"
               />
               <p className="mt-5 text-cream/70 max-w-xl">
-                No paperwork upfront. Aura handles the underwriting in real time and emails your
-                policy the moment you pay.
+                {sh.ctaSubtitle ||
+                  "No paperwork upfront. Aura handles the underwriting in real time and emails your policy the moment you pay."}
               </p>
             </div>
             <div className="lg:col-span-4 flex lg:justify-end">
