@@ -5,7 +5,7 @@ import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
 
 const PLANS = [
-  { name: "Basic", price: 49, popular: false, desc: "Essential cover for individuals.", features: ["Aura AI claims", "Travel + PA add-on", "30-day free look", "Email & chat support"] },
+  { name: "Basic", price: 49, popular: false, desc: "Essential cover for individuals.", features: [" <Af></Af> claims", "Travel + PA add-on", "30-day free look", "Email & chat support"] },
   { name: "Standard", price: 148, popular: true, desc: "Best for families & professionals.", features: ["Everything in Basic", "Health + Motor cover", "Priority claims handling", "Phone support 24/7"] },
   { name: "Premium", price: 449, popular: false, desc: "Complete protection bundle.", features: ["Everything in Standard", "Home + Business cover", "Dedicated advisor", "Concierge claims"] },
 ];

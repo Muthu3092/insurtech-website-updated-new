@@ -8,10 +8,10 @@ import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
 
 const T = [
-  { tag: "Travel", quote: "Aura settled my flight-delay claim from KLIA in 90 seconds. I had the refund before my Uber arrived. Genuinely magical.", name: "Aishah R.", role: "Frequent Flyer · KL" },
+  { tag: "Travel", quote: "Afinity.AI settled my flight-delay claim from KLIA in 90 seconds. I had the refund before my Uber arrived. Genuinely magical.", name: "Aishah R.", role: "Frequent Flyer · KL" },
   { tag: "Motor", quote: "After a fender-bender, the FNOL bot gathered photos and witness info instantly. Settlement next morning. Old insurers can't compete.", name: "David Wong", role: "Motor Claim · Penang" },
   { tag: "Health", quote: "Cashless admission was seamless and the dashboard tracked every benefit clearly. Zero paperwork. I'd recommend to any new parent.", name: "Priya M.", role: "New Parent · Subang" },
-  { tag: "PA", quote: "Aura recommended a PA add-on I hadn't considered. Six months later, it covered a hiking accident in Sabah. Lifesaver.", name: "Marcus L.", role: "Outdoor Enthusiast" },
+  { tag: "PA", quote: "Afinity.AI recommended a PA add-on I hadn't considered. Six months later, it covered a hiking accident in Sabah. Lifesaver.", name: "Marcus L.", role: "Outdoor Enthusiast" },
   { tag: "Home", quote: "After a flash flood, restoration was arranged within 48 hours. The whole process felt designed for actual humans.", name: "Lina T.", role: "Homeowner · Ipoh" },
   { tag: "Business", quote: "My SME bundle covers cyber, public liability and motor in one dashboard. The CRM features alone justify the price.", name: "Faiz Ismail", role: "F&B Owner" },
 ];

@@ -35,8 +35,8 @@ export default function Contact() {
         state: "success",
         message:
           message
-            ? "Thanks — we received your message. Aura will follow up by email shortly."
-            : "Thanks — your account is ready. Aura will be in touch shortly.",
+            ? "Thanks — we received your message. Afinity.AI will follow up by email shortly."
+            : "Thanks — your account is ready. Afinity.AI will be in touch shortly.",
       });
       e.target.reset();
     } catch (err) {
@@ -83,14 +83,14 @@ export default function Contact() {
               </div>
             ))}
             <div className="card-soft p-7 bg-ink text-cream">
-              <h3 className="font-display text-2xl mb-2">Aura is online 24/7</h3>
-              <p className="text-cream/70 text-sm mb-5">Need an answer right now? Aura our AI copilot replies instantly via chat or voice.</p>
+              <h3 className="font-display text-2xl mb-2">Afinity.AI is online 24/7</h3>
+              <p className="text-cream/70 text-sm mb-5">Need an answer right now? Afinity.AI our AI copilot replies instantly via chat or voice.</p>
               <button
                 className="btn-covar w-full justify-center"
                 onClick={() => window.dispatchEvent(new Event("aura:open"))}
                 data-testid="open-aura-chat"
               >
-                Chat with Aura <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
+                Chat with Afinity.AI <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
               </button>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function Contact() {
             <form onSubmit={onSubmit} className="card-soft p-8 md:p-10" data-testid="contact-form">
               <h2 className="font-display text-3xl mb-2">Send us a message</h2>
               <p className="text-ink/65 text-sm mb-8">
-                We'll create your free Aura profile and one of our advisors will follow up within an hour.
+                We'll create your free Afinity.AI profile and one of our advisors will follow up within an hour.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4 mb-4">

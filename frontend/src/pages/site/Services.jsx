@@ -28,13 +28,13 @@ const FALLBACK = [
 
 const PROCESS = [
   { num: "01", title: "Pick a shield", body: "Five lines of cover, four shields. Pick the one that fits your life right now." },
-  { num: "02", title: "Aura quotes you", body: "Aura asks 4–6 questions and computes a personalised premium in 60 seconds." },
+  { num: "02", title: " quotes you", body: "Afinity.AI asks 4–6 questions and computes a personalised premium in 60 seconds." },
   { num: "03", title: "Pay & cover live", body: "Stripe-secured checkout. Digital certificate in your inbox the moment you pay." },
-  { num: "04", title: "Claim in two minutes", body: "Aura settles low-risk claims under 2 min. Humans handle the complex cases." },
+  { num: "04", title: "Claim in two minutes", body: "Afinity.AI settles low-risk claims under 2 min. Humans handle the complex cases." },
 ];
 
 const VALUES = [
-  { icon: Zap, title: "Real AI, real fast", body: "Aura cuts claim time by 87%. No call-centre queues, no paperwork delays." },
+  { icon: Zap, title: "Real AI, real fast", body: "Afinity.AI cuts claim time by 87%. No call-centre queues, no paperwork delays." },
   { icon: Lock, title: "Secure by design", body: "AES-256 at rest, TLS 1.3 in transit, ISO 27001 controls." },
   { icon: Heart, title: "Customer-first", body: "Every clause and every premium is designed to be fair, not sneaky." },
   { icon: Award, title: "Backed by Tier-1 reinsurers", body: "Underwritten by reinsurance partners regulated by BNM." },
@@ -87,7 +87,7 @@ export default function Services() {
               className="display-h"
             />
             <p className="mt-7 text-lg text-ink/70 max-w-xl leading-relaxed">
-              Five core shields, one Aura AI engine. Travel, Health, Motor, Personal Accident
+              Five core shields, one  AfinityAI engine. Travel, Health, Motor, Personal Accident
               and Home — each priced fairly, claimed quickly, designed for modern life.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -212,7 +212,7 @@ export default function Services() {
             </div>
             <div className="lg:col-span-5">
               <p className="text-cream/70 leading-relaxed">
-                Aura runs the whole flow — quote, KYC, payment, certificate — without any human
+                Afinity.AI runs the whole flow — quote, KYC, payment, certificate — without any human
                 handoffs unless you actively want one.
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function Services() {
               <span className="eyebrow light mb-5">Ready to switch?</span>
               <AnimatedHeading
                 as="h2"
-                text="Move every policy to Aura in one weekend"
+                text="Move every policy to Afinity.AI in one weekend"
                 italicWords={["one", "weekend"]}
                 className="display-h mt-5 text-cream"
               />
@@ -283,7 +283,7 @@ export default function Services() {
             </div>
             <div className="lg:col-span-4 flex lg:justify-end">
               <Link to="/contact" className="btn-covar">
-                Talk to Aura <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
+                Talk to Afinity.AI <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
               </Link>
             </div>
           </div>

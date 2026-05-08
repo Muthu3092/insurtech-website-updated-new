@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="text-center max-w-xl">
         <div className="font-display text-[10rem] leading-none font-semibold text-ink">404</div>
         <h2 className="font-display text-3xl mt-6 mb-4">This page took an unexpected detour</h2>
-        <p className="text-ink/65 mb-8">It might have moved or never existed. Aura is on it.</p>
+        <p className="text-ink/65 mb-8">It might have moved or never existed. Afinity.AI is on it.</p>
         <Link to="/" className="btn-covar dark">
           Back home <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
         </Link>

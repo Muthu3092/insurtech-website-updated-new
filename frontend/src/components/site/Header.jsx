@@ -31,15 +31,21 @@ export default function Header() {
   return (
     <header className={`site-header ${scrolled ? "scrolled" : ""}`} data-testid="site-header">
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group" data-testid="logo-link">
-          <div className="w-10 h-10 rounded-2xl bg-ink flex items-center justify-center transition-transform group-hover:rotate-12">
-            <span className="text-lime font-display text-2xl font-semibold leading-none">a</span>
-          </div>
-          <div className="leading-tight">
-            <div className="font-display text-xl font-semibold text-ink">afinity<span className="text-lime">.</span></div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-ink/60 -mt-0.5">InsurTech · AI</div>
-          </div>
-        </Link>
+        <Link
+  to="/"
+  className="flex items-center gap-2 group"
+  data-testid="logo-link"
+>
+  <div className="w-40 sm:w-48 md:w-56 lg:w-40 h-16 sm:h-20 md:h-24 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+    
+    <img
+      src="/logo.png"
+      alt="Logo"
+      className="w-full h-full object-contain"
+    />
+
+  </div>
+</Link>
 
         <nav className="hidden lg:flex items-center gap-1 bg-white/40 backdrop-blur-md border border-ink/5 rounded-full px-2 py-1.5">
           {links.map((l) => (
@@ -69,7 +75,7 @@ export default function Header() {
               <Phone className="w-4 h-4" />
             </span>
             <span>
-              <span className="block text-[10px] uppercase tracking-widest text-ink/50">Aura support</span>
+              <span className="block text-[10px] uppercase tracking-widest text-ink/50">Afinity AI support</span>
               <span className="block">+60 12 345 6789</span>
             </span>
           </a>

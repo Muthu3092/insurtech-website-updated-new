@@ -22,7 +22,7 @@ export default function AuraChat() {
     {
       from: "aura",
       text:
-        "Hi, I'm Aura — your AI insurance copilot. Ask me anything about Travel, Health, Motor, PA or Home cover.",
+        "Hi, I'm Afinity.AI — your AI insurance copilot. Ask me anything about Travel, Health, Motor, PA or Home cover.",
     },
   ]);
   const scrollRef = React.useRef(null);

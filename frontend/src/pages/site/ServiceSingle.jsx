@@ -22,8 +22,8 @@ export default function ServiceSingle() {
     <div data-testid={`service-single-${slug}`}>
       <PageHero
         eyebrow="Shield"
-        title={s.title + " coverage with Aura AI"}
-        italicWords={["Aura", "AI"]}
+        title={s.title + " coverage with Afinity.AI"}
+        italicWords={["Afinity.AI"]}
         crumbs={[{ label: "Shields", to: "/services" }, { label: s.title }]}
       />
 
@@ -35,12 +35,12 @@ export default function ServiceSingle() {
             </div>
             <h2 className="font-display text-4xl mb-5">Coverage that adapts to your life</h2>
             <p className="text-ink/70 leading-relaxed mb-5">
-              Our {s.title} plan combines comprehensive protection with the speed of Aura AI.
+              Our {s.title} plan combines comprehensive protection with the speed of Afinity.AI.
               From quote to settlement, every step is designed for clarity, transparency and
               instant action.
             </p>
             <p className="text-ink/70 leading-relaxed mb-10">
-              Aura analyzes thousands of risk signals to give you a fair, personalized premium
+              Afinity.AI analyzes thousands of risk signals to give you a fair, personalized premium
               — and to settle low-risk claims automatically in under 2 minutes.
             </p>
 
@@ -48,7 +48,7 @@ export default function ServiceSingle() {
               {[
                 "Auto-approval for low-risk claims",
                 "Fraud score on every submission",
-                "24/7 voice & chat with Aura",
+                "24/7 voice & chat with Afinity.AI",
                 "Smart bundle recommendations",
                 "30-day free look guarantee",
                 "Cashless or fast reimbursement",
@@ -75,7 +75,7 @@ export default function ServiceSingle() {
               <h3 className="font-display text-2xl mb-2">{s.title}</h3>
               <p className="text-sm text-ink/65 mb-6">Personalized cover, transparent pricing, AI-powered claims.</p>
               <div className="border-t border-ink/10 pt-5 space-y-3 text-sm">
-                {[["Issued", "Instantly"], ["Claim triage", "< 2 min"], ["Free look", "30 days"], ["Support", "24/7 Aura"]].map(([k, v]) => (
+                {[["Issued", "Instantly"], ["Claim triage", "< 2 min"], ["Free look", "30 days"], ["Support", "24/7 Afinity.AI"]].map(([k, v]) => (
                   <div key={k} className="flex items-center justify-between">
                     <span className="text-ink/55">{k}</span>
                     <span className="font-medium">{v}</span>
@@ -86,7 +86,7 @@ export default function ServiceSingle() {
             <div className="card-soft p-7 bg-ink text-cream">
               <Phone className="w-7 h-7 text-lime mb-4" />
               <h3 className="font-display text-2xl mb-2">Talk to a human</h3>
-              <p className="text-sm text-cream/70 mb-5">Prefer a real person? Our customer Aura team is one tap away.</p>
+              <p className="text-sm text-cream/70 mb-5">Prefer a real person? Our customer Afinity.AI team is one tap away.</p>
               <a href="tel:+60123456789" className="btn-covar w-full justify-center">
                 +60 12 345 6789 <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
               </a>

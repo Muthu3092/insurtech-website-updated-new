@@ -5,12 +5,12 @@ import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
 
 const TEAM = [
-  { name: "Sarah Thompson", role: "Head of Customer Aura", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" },
+  { name: "Sarah Thompson", role: "Head of Customer Afinity.AI", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" },
   { name: "Michael Anderson", role: "Senior Insurance Advisor", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" },
   { name: "David Martinez", role: "AI Risk Architect", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" },
   { name: "Aishah Rahim", role: "Underwriting Lead", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80" },
   { name: "Wei Liang Tan", role: "Claims Operations", img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" },
-  { name: "Priya Nair", role: "Aura ML Engineer", img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80" },
+  { name: "Priya Nair", role: "Afinity.AI ML Engineer", img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80" },
 ];
 
 export default function Team() {

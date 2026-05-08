@@ -69,7 +69,7 @@ export default function Header() {
               <Phone className="w-4 h-4" />
             </span>
             <span>
-              <span className="block text-[10px] uppercase tracking-widest text-ink/50">Aura support</span>
+              <span className="block text-[10px] uppercase tracking-widest text-ink/50">Afinity.AI support</span>
               <span className="block">+60 12 345 6789</span>
             </span>
           </a>

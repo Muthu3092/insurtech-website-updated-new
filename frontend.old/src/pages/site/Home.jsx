@@ -48,28 +48,28 @@ const FALLBACK_SHIELDS = [
 ];
 
 const FAQS = [
-  { q: "Q1. How fast can Aura settle a claim?", a: "Aura, our AI copilot, can auto-approve low-risk claims in under 2 minutes. High-risk claims are routed to human reviewers instantly with a fraud score and document checklist." },
+  { q: "Q1. How fast can Afinity.AI settle a claim?", a: "Afinity.AI, our AI copilot, can auto-approve low-risk claims in under 2 minutes. High-risk claims are routed to human reviewers instantly with a fraud score and document checklist." },
   { q: "Q2. What lines of cover do you offer?", a: "We offer four core shields — Travel, Health, Motor and Personal Accident — plus Home Protection. Bundle any two for an automatic 12% discount." },
-  { q: "Q3. How do I get a quote?", a: "Tap any 'Get Quote' button. Aura asks 4 to 6 questions and returns a personalized premium in roughly 60 seconds. No paperwork upfront." },
-  { q: "Q4. Are my documents secure?", a: "Yes. We use AES-256 at rest, TLS 1.3 in transit, and ISO 27001 controls. Aura never shares your data with third parties." },
+  { q: "Q3. How do I get a quote?", a: "Tap any 'Get Quote' button. Afinity.AI asks 4 to 6 questions and returns a personalized premium in roughly 60 seconds. No paperwork upfront." },
+  { q: "Q4. Are my documents secure?", a: "Yes. We use AES-256 at rest, TLS 1.3 in transit, and ISO 27001 controls. Afinity.AI never shares your data with third parties." },
   { q: "Q5. Can I cancel any time?", a: "Absolutely. All plans include a 30-day free look and pro-rata refund. Cancel from your dashboard with one tap." },
 ];
 
 const TESTIMONIALS = [
-  { tag: "Travel Insurance", quote: "Aura settled my flight-delay claim from KLIA in 90 seconds. I had the refund before my Uber arrived. Genuinely magical.", name: "Aishah R.", role: "Frequent Flyer · KL" },
+  { tag: "Travel Insurance", quote: "Afinity.AI settled my flight-delay claim from KLIA in 90 seconds. I had the refund before my Uber arrived. Genuinely magical.", name: "Aishah R.", role: "Frequent Flyer · KL" },
   { tag: "Claims Support", quote: "After a fender-bender, the FNOL bot gathered photos and witness info instantly. Settlement next morning. Old insurers can't compete.", name: "David Wong", role: "Motor Claim · Penang" },
   { tag: "Health Cover", quote: "I picked Health Premium during my pregnancy. Cashless admission was seamless and the dashboard tracked every benefit clearly.", name: "Priya M.", role: "New Parent · Subang" },
-  { tag: "Policy Guidance", quote: "Aura recommended a PA add-on I hadn't considered. Six months later, it covered a hiking accident in Sabah. Lifesaver.", name: "Marcus L.", role: "Outdoor Enthusiast" },
+  { tag: "Policy Guidance", quote: "Afinity.AI recommended a PA add-on I hadn't considered. Six months later, it covered a hiking accident in Sabah. Lifesaver.", name: "Marcus L.", role: "Outdoor Enthusiast" },
 ];
 
 const TEAM = [
-  { name: "Sarah Thompson", role: "Head of Customer Aura", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" },
+  { name: "Sarah Thompson", role: "Head of Customer Afinity.AI", img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" },
   { name: "Michael Anderson", role: "Senior Insurance Advisor", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" },
   { name: "David Martinez", role: "AI Risk Architect", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" },
 ];
 
 const BLOGS = [
-  { title: "How Aura settles 73% of travel claims in under two minutes", date: "12 Jan 2026", cat: "AI", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" },
+  { title: "How Afinity.AI settles 73% of travel claims in under two minutes", date: "12 Jan 2026", cat: "AI", img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" },
   { title: "5 health insurance mistakes that cost Malaysians thousands", date: "08 Jan 2026", cat: "Guides", img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80" },
   { title: "Why CRM-first insurtech wins the next decade", date: "02 Jan 2026", cat: "Insights", img: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" },
 ];
@@ -139,7 +139,7 @@ export default function Home() {
             />
 
             <p className="mt-7 text-lg text-ink/70 max-w-xl leading-relaxed">
-              One platform. Four shields. Powered by Aura — real AI from quote to claim
+              One platform. Four shields. Powered by Afinity.AI — real AI from quote to claim
               in minutes, not weeks. Built for modern life across Malaysia & beyond.
             </p>
 
@@ -322,7 +322,7 @@ export default function Home() {
             </div>
             <div className="lg:col-span-5">
               <p className="text-ink/70 leading-relaxed">
-                Flexible coverage, transparent premiums and Aura AI guidance. Safeguard your
+                Flexible coverage, transparent premiums and Afinity.AI guidance. Safeguard your
                 future at every stage — from first job to forever home.
               </p>
             </div>
@@ -385,13 +385,13 @@ export default function Home() {
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed max-w-xl">
-              Reliable coverage, personalized guidance, flexible plans — and Aura AI working
+              Reliable coverage, personalized guidance, flexible plans — and Afinity.AI working
               behind every policy to give you faster decisions and fewer surprises.
             </p>
 
             <div className="mt-10 space-y-5">
               {[
-                { title: "Personalized Insurance", text: "Aura learns your goals & risk profile so every quote is tailored." },
+                { title: "Personalized Insurance", text: "Afinity.AI learns your goals & risk profile so every quote is tailored." },
                 { title: "Real-time Claims", text: "Auto-approval for low-risk claims, fraud-score on every submission." },
                 { title: "Transparent Pricing", text: "No hidden fees. See every benefit and exclusion before you pay." },
               ].map((b, i) => (
@@ -516,7 +516,7 @@ export default function Home() {
             <div className="lg:col-span-5">
               <p className="text-ink/70 leading-relaxed">
                 Easy-to-understand plans, no hidden fees. Pick the right protection without
-                overpaying — Aura makes recommendations based on your real life.
+                overpaying — Afinity.AI makes recommendations based on your real life.
               </p>
             </div>
           </div>
@@ -544,14 +544,14 @@ export default function Home() {
                 </div>
                 <h3 className="font-display text-3xl font-semibold mb-2">{p.name}</h3>
                 <p className="text-sm text-ink/65 mb-6">
-                  Essential cover with Aura AI guidance and 24/7 claims support.
+                  Essential cover with Afinity.AI guidance and 24/7 claims support.
                 </p>
                 <div className="font-display text-5xl font-semibold mb-1">RM {p.price}<span className="text-base text-ink/60 font-body font-normal">/mo</span></div>
                 <div className="border-t border-ink/15 my-7" />
                 <div className="text-xs uppercase tracking-widest font-semibold mb-4">What's Included</div>
                 <ul className="space-y-3 mb-8">
                   {[
-                    "Aura AI claims handling",
+                    "Afinity.AI claims handling",
                     "Extended life & health cover",
                     "Vehicle or property add-on",
                     "30-day free look",
@@ -597,13 +597,13 @@ export default function Home() {
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed max-w-lg">
-              Our experts (and Aura) guide you through flexible coverage options, helping
+              Our experts (and Afinity.AI) guide you through flexible coverage options, helping
               you choose protection that gives confidence and peace of mind.
             </p>
             <div className="mt-10 grid sm:grid-cols-2 gap-5">
               {[
-                { icon: Headphones, title: "Contact Us Today", text: "Speak to a real human or chat with Aura — both 24/7." },
-                { icon: Phone, title: "+60 12 345 6789", text: "Call our customer Aura desk anytime." },
+                { icon: Headphones, title: "Contact Us Today", text: "Speak to a real human or chat with Afinity.AI — both 24/7." },
+                { icon: Phone, title: "+60 12 345 6789", text: "Call our customer Afinity.AI desk anytime." },
               ].map((c, i) => (
                 <div key={i} className="p-6 rounded-3xl bg-white border border-ink/10">
                   <c.icon className="w-7 h-7 text-ink mb-4" />

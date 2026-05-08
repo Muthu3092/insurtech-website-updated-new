@@ -17,12 +17,12 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-display text-3xl font-semibold">afinity<span className="text-lime">.</span></div>
-                <div className="text-[10px] uppercase tracking-[0.3em] text-cream/50">InsurTech · AI</div>
+                <div className="text-[10px] uppercase tracking-[0.3em] text-cream/50">InsurTech · Afinity.AI</div>
               </div>
             </div>
             <p className="text-cream/70 max-w-md leading-relaxed mb-8">
               Premium protection for your peace of mind. One platform, four shields,
-              powered by Aura AI — from quote to claim in minutes, not weeks.
+              powered by Afinity.AI — from quote to claim in minutes, not weeks.
             </p>
             <div className="flex gap-3">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-cream/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream/50">
-          <div>© {new Date().getFullYear()} afinity.ai · Aura AI · All rights reserved.</div>
+          <div>© {new Date().getFullYear()} afinity.ai · Afinity.AI · All rights reserved.</div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-lime">Privacy</a>
             <a href="#" className="hover:text-lime">Terms</a>

@@ -199,7 +199,7 @@ export default function Landing() {
           </div>
           <div>
             <div className="text-xs text-primary-700 uppercase tracking-widest font-semibold mb-2">
-              Aura · your AI copilot
+              Afinity AI · your AI copilot
             </div>
             <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight mb-6">
               Claims that settle themselves.

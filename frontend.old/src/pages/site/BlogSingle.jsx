@@ -9,7 +9,7 @@ export default function BlogSingle() {
     <div data-testid="blog-single-page">
       <PageHero
         eyebrow="Article"
-        title="How Aura settles 73% of travel claims under two minutes"
+        title="How Afinity.AI settles 73% of travel claims under two minutes"
         italicWords={["two", "minutes"]}
         crumbs={[{ label: "Blog", to: "/blog" }, { label: "Article" }]}
       />
@@ -28,7 +28,7 @@ export default function BlogSingle() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-xl text-ink/80 leading-relaxed mb-6">
-              When we launched Aura, our in-house AI copilot, we set ourselves a single
+              When we launched Afinity.AI, our in-house AI copilot, we set ourselves a single
               audacious goal: settle most travel claims before the customer reached the
               taxi rank. Two years later, we're settling 73% of them in under 120 seconds.
             </p>
@@ -36,14 +36,14 @@ export default function BlogSingle() {
               The trick isn't just faster software. It's a CRM-first architecture that
               starts collecting context the moment you buy a policy — flight details,
               health profile, payment history — and never asks you for the same data twice.
-              When you submit a claim, Aura already knows you.
+              When you submit a claim, Afinity.AI already knows you.
             </p>
             <h2 className="font-display text-3xl mt-10 mb-4">Three principles that made it possible</h2>
             <p className="text-ink/70 leading-relaxed mb-5">
               First, transparent risk scoring. Every claim gets a fraud score and a
               severity score, both visible to the human reviewer. Second, document
               auto-extraction — flight delays, medical receipts and police reports are
-              parsed by the same model. Third, conservative defaults: when Aura is unsure,
+              parsed by the same model. Third, conservative defaults: when Afinity.AI is unsure,
               it always escalates.
             </p>
             <blockquote className="border-l-4 border-lime pl-6 italic text-ink/80 my-8 font-display text-2xl">
@@ -57,7 +57,7 @@ export default function BlogSingle() {
           </div>
 
           <div className="mt-14 p-8 rounded-3xl bg-ink text-cream flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="font-display text-2xl">Try Aura on your next travel claim.</div>
+            <div className="font-display text-2xl">Try Afinity.AI on your next travel claim.</div>
             <Link to="/contact" className="btn-covar">
               Get a quote <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
             </Link>

@@ -39,17 +39,17 @@ const COPY = {
     eyebrow: "Travel Insurance",
     title: "Travel boldly. Worry less.",
     italic: ["Worry", "less."],
-    intro: "Travel Shield Global gives you single-trip and annual cover with cashless hospitalization, flight-delay reimbursement and 24/7 multilingual assistance — settled by Aura AI in under 2 minutes.",
+    intro: "Travel Shield Global gives you single-trip and annual cover with cashless hospitalization, flight-delay reimbursement and 24/7 multilingual assistance — settled by Afinity.AI in under 2 minutes.",
     highlights: [
       { icon: ShieldCheck, title: "Emergency Medical up to RM 350k", body: "Cashless inpatient care across Malaysia & overseas hospitals." },
       { icon: Clock,       title: "Flight delay payouts in minutes", body: "RM 200 per 6-hour delay — auto-paid the moment your flight is logged late." },
       { icon: FileText,    title: "Trip cancellation cover",         body: "Up to RM 5,000 reimbursed for cancellations from listed events." },
-      { icon: Headphones,  title: "24/7 Aura AI + human support",    body: "Voice & chat in EN/BM/ZH/TA. We never close, even on PH." },
+      { icon: Headphones,  title: "24/7 Afinity.AI + human support",    body: "Voice & chat in EN/BM/ZH/TA. We never close, even on PH." },
       { icon: Star,        title: "Adventure sports add-on",         body: "Diving, trekking, ski — opt in for an extra 15% premium." },
       { icon: CreditCard,  title: "Buy in 60 seconds",               body: "No paperwork upfront, instant digital certificate by email." },
     ],
     plans: [
-      { name: "Basic",   price: 49,  popular: false, features: ["Medical RM 100k", "Trip cancellation RM 5k", "24/7 Aura assistance", "Digital cert"] },
+      { name: "Basic",   price: 49,  popular: false, features: ["Medical RM 100k", "Trip cancellation RM 5k", "24/7 Afinity.AI assistance", "Digital cert"] },
       { name: "Premium", price: 89,  popular: true,  features: ["Medical RM 350k", "Cashless hospital admission", "Adventure sports add-on", "Priority claims (under 90s)"] },
       { name: "Annual",  price: 349, popular: false, features: ["Unlimited trips/year", "All Premium benefits", "Family bundle 12% off", "Dedicated advisor"] },
     ],
@@ -64,7 +64,7 @@ const COPY = {
     faqs: [
       { q: "What does Travel Shield Global cover?", a: "Travel Shield Global covers emergency medical (up to RM 350,000), trip cancellation/curtailment, flight delay & cancellation, baggage delay/loss, personal liability, and 24/7 worldwide assistance. The exact limits depend on whether you pick Basic, Premium or Annual." },
       { q: "Who is eligible to buy?", a: "Open to Malaysian citizens, PRs and holders of a valid work permit / employment pass aged 18 to 70. Children under 18 can be added under the same trip when accompanied by an adult." },
-      { q: "How fast does Aura settle a flight-delay claim?", a: "If your flight is logged as delayed by the airline, Aura auto-files the FNOL and credits the RM 200/6h benefit to your bank — typically within 90 seconds. Other claims settle within 2 minutes for low-risk cases." },
+      { q: "How fast does Afinity.AI settle a flight-delay claim?", a: "If your flight is logged as delayed by the airline, Afinity.AI auto-files the FNOL and credits the RM 200/6h benefit to your bank — typically within 90 seconds. Other claims settle within 2 minutes for low-risk cases." },
       { q: "Can I add adventure sports cover?", a: "Yes — opt-in for an additional 15% premium and you'll be covered for diving (recreational, up to 30m), trekking up to 5,000m, scuba and snowboarding." },
       { q: "Can I cancel my policy?", a: "Single-trip policies are non-refundable once travel has commenced. Annual plans include a 30-day free-look period and pro-rata refund afterwards subject to a minimum retained premium." },
     ],
@@ -117,7 +117,7 @@ const COPY = {
       { icon: Headphones,  title: "Motor Bundle add-on",        body: "All-Driver, side-mirror, key replacement, roadside, PA + more for RM 0.24/day." },
     ],
     plans: [
-      { name: "Third-Party",   price: 320, popular: false, features: ["TPL + theft + fire", "10% online rebate", "Aura claims support", "Standard NCD"] },
+      { name: "Third-Party",   price: 320, popular: false, features: ["TPL + theft + fire", "10% online rebate", "Afinity.AI claims support", "Standard NCD"] },
       { name: "Comprehensive", price: 680, popular: true,  features: ["All-risk + own damage", "Agreed value option", "Windscreen + flood add-ons", "Roadside assist 24/7"] },
       { name: "Premium",       price: 990, popular: false, features: ["All Comprehensive benefits", "Inconvenience Allowance", "Spray Paint", "Concierge claims"] },
     ],
@@ -211,15 +211,15 @@ const COPY = {
 };
 
 const CLAIM_STEPS = [
-  { num: "01", title: "File via app or chat", body: "Tap 'File Claim' or message Aura — share the incident in plain English." },
-  { num: "02", title: "Aura reads your evidence", body: "Photos, receipts and reports are auto-extracted in under 30 seconds." },
+  { num: "01", title: "File via app or chat", body: "Tap 'File Claim' or message Afinity.AI — share the incident in plain English." },
+  { num: "02", title: "Afinity.AI reads your evidence", body: "Photos, receipts and reports are auto-extracted in under 30 seconds." },
   { num: "03", title: "AI-assisted decision", body: "Low-risk claims auto-approved; complex cases routed to a human advocate." },
   { num: "04", title: "Payout to your bank", body: "Approved amount lands in your bank in 1-3 working days." },
 ];
 
 const FAQS = [
-  { q: "Q1. How fast does Aura settle a claim?", a: "Aura auto-approves low-risk claims in under 2 minutes. High-risk claims are routed instantly to a human advocate with a fraud-score and document checklist already prepared." },
-  { q: "Q2. What documents do I need?", a: "Most claims need a copy of your IC/passport, a brief description of the incident, and any receipts or police reports relevant to your specific cover. Aura extracts the rest from your existing profile." },
+  { q: "Q1. How fast does Afinity.AI settle a claim?", a: "Afinity.AI auto-approves low-risk claims in under 2 minutes. High-risk claims are routed instantly to a human advocate with a fraud-score and document checklist already prepared." },
+  { q: "Q2. What documents do I need?", a: "Most claims need a copy of your IC/passport, a brief description of the incident, and any receipts or police reports relevant to your specific cover. Afinity.AI extracts the rest from your existing profile." },
   { q: "Q3. Can I cancel any time?", a: "Yes — every plan includes a 30-day free-look period and pro-rata refund. Cancel from your dashboard with one tap." },
   { q: "Q4. Are my data and payments secure?", a: "AES-256 at rest, TLS 1.3 in transit, ISO 27001 controls. Payments are PCI-DSS L1 via our Stripe integration." },
   { q: "Q5. Who underwrites these policies?", a: "Policies are underwritten by Tier-1 reinsurers under Bank Negara Malaysia (BNM) supervision. Member of PIDM where applicable." },
@@ -336,7 +336,7 @@ export default function ShieldDetail({ category }) {
                     <div className="font-semibold text-sm">{productName}</div>
                   </div>
                   <span className="ml-auto bg-ink text-lime text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
-                    Aura AI
+                    Afinity.AI
                   </span>
                 </div>
               </div>
@@ -374,7 +374,7 @@ export default function ShieldDetail({ category }) {
             <div className="lg:col-span-5">
               <p className="text-ink/70 leading-relaxed">
                 {sh.highlights?.intro ||
-                  "Six core benefits that combine real coverage, transparent pricing and Aura's always-on AI engine."}
+                  "Six core benefits that combine real coverage, transparent pricing and Afinity.AI's always-on AI engine."}
               </p>
             </div>
           </div>
@@ -461,14 +461,14 @@ export default function ShieldDetail({ category }) {
               <span className="eyebrow light mb-5">How to Claim</span>
               <AnimatedHeading
                 as="h2"
-                text="Four taps to settlement, powered by Aura"
-                italicWords={["powered", "by", "Aura"]}
+                text="Four taps to settlement, powered by Afinity.AI"
+                italicWords={["powered", "by", "Afinity.AI"]}
                 className="display-h mt-5 text-cream"
               />
             </div>
             <div className="lg:col-span-5">
               <p className="text-cream/70 leading-relaxed">
-                Most claims are settled before your kettle boils. Here's exactly how Aura
+                Most claims are settled before your kettle boils. Here's exactly how Afinity.AI
                 handles every submission.
               </p>
             </div>
@@ -499,7 +499,7 @@ export default function ShieldDetail({ category }) {
             />
             <p className="mt-6 text-ink/70 leading-relaxed">
               {sh.faq?.intro ||
-                "Quick answers about coverage, claims, and Aura AI. Still curious? Chat with Aura at the bottom right of any page."}
+                "Quick answers about coverage, claims, and Afinity.AI. Still curious? Chat with Afinity.AI at the bottom right of any page."}
             </p>
             <div className="mt-8 p-6 rounded-3xl bg-white border border-ink/10 flex items-center gap-4 max-w-md">
               <div className="w-12 h-12 rounded-full bg-lime/30 flex items-center justify-center">
@@ -559,7 +559,7 @@ export default function ShieldDetail({ category }) {
               />
               <p className="mt-5 text-cream/70 max-w-xl">
                 {sh.ctaSubtitle ||
-                  "No paperwork upfront. Aura handles the underwriting in real time and emails your policy the moment you pay."}
+                  "No paperwork upfront. Afinity.AI handles the underwriting in real time and emails your policy the moment you pay."}
               </p>
             </div>
             <div className="lg:col-span-4 flex lg:justify-end">

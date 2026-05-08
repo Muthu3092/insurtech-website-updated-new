@@ -39,7 +39,7 @@ export default function About() {
             <p className="mt-6 text-ink/70 leading-relaxed">
               afinity.ai was founded in Kuala Lumpur with one belief: insurance should be
               effortless. Quotes in seconds, claims in minutes, advice that's genuinely useful.
-              We combined a CRM-first architecture with Aura — our in-house AI copilot — to
+              We combined a CRM-first architecture with Afinity.AI — our in-house AI copilot — to
               deliver coverage that fits modern life.
             </p>
             <p className="mt-4 text-ink/70 leading-relaxed">
@@ -102,7 +102,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: Heart, title: "Customer-first", text: "Every line of code, every policy clause, every claim decision starts with you." },
-              { icon: Zap, title: "Real AI, real results", text: "No marketing fluff. Aura measurably reduces claim time by 87%." },
+              { icon: Zap, title: "Real AI, real results", text: "No marketing fluff. Afinity.AI measurably reduces claim time by 87%." },
               { icon: ShieldCheck, title: "Transparent always", text: "See every benefit, exclusion, and premium component before you pay." },
               { icon: Award, title: "Built to last", text: "Backed by leading reinsurers and ISO 27001 certified security." },
             ].map((v, i) => (

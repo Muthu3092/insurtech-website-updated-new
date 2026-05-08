@@ -6,7 +6,7 @@ const ITEMS = [
   "Motor Insurance",
   "Personal Accident",
   "Home Protection",
-  "Aura AI Claims",
+  "Afinity.AI Claims",
   "Fast-track Quotes",
   "Transparent Pricing",
 ];

@@ -7,7 +7,7 @@ export default function AIChat() {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState([
-    { role: "assistant", content: "Hi! I'm Aura, your insurance assistant. How can I help today?" },
+    { role: "assistant", content: "Hi! I'm Afinity, your insurance assistant. How can I help today?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ export default function AIChat() {
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <div className="font-semibold font-display">Aura</div>
+              <div className="font-semibold font-display">Afinity</div>
               <div className="text-xs text-gray-500">AI insurance assistant</div>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function AIChat() {
             {loading && (
               <div className="flex justify-start">
                 <div className="bg-gray-100 px-3.5 py-2.5 rounded-2xl text-sm text-gray-500">
-                  Aura is typing...
+                  Afinity is typing...
                 </div>
               </div>
             )}
