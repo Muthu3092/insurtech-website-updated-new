@@ -55,7 +55,7 @@ export default function Header() {
               data-testid={`nav-${l.label.toLowerCase()}`}
               className={({ isActive }) =>
                 `px-4 py-2 text-sm font-medium rounded-full transition-all ${
-                  isActive ? "bg-ink text-cream" : "text-ink/80 hover:text-ink hover:bg-white"
+                  isActive ? "bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-[#D6BC7E] text-cream" : "text-ink/80 hover:text-ink hover:bg-white"
                 }`
               }
               end={l.to === "/"}
@@ -110,7 +110,7 @@ export default function Header() {
               to={l.to}
               className={({ isActive }) =>
                 `px-4 py-3 rounded-xl font-display text-2xl ${
-                  isActive ? "bg-ink text-cream" : "text-ink hover:bg-white"
+                  isActive ? "[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)]text-cream" : "text-ink hover:bg-white"
                 }`
               }
               end={l.to === "/"}

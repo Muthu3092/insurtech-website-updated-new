@@ -153,7 +153,7 @@ export default function Home() {
                 </span>
               </Link>
               <Link to="/contact" className="flex items-center gap-3 text-ink font-medium hover:gap-4 transition-all">
-                <span className="w-12 h-12 rounded-full bg-ink text-cream flex items-center justify-center">
+                <span className="w-12 h-12 rounded-full bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream flex items-center justify-center">
                   <Play className="w-4 h-4 ml-0.5" />
                 </span>
                 Get free quote
@@ -201,7 +201,7 @@ export default function Home() {
                 </div>
               </div>
               {/* Top spinning badge */}
-              <div className="absolute right-5 top-5 w-24 h-24 rounded-full bg-ink/90 backdrop-blur-xl flex items-center justify-center">
+              <div className="absolute right-5 top-5 w-24 h-24 rounded-full bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] backdrop-blur-xl flex items-center justify-center">
                 <div className="absolute inset-0 animate-spin-slow">
                   <svg viewBox="0 0 100 100" className="w-full h-full">
                     <defs>
@@ -226,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* CONTACT BANNER */}
-      <section className="bg-ink text-cream">
+      <section className="bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream">
         <div className="container py-8 grid md:grid-cols-3 gap-6 items-center">
           <div className="font-display text-3xl">Need help? Contact us today!</div>
           <div className="flex items-center gap-4 md:justify-end md:col-span-2">
@@ -249,12 +249,12 @@ export default function Home() {
           <div className="lg:col-span-6">
             <div className="grid grid-cols-2 gap-5 relative">
               <div className="img-mask aspect-[3/4] rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                <img src="/woman-programmer-is-browsing-internet-smart-phone-protect-cyber-security-from-hacker-attacks-save-clients-confidential-data-padlock-hologram-icons-typing-hands-formal-wear.jpg" alt="" className="w-full h-full object-cover" />
               </div>
               <div className="img-mask aspect-[3/4] rounded-3xl mt-12">
-                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="" className="w-full h-full object-cover" />
+                <img src="/woman-white-robe-is-looking-phone-with-lock-lock-middle.jpg" alt="" className="w-full h-full object-cover" />
               </div>
-              <Link to="/contact" className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-ink text-cream flex items-center justify-center shadow-2xl group">
+              <Link to="/contact" className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream flex items-center justify-center shadow-2xl group">
                 <div className="absolute inset-0 animate-spin-slow">
                   <svg viewBox="0 0 100 100" className="w-full h-full">
                     <defs>
@@ -265,7 +265,13 @@ export default function Home() {
                     </text>
                   </svg>
                 </div>
-                <ArrowUpRight className="w-6 h-6 text-lime group-hover:rotate-45 transition" />
+                <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center z-10">
+    <img
+      src="/icon.png"
+      alt="Family protected"
+      className="w-full h-full object-cover"
+    />
+  </div>
               </Link>
             </div>
           </div>
@@ -358,7 +364,7 @@ export default function Home() {
                   <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="mt-4 inline-flex">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full bg-ink text-lime">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-lime">
                     {s.tag}
                   </span>
                 </div>
@@ -366,7 +372,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-ink text-cream">
+          <div className="mt-14 flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream">
             <div className="flex items-center gap-4">
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80" alt="" className="w-14 h-14 rounded-full object-cover" />
               <div className="font-display text-2xl">Expert insurance solutions protecting what matters most.</div>
@@ -438,7 +444,7 @@ export default function Home() {
                   <div className="text-sm font-medium mt-3">Industry Awards & Recognitions</div>
                 </div>
               </div>
-              <div className="rounded-3xl bg-ink text-cream p-7 flex flex-col justify-between aspect-square">
+              <div className="rounded-3xl bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream p-7 flex flex-col justify-between aspect-square">
                 <Users className="w-10 h-10 text-lime" />
                 <div>
                   <div className="font-display text-6xl font-semibold leading-none"><Counter to={4} suffix="K+" /></div>
@@ -454,7 +460,7 @@ export default function Home() {
       </section>
 
       {/* INTRO VIDEO + COUNTERS */}
-      <section className="py-24 md:py-32 bg-ink text-cream relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream relative overflow-hidden">
         <div className="container relative">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7">
@@ -490,9 +496,20 @@ export default function Home() {
 
             <div className="lg:col-span-5">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/5]">
-                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80" alt="" className="w-full h-full object-cover" />
+                <video
+  className="w-full h-full object-cover"
+  autoPlay
+  loop
+  muted
+  playsInline
+>
+  <source
+    src="/0_Network_Digital_2160x3840.mov"
+    type="video/mp4"
+  />
+</video>
                 <div className="absolute inset-0 bg-ink/20" />
-                <a
+                {/* <a
                   href="https://www.youtube.com/watch?v=Y-x0efG1seA"
                   target="_blank"
                   rel="noreferrer"
@@ -501,7 +518,7 @@ export default function Home() {
                   <span className="w-24 h-24 rounded-full bg-lime flex items-center justify-center group-hover:scale-110 transition">
                     <Play className="w-7 h-7 text-ink ml-1" />
                   </span>
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -543,11 +560,11 @@ export default function Home() {
                 data-testid={`pricing-card-${p.name.toLowerCase().replace(" ", "-")}`}
               >
                 {p.popular && (
-                  <span className="absolute -top-3 left-8 bg-ink text-lime text-[11px] uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full">
+                  <span className="absolute -top-3 left-8 bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-lime text-[11px] uppercase tracking-widest font-semibold px-3 py-1.5 rounded-full">
                     Most Popular
                   </span>
                 )}
-                <div className="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-2xl bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] flex items-center justify-center mb-6">
                   <Shield className="w-7 h-7 text-lime" />
                 </div>
                 <h3 className="font-display text-3xl font-semibold mb-2">{p.name}</h3>
@@ -639,7 +656,7 @@ export default function Home() {
       </section>
 
       {/* TEAM */}
-      <section className="py-24 md:py-32 bg-cream">
+      {/* <section className="py-24 md:py-32 bg-cream">
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
             <div className="lg:col-span-7">
@@ -678,7 +695,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ */}
       <section className="py-24 md:py-32 bg-creamlight">
@@ -711,7 +728,7 @@ export default function Home() {
                 <div
                   key={i}
                   className={`acc-item rounded-2xl px-6 py-5 transition ${
-                    openFaq === i ? "bg-ink text-cream" : "bg-white"
+                    openFaq === i ? "bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream" : "bg-white"
                   }`}
                 >
                   <button
@@ -747,7 +764,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 md:py-32 bg-ink text-cream">
+      <section className="py-24 md:py-32 bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream">
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
             <div className="lg:col-span-7">
@@ -810,7 +827,7 @@ export default function Home() {
       </section>
 
       {/* BLOG */}
-      <section className="py-24 md:py-32 bg-cream">
+      {/* <section className="py-24 md:py-32 bg-cream">
         <div className="container">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
             <div className="lg:col-span-7">
@@ -852,7 +869,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <Marquee />
     </div>

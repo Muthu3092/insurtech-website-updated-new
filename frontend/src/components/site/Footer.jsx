@@ -5,7 +5,7 @@ import Marquee from "./Marquee";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-cream relative overflow-hidden" data-testid="site-footer">
+    <footer className="bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream relative overflow-hidden" data-testid="site-footer">
       <Marquee variant="dark" />
 
       <div className="container py-20">
