@@ -103,7 +103,7 @@ export default function Services() {
             </div>
             <div className="mt-12 grid grid-cols-3 gap-6 max-w-md">
               <div>
-                <div className="font-display text-2xl font-semibold text-ink"><Counter to={120} suffix="k+" /></div>
+                <div className="font-display text-2xl font-semibold text-ink"><Counter to={10} suffix="k+" /></div>
                 <div className="text-xs uppercase tracking-widest text-ink/50 mt-1">Protected</div>
               </div>
               <div>

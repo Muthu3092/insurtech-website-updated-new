@@ -34,7 +34,7 @@ import { endpoints } from "../../lib/apiClient";
 import { quoteRouteFor } from "../../lib/quoteRoutes";
 
 const CATEGORY_META = {
-  travel: { icon: Plane, fallbackImg: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" },
+  travel: { icon: Plane, fallbackImg: "https://images.unsplash.com/photo-1488646953014-85c" },
   health: { icon: HeartPulse, fallbackImg: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" },
   motor: { icon: Car, fallbackImg: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80" },
   pa: { icon: Activity, fallbackImg: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80" },
@@ -135,7 +135,7 @@ export default function Home() {
 
             <AnimatedHeading
               as="h1"
-              text="Premium protection for your peace of mind"
+              text="Reliable Insurance for Every Stage of Life"
               italicWords={["peace", "of", "mind"]}
               className="display-h"
             />
@@ -261,7 +261,7 @@ export default function Home() {
                       <path id="circle2" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
                     </defs>
                     <text fill="#f5f1e8" fontSize="9" letterSpacing="2">
-                      <textPath href="#circle2">FREE QUOTE · CONTACT US · FREE QUOTE · </textPath>
+                      <textPath href="#circle2">Travel Home Pa Health  Motor · </textPath>
                     </text>
                   </svg>
                 </div>
@@ -548,9 +548,9 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { name: "Basic Plan", price: 49, popular: false },
-              { name: "Standard Plan", price: 148, popular: true },
-              { name: "Premium Plan", price: 449, popular: false },
+              { name: "Travel Shield Global", price: 49, popular: false },
+              { name: "Pa Easy", price: 148, popular: true },
+              { name: "Health Shield Plus", price: 449, popular: false },
             ].map((p) => (
               <div
                 key={p.name}
@@ -589,7 +589,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" className={`btn-covar w-full justify-center ${p.popular ? "dark" : ""}`}>
+                <Link to="/services" className={`btn-covar w-full justify-center ${p.popular ? "dark" : ""}`}>
                   Get Started
                   <span className="btn-icon">
                     <ArrowUpRight className="w-4 h-4" />

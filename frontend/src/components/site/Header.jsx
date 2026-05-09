@@ -23,8 +23,8 @@ export default function Header() {
     { to: "/about", label: "About" },
     { to: "/services", label: "Shields" },
     { to: "/pricing", label: "Pricing" },
-    { to: "/team", label: "Team" },
-    { to: "/blog", label: "Blog" },
+    // { to: "/team", label: "Team" },
+    // { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -79,8 +79,8 @@ export default function Header() {
               <span className="block">+60 12 345 6789</span>
             </span>
           </a>
-          <Link to="/contact" className="btn-covar" data-testid="cta-quote">
-            Free Quote
+          <Link to="/login" className="btn-covar" data-testid="cta-quote">
+            Login
             <span className="btn-icon">
               <ArrowUpRight className="w-4 h-4" />
             </span>

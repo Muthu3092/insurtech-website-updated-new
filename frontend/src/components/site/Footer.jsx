@@ -51,8 +51,8 @@ export default function Footer() {
                 ["About", "/about"],
                 ["Shields", "/services"],
                 ["Pricing", "/pricing"],
-                ["Team", "/team"],
-                ["Blog", "/blog"],
+                // ["Team", "/team"],
+                // ["Blog", "/blog"],
                 ["Contact", "/contact"],
               ].map(([t, h]) => (
                 <li key={h}>
