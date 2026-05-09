@@ -152,11 +152,27 @@ export default function Dashboard() {
             <h2 className="text-2xl font-semibold mb-4">My Policies</h2>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {active.slice(0, 4).map((p) => (
-                <Link key={p.id} to="/policies">
-                  <PolicyCard policy={p} />
-                </Link>
-              ))}
+              {active.map((p) => (
+    <Link
+      to="/policies"
+      key={p.id}
+      data-testid={`dash-policy-${p.policy_number}`}
+      className="block transition-transform hover:scale-[1.015]"
+    >
+      <PolicyCard
+        policy={{
+          id: p.id,
+          policy_number: p.policy_number,
+          user_name: user?.full_name || "Policy Holder",
+          product_name: p.product_name,
+          category: p.category,
+          start_date: p.start_date,
+          end_date: p.end_date,
+          status: p.status || "Active",
+        }}
+      />
+    </Link>
+  ))}
             </div>
           </div>
 

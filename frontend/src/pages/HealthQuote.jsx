@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import QuickFillBanner from "@/components/app/QuickFillBanner";
 import {
   Check, Shield, User, CreditCard, ChevronLeft, ArrowRight, HeartPulse,
 } from "lucide-react";
@@ -48,6 +49,18 @@ export default function HealthQuote() {
     beneficiary_relationship: "",
   });
   const set = (patch) => setForm((f) => ({ ...f, ...patch }));
+
+  const applyQuickFill = (data) => {
+  setForm((f) => ({
+    ...f,
+    full_name: data?.full_name || f.full_name,
+    email: data?.email || f.email,
+    phone: data?.phone || f.phone,
+    id_number: data?.id_number || f.id_number,
+    date_of_birth: data?.date_of_birth || f.date_of_birth,
+    gender: data?.gender || f.gender,
+  }));
+};
 
   useEffect(() => {
     api.get(`/products/${productId}`).then((r) => setProduct(r.data)).catch(() => {
@@ -248,7 +261,7 @@ export default function HealthQuote() {
             <div className="text-xs text-primary-700 uppercase tracking-widest font-semibold mb-1">Step 2</div>
             <h2 className="font-display text-3xl font-semibold mb-1">Tell us about you</h2>
             <p className="text-gray-500 text-sm mb-6">Used to underwrite and issue your policy. We'll pre-fill from your profile.</p>
-
+          <QuickFillBanner onApply={applyQuickFill} testIdPrefix="health-quickfill" />
             <div className="grid sm:grid-cols-2 gap-4">
               <Field label="Full name *">
                 <Input className="rounded-xl" value={form.full_name} onChange={(e) => set({ full_name: e.target.value })} data-testid="health-full-name" />
@@ -325,7 +338,7 @@ export default function HealthQuote() {
             <div className="text-xs text-primary-700 uppercase tracking-widest font-semibold mb-1">Step 3</div>
             <h2 className="font-display text-3xl font-semibold mb-1">Ready to checkout</h2>
             <p className="text-gray-500 text-sm mb-6">Your Critical Safe+ summary. Pay securely via Stripe.</p>
-
+            
             <div className="rounded-2xl bg-primary-50/40 border border-primary/20 p-5 mb-4">
               <div className="flex items-center gap-2 mb-2">
                 <HeartPulse className="w-5 h-5 text-primary-700" />

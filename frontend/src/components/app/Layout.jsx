@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import logo from "./icon.png";
+// import logo from "./logo.png";
 
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
@@ -59,14 +59,22 @@ export default function Layout({ children }) {
 
           {/* LOGO */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="logo" className="w-8 h-8 rounded-xl" />
+            <div className="w-40 sm:w-48 md:w-56 lg:w-40 h-16 sm:h-20 md:h-24 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="w-full h-full object-contain"
+              />
+
+            </div>
             <div className="leading-tight">
-              <div className="font-semibold text-sm sm:text-lg text-primary">
+              {/* <div className="font-semibold text-sm sm:text-lg text-primary">
                 Afinity.ai
               </div>
               <div className="text-[10px] uppercase text-primary-700 font-semibold tracking-wider">
                 InsurTech
-              </div>
+              </div> */}
             </div>
           </Link>
 
@@ -78,11 +86,10 @@ export default function Layout({ children }) {
                 <Link
                   key={l.to}
                   to={l.to}
-                  className={`text-sm font-medium ${
-                    loc.pathname === l.to
+                  className={`text-sm font-medium ${loc.pathname === l.to
                       ? "text-primary-700"
                       : "text-gray-600 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   {l.label}
                 </Link>
@@ -198,14 +205,22 @@ export default function Layout({ children }) {
             {/* HEADER */}
             <div className="flex items-center justify-between px-4 py-4 border-b">
               <div className="flex items-center gap-2">
-                <img src={logo} className="w-8 h-8 rounded-xl" />
+                <div className="w-40 sm:w-48 md:w-56 lg:w-40 h-16 sm:h-20 md:h-24 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+
+                  <img
+                    src="/logo.png"
+                    alt="Logo"
+                    className="w-full h-full object-contain"
+                  />
+
+                </div>
                 <div>
-                  <div className="text-sm font-semibold text-primary">
+                  {/* <div className="text-sm font-semibold text-primary">
                     Afinity.ai
                   </div>
                   <div className="text-[10px] uppercase text-primary-700">
                     INSURTECH
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

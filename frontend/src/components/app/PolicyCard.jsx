@@ -1,6 +1,9 @@
 import React from "react";
 import { Wifi } from "lucide-react";
 import AfinityLogo from "@/components/app/AfinityLogo";
+// import familyImg from "/bluecard.png";
+
+// const logo = familyImg;
 
 /**
  * Premium credit-card-style insurance card.
@@ -20,6 +23,7 @@ export default function PolicyCard({ policy = {}, variant, className = "" }) {
 
   const validFrom = formatValidDate(policy.start_date);
   const validThru = formatValidDate(policy.end_date);
+  
 
   const resolved =
     variant ||
@@ -27,15 +31,15 @@ export default function PolicyCard({ policy = {}, variant, className = "" }) {
       motor: "obsidian",
       health: "copper",
       pa: "sunset",
-      home: "ocean",
       travel: "gold",
       device: "platinum",
+      home: "homeEasy", 
     }[policy.category] ||
-    "gold";
-const isGoldCard =
+    "gold" || "homeEasy";
+  const isGoldCard =
     resolved === "sunset"; // 👈 your gradient belongs to "sunset", not "gold"
 
-  const palette = PALETTES[resolved] || PALETTES.gold;
+  const palette = PALETTES[resolved] || PALETTES.gold || PALETTES.homeEasy;
 
   return (
     <div
@@ -57,14 +61,18 @@ const isGoldCard =
       }}
     >
       {/* Diagonal gloss band — matches reference photos */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: palette.gloss,
-          mixBlendMode: "screen",
-        }}
-      />
-
+  {/* 🌍 PERFECT DOTTED WORLD MAP (MATCHES CARD STYLE) */}
+{resolved === "homeEasy" && (
+  <div
+    className="absolute inset-0 pointer-events-none opacity-30"
+    style={{
+      backgroundImage: `url(/bluecard.png)`,  // Your image with the dotted world map
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
+  />
+)}
       {/* Highlight sheen */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -94,11 +102,11 @@ const isGoldCard =
       <div className="relative flex items-start justify-between">
         <div>
           <AfinityLogo
-  size={26}
-  textColor={palette.brandText}
-  color={palette.brandText}
-  iconColor={palette.brandText}   // 🔥 IMPORTANT
-/>
+            size={26}
+            textColor={palette.brandText}
+            color={palette.brandText}
+            iconColor={palette.brandText}   // 🔥 IMPORTANT
+          />
           <div className="text-[10px] uppercase tracking-[0.22em] mt-2 opacity-80">
             {policy.product_name || "Insurance Policy"}
           </div>
@@ -344,60 +352,39 @@ const PALETTES = {
 
   // PA — peach / sunset like the reference photo
   sunset: {
-  // 🔴 RED BACKGROUND
-  bg: "linear-gradient(135deg, #7a0006 0%, #b10f1a 35%, #e3262a 65%, #b10f1a 100%)",
+    // 🔴 RED BACKGROUND
+    bg: "linear-gradient(135deg, #7a0006 0%, #b10f1a 35%, #e3262a 65%, #b10f1a 100%)",
 
-  // ✅ TEXT + LOGO COLOR (UPDATED)
-  fg: "#F5F5F5",
-  brandGold: "#F5F5F5",
-  brandText: "#F5F5F5",
+    // ✅ TEXT + LOGO COLOR (UPDATED)
+    fg: "#F5F5F5",
+    brandGold: "#F5F5F5",
+    brandText: "#F5F5F5",
 
-  border: "rgba(245,245,245,0.25)",
+    border: "rgba(245,245,245,0.25)",
 
-  // ✨ GLOSS
-  gloss:
-    "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 48%, rgba(255,255,255,0.08) 62%, transparent 80%)",
-
-  // 🔴 GLOW
-  glow:
-    "radial-gradient(circle at 40% 50%, rgba(255,120,120,0.35), transparent 60%)",
-
-  // 💳 CHIP
-  chipA: "#f5d36a",
-  chipB: "#a67c1f",
-  chipLine: "rgba(0,0,0,0.45)",
-
-  // 📶 ICON
-  contactless: "#F5F5F5",
-
-  // STATUS
-  statusBg: "rgba(245,245,245,0.15)",
-  statusFg: "#F5F5F5",
-
-  // EMBOSS TEXT
-  embossDark: "rgba(0,0,0,0.4)",
-  embossLight: "rgba(255,255,255,0.6)",
-},
-
-  // HOME — deep ocean blue with silver-platinum sheen (trust / safety)
-  ocean: {
-    bg: "linear-gradient(135deg, #0a1f3d 0%, #123a6b 45%, #1b5293 100%)",
-    fg: "#E8F0FA",
-    brandGold: "#CBDAEF",
-    brandText: "#ffffff",
-    border: "rgba(203,218,239,0.38)",
+    // ✨ GLOSS
     gloss:
-      "linear-gradient(110deg, transparent 28%, rgba(255,255,255,0.14) 45%, rgba(255,255,255,0.04) 60%, transparent 78%)",
-    shine: "radial-gradient(ellipse at 20% 0%, rgba(180,210,245,0.22) 0%, transparent 58%)",
-    glow: "radial-gradient(circle, #4a90e2 0%, transparent 70%)",
-    chipA: "#D6E1ED",
-    chipB: "#6F88A6",
-    chipLine: "rgba(0,0,0,0.4)",
-    contactless: "#E8F0FA",
-    statusBg: "rgba(232,240,250,0.18)",
-    statusFg: "#E8F0FA",
-    embossDark: "rgba(0,0,0,0.55)",
-    embossLight: "rgba(255,255,255,0.10)",
+      "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 48%, rgba(255,255,255,0.08) 62%, transparent 80%)",
+
+    // 🔴 GLOW
+    glow:
+      "radial-gradient(circle at 40% 50%, rgba(255,120,120,0.35), transparent 60%)",
+
+    // 💳 CHIP
+    chipA: "#f5d36a",
+    chipB: "#a67c1f",
+    chipLine: "rgba(0,0,0,0.45)",
+
+    // 📶 ICON
+    contactless: "#F5F5F5",
+
+    // STATUS
+    statusBg: "rgba(245,245,245,0.15)",
+    statusFg: "#F5F5F5",
+
+    // EMBOSS TEXT
+    embossDark: "rgba(0,0,0,0.4)",
+    embossLight: "rgba(255,255,255,0.6)",
   },
 
   // Optional platinum for device etc.
@@ -420,4 +407,45 @@ const PALETTES = {
     embossDark: "rgba(0,0,0,0.30)",
     embossLight: "rgba(255,255,255,0.45)",
   },
+  // homeEasy
+  homeEasy: {
+  // 🔵 BACKGROUND
+  bg: "linear-gradient(135deg, #0f5bd7 0%, #1a73e8 35%, #1ca3ec 70%, #0f5bd7 100%)",
+
+  // TEXT
+  fg: "#F5F5F5",
+  brandGold: "#F5F5F5",
+  brandText: "#F5F5F5",
+
+  border: "rgba(255,255,255,0.2)",
+
+  // ✨ EFFECTS
+  gloss:
+    "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 48%, rgba(255,255,255,0.08) 62%, transparent 80%)",
+
+  glow:
+    "radial-gradient(circle at 40% 50%, rgba(0,200,255,0.25), transparent 60%)",
+
+  shine:
+    "radial-gradient(ellipse at 25% 0%, rgba(255,255,255,0.25) 0%, transparent 55%)",
+
+  // 🔥 ADD THIS (NEW)
+  dots:
+    "radial-gradient(circle at 70% 50%, rgba(0,200,255,0.35), transparent 70%)",
+
+  dotsSize: "70px 70px",
+
+  // CHIP
+  chipA: "#f5d36a",
+  chipB: "#a67c1f",
+  chipLine: "rgba(0,0,0,0.45)",
+
+  contactless: "#ffffff",
+
+  statusBg: "rgba(255,255,255,0.15)",
+  statusFg: "#ffffff",
+
+  embossDark: "rgba(0,0,0,0.5)",
+  embossLight: "rgba(255,255,255,0.6)",
+},
 };

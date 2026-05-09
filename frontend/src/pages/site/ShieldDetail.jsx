@@ -10,6 +10,8 @@ import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
 import PageHero from "../../components/site/PageHero";
 import { endpoints } from "../../lib/apiClient";
+import HomeCoverageCalculator from "../HomeCoverageCalculator";
+import HealthCoverageCalculator from "../HealthCoverageCalculator";
 
 /**
  * Covar-style shield-detail/landing page.
@@ -347,17 +349,36 @@ export default function ShieldDetail({ category }) {
                       <path id={`circle-${cat}`} d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
                     <text fill="#deb25e" fontSize="9" letterSpacing="2">
-                      <textPath href={`#circle-${cat}`}>BUY NOW · INSTANT COVER · </textPath>
+                      <textPath href={`#circle-${cat}`}>Travel Home Pa Health  Motor </textPath>
                     </text>
                   </svg>
                 </div>
-                <ShieldCheck className="w-6 h-6 text-lime" />
+                <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center z-10">
+    <img
+      src="/icon.png"
+      alt="Family protected"
+      className="w-full h-full object-cover"
+    />
+  </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {cat === "home" && (
+  <HomeCoverageCalculator
+    product={product}
+    quoteHref={buyHref}
+  />
+)}
+
+{cat === "health" && (
+  <HealthCoverageCalculator
+    product={product}
+    quoteHref={buyHref}
+  />
+)}
       {/* HIGHLIGHTS */}
       <section id="highlights" className="py-24 md:py-32 bg-creamlight">
         <div className="container">
@@ -462,7 +483,7 @@ export default function ShieldDetail({ category }) {
               <AnimatedHeading
                 as="h2"
                 text="Four taps to settlement, powered by Afinity.AI"
-                italicWords={["powered", "by", "Afinity.AI"]}
+                italicWords={["powered", "by", "Aura"]}
                 className="display-h mt-5 text-cream"
               />
             </div>

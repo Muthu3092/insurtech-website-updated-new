@@ -577,7 +577,12 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: #0e0e0c;
+  background: linear-gradient(
+    145deg,
+    #444444,
+    #3D3C3C 40%,
+    #383838
+  );
   border-radius: 999px;
   transform: scale(0);
   transform-origin: bottom;
@@ -586,7 +591,12 @@ body {
 }
 .btn-covar:hover { color: #deb25e; }
 .btn-covar:hover::before { transform: scale(1.05); transform-origin: top; }
-.btn-covar.dark { background: #0e0e0c; color: #f5f1e8; }
+.btn-covar.dark { background: linear-gradient(
+    145deg,
+    #444444,
+    #3D3C3C 40%,
+    #383838
+  ); color: #f5f1e8; }
 .btn-covar.dark::before { background: #deb25e; }
 .btn-covar.dark:hover { color: #0e0e0c; }
 .btn-icon {

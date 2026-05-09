@@ -8,9 +8,9 @@ import {
   GitBranch, MessageCircle, CheckSquare, Menu, X,
 } from "lucide-react";
 
-import familyImg from "./icon.png";
+// import familyImg from "./logo.png";
 
-const logo = familyImg;
+// const logo = familyImg;
 // Sectioned navigation matching the lux theme
 const NAV_SECTIONS = [
   {
@@ -77,17 +77,17 @@ export default function AdminLayout({ children }) {
   const sidebarBody = (
     <>
       <Link to="/admin" className="px-5 py-5 flex items-center gap-2 border-b border-gray-100">
-          <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center shadow-float">
+          <div className="w-24 sm:w-28 md:w-32 h-10 flex items-center justify-center overflow-hidden">
   <img
-    src={logo}
+    src="/logo.png"
     alt="Logo"
-    className="w-full h-full object-cover"
+    className="max-w-full max-h-full object-contain"
   />
 </div>
-          <div>
+          {/* <div>
             <div className="font-display text-lg font-semibold"><span className="text-primary">Afinity.ai</span></div>
             <div className="text-[11px] uppercase tracking-wider text-primary-700 font-semibold">InsurTech</div>
-          </div>
+          </div> */}
         </Link>
 
       <nav className="flex-1 overflow-y-auto py-2">

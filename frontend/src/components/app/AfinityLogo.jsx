@@ -22,7 +22,7 @@ export default function AfinityLogo({
   return (
     <span className="inline-flex items-center gap-2" data-testid="afinity-logo">
       <img
-        src="/afinity-logo.png"
+        src="./icon.png"
         alt="Afinity"
         width={size}
         height={size}

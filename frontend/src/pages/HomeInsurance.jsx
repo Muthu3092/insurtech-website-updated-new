@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
 import { useCurrency } from "@/lib/currency";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+// import HomeCoverageCalculator from "../../pages/HomeCoverageCalculator";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -46,6 +47,13 @@ export default function HomeInsurance() {
 
   return (
     <div data-testid="home-insurance-page">
+
+      {cat === "home" && (
+  <HomeCoverageCalculator
+    product={product}
+    quoteHref={buyHref}
+  />
+)}
       {/* HERO */}
       <section className="gold-radial">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-16 grid md:grid-cols-2 gap-12 items-center">

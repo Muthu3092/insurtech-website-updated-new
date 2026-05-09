@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import QuickFillBanner from "@/components/app/QuickFillBanner";
 import {
   Check, Shield, User, CreditCard, ChevronLeft, ArrowRight, Home,
 } from "lucide-react";
@@ -46,7 +47,23 @@ export default function HomeQuote() {
   });
   const set = (patch) => setForm((f) => ({ ...f, ...patch }));
   const toggleAddon = (name) =>
-    set({ addons: form.addons.includes(name) ? form.addons.filter((a) => a !== name) : [...form.addons, name] });
+    set({
+    addons: form.addons.includes(name)
+      ? form.addons.filter((a) => a !== name)
+      : [...form.addons, name],
+  });
+
+  const applyQuickFill = (data) => {
+  setForm((f) => ({
+    ...f,
+    full_name: data?.full_name || f.full_name,
+    email: data?.email || f.email,
+    phone: data?.phone || f.phone,
+    id_number: data?.id_number || f.id_number,
+    postcode: data?.postcode || f.postcode,
+    property_address: data?.property_address || f.property_address,
+  }));
+};
 
   useEffect(() => {
     api.get(`/products/${productId}`).then((r) => setProduct(r.data)).catch(() => {
@@ -134,6 +151,7 @@ export default function HomeQuote() {
       setLoading(false);
     }
   };
+  
 
   if (!product) return <div className="max-w-5xl mx-auto p-10 text-gray-400">Loading…</div>;
 
@@ -149,9 +167,11 @@ export default function HomeQuote() {
             <React.Fragment key={s.key}>
               <div data-testid={`home-step-${i}`} className="flex items-center gap-3 flex-shrink-0">
                 <div className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-colors ${
-                  active ? "bg-blue-700 text-white shadow-float"
-                    : done ? "bg-blue-50 text-blue-700 border border-blue-400/40"
-                    : "bg-gray-100 text-gray-400"
+                  active
+  ? "bg-[#0F172A] text-[#DEB25E] shadow-float"
+  : done
+  ? "bg-[#FFF8E7] text-[#A67C2E] border border-[#DEB25E]/40"
+  : "bg-gray-100 text-gray-400"
                 }`}>
                   {done ? <Check className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
                 </div>
@@ -169,7 +189,9 @@ export default function HomeQuote() {
       {step === 0 && (
         <div className="space-y-6">
           <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8">
-            <div className="text-xs text-blue-700 uppercase tracking-widest font-semibold mb-1">Step 1</div>
+            <div className="text-xs text-[#A67C2E] uppercase tracking-widest font-semibold mb-1">
+  Step 1
+</div>
             <h2 className="font-display text-3xl font-semibold mb-1">Choose your cover</h2>
             <p className="text-gray-500 text-sm mb-6">Pick a plan, property type, and sum insured.</p>
 
@@ -184,16 +206,19 @@ export default function HomeQuote() {
                     data-testid={`home-plan-pick-${p.key}`}
                     onClick={() => set({ plan_key: p.key })}
                     className={`rounded-2xl border p-5 text-left transition-all ${
-                      on ? "border-blue-700 ring-2 ring-blue-400/30 bg-blue-50/40"
-                        : "border-gray-200 bg-white hover:border-blue-400"
-                    }`}
+  on
+    ? "border-[#DEB25E] ring-2 ring-[#DEB25E]/30 bg-[#FFF8E7]"
+    : "border-gray-200 bg-white hover:border-[#DEB25E]"
+}`}
                   >
-                    <div className="text-[10px] text-blue-700 font-semibold uppercase tracking-wider">Plan</div>
+                    <div className="text-[10px] text-[#A67C2E] font-semibold uppercase tracking-wider">
+  Plan
+</div>
                     <div className="font-display text-lg font-semibold mt-1">{p.label}</div>
                     <ul className="mt-2 space-y-1 text-[13px] text-gray-600">
                       {(p.benefits || []).slice(0, 4).map((b) => (
                         <li key={b} className="flex items-start gap-1.5">
-                          <Check className="w-3.5 h-3.5 text-blue-700 mt-0.5 flex-shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-[#A67C2E] mt-0.5 flex-shrink-0" />
                           {b}
                         </li>
                       ))}
@@ -216,8 +241,10 @@ export default function HomeQuote() {
                       onClick={() => set({ property_type: t.key })}
                       data-testid={`home-prop-${t.key}`}
                       className={`px-4 h-10 rounded-full text-sm font-medium transition-all border ${
-                        on ? "bg-blue-50 text-blue-800 border-blue-700" : "bg-white text-gray-600 border-gray-200 hover:border-blue-400"
-                      }`}
+  on
+    ? "bg-[#FFF8E7] text-[#A67C2E] border-[#DEB25E]"
+    : "bg-white text-gray-600 border-gray-200 hover:border-[#DEB25E]"
+}`}
                     >
                       {t.label}
                     </button>
@@ -263,8 +290,10 @@ export default function HomeQuote() {
                       onClick={() => toggleAddon(a.name)}
                       data-testid={`home-addon-${slug(a.name)}`}
                       className={`text-left rounded-xl border p-3 transition-all ${
-                        on ? "border-blue-700 bg-blue-50/50" : "border-gray-200 hover:border-blue-400"
-                      }`}
+  on
+    ? "border-[#DEB25E] bg-[#FFF8E7]"
+    : "border-gray-200 hover:border-[#DEB25E]"
+}`}
                     >
                       <div className="text-sm font-medium text-gray-800">{a.name}</div>
                       <div className="text-xs text-gray-500 font-mono mt-1">+ {format(a.price, { decimals: 0 })}/yr</div>
@@ -279,7 +308,7 @@ export default function HomeQuote() {
                 data-testid="home-step0-next"
                 onClick={() => setStep(1)}
                 disabled={!canContinueStep0}
-                className="rounded-full bg-blue-700 hover:bg-blue-800 text-white px-6 h-11"
+                className="rounded-full bg-[#DEB25E] hover:bg-[#C19A4A] text-white px-6 h-11"
               >
                 Next <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -292,10 +321,11 @@ export default function HomeQuote() {
       {step === 1 && (
         <div className="space-y-6">
           <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8">
-            <div className="text-xs text-blue-700 uppercase tracking-widest font-semibold mb-1">Step 2</div>
+            <div className="text-xs text-[#A67C2E] uppercase tracking-widest font-semibold mb-1">Step 2</div>
             <h2 className="font-display text-3xl font-semibold mb-1">Owner & property details</h2>
             <p className="text-gray-500 text-sm mb-6">We'll pre-fill from your profile. Used to issue your policy.</p>
-
+          <QuickFillBanner onApply={applyQuickFill} testIdPrefix="travel-quickfill" />
+          
             <div className="grid sm:grid-cols-2 gap-4">
               <Field label="Full name *">
                 <Input className="rounded-xl" value={form.full_name} onChange={(e) => set({ full_name: e.target.value })} data-testid="home-full-name" />
@@ -328,7 +358,7 @@ export default function HomeQuote() {
             <div className="mt-6 space-y-3">
               <label className="flex items-start gap-3 text-sm text-gray-700">
                 <input type="checkbox" checked={form.accept_privacy} onChange={(e) => set({ accept_privacy: e.target.checked })} className="mt-0.5" data-testid="home-privacy-check" />
-                <span>I have read and agree to the <a href="#" className="text-blue-700 underline">Privacy Notice</a>.</span>
+                <span>I have read and agree to the <a href="#" className="text-[#A67C2E] underline">Privacy Notice</a>.</span>
               </label>
             </div>
 
@@ -336,7 +366,7 @@ export default function HomeQuote() {
               <Button variant="ghost" onClick={() => setStep(0)} className="rounded-full">
                 <ChevronLeft className="w-4 h-4 mr-2" /> Back
               </Button>
-              <Button onClick={generateQuote} disabled={!canContinueStep1 || loading} data-testid="home-step1-next" className="rounded-full bg-blue-700 hover:bg-blue-800 text-white px-6 h-11">
+              <Button onClick={generateQuote} disabled={!canContinueStep1 || loading} data-testid="home-step1-next" className="rounded-full bg-[#DEB25E] hover:bg-[#C19A4A] text-white px-6 h-11">
                 {loading ? "Calculating…" : "Get quote"} <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
@@ -348,14 +378,16 @@ export default function HomeQuote() {
       {step === 2 && quote && (
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2 bg-white rounded-3xl border border-gray-100 p-6 sm:p-8">
-            <div className="text-xs text-blue-700 uppercase tracking-widest font-semibold mb-1">Step 3</div>
+            <div className="text-xs text-[#A67C2E] uppercase tracking-widest font-semibold mb-1">
+  Step 3
+</div>
             <h2 className="font-display text-3xl font-semibold mb-1">Ready to checkout</h2>
             <p className="text-gray-500 text-sm mb-6">Your Home Easy summary. Pay securely via Stripe.</p>
 
-            <div className="rounded-2xl bg-blue-50/40 border border-blue-400/30 p-5 mb-4">
+            <div className="rounded-2xl bg-[#FFF8E7] border border-[#DEB25E]/30 p-5 mb-4">
               <div className="flex items-center gap-2 mb-2">
-                <Home className="w-5 h-5 text-blue-700" />
-                <div className="font-semibold text-gray-900">Home Easy</div>
+                <Home className="w-5 h-5 text-[#A67C2E]" />
+                <div className="font-semibold text-[#0F172A]">Home Easy</div>
               </div>
               <div className="text-sm text-gray-600">
                 <strong>{quote.meta?.plan?.label}</strong> · {quote.meta?.property_type?.label} · Building <strong>{format(quote.meta?.building_sum_insured || 0, { decimals: 0 })}</strong>
@@ -385,7 +417,7 @@ export default function HomeQuote() {
           <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8">
             <div className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Payable today</div>
             <div className="font-display text-4xl font-semibold mb-4">{format(quote.total)}</div>
-            <Button onClick={pay} disabled={loading} data-testid="home-pay-btn" className="w-full rounded-full bg-blue-700 hover:bg-blue-800 text-white h-11">
+            <Button onClick={pay} disabled={loading} data-testid="home-pay-btn" className="w-full rounded-full bg-[#DEB25E] hover:bg-[#C19A4A] text-white h-11">
               {loading ? "Redirecting…" : "Pay with Stripe"} <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <button
