@@ -225,57 +225,124 @@ export default function Header() {
       </div>
 
       {/* MOBILE DRAWER */}
-      <div
-        className={`lg:hidden fixed inset-x-0 top-[72px] mx-4 rounded-3xl bg-cream border border-ink/10 overflow-hidden transition-all duration-500 ${
-          open
-            ? "max-h-[80vh] opacity-100 mt-2"
-            : "max-h-0 opacity-0"
-        }`}
+      {/* MOBILE DRAWER */}
+<div
+  className={`lg:hidden fixed inset-x-0 top-[72px] mx-4 rounded-3xl bg-cream border border-ink/10 overflow-hidden transition-all duration-500 ${
+    open
+      ? "max-h-[95vh] opacity-100 mt-2 overflow-y-auto"
+      : "max-h-0 opacity-0"
+  }`}
+>
+  <div className="p-6 pb-24 flex flex-col gap-1">
+
+    {/* NAV LINKS */}
+    {links.map((l) => (
+      <NavLink
+        key={l.to}
+        to={l.to}
+        className={({ isActive }) =>
+          `px-4 py-3 rounded-xl font-display text-2xl ${
+            isActive
+              ? "bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-[#D6BC7E]"
+              : "text-ink hover:bg-white"
+          }`
+        }
+        end={l.to === "/"}
       >
-        <div className="p-6 flex flex-col gap-1">
+        {l.label}
+      </NavLink>
+    ))}
 
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                `px-4 py-3 rounded-xl font-display text-2xl ${
-                  isActive
-                    ? "[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)]text-cream"
-                    : "text-ink hover:bg-white"
-                }`
-              }
-              end={l.to === "/"}
-            >
-              {l.label}
-            </NavLink>
-          ))}
+    {/* MOBILE AUTH */}
+    {!user ? (
 
-          {!user ? (
-            <Link
-              to="/login"
-              className="btn-covar mt-4 justify-center"
-            >
-              Login
+      <div className="mt-4">
+        <Link
+          to="/login"
+          className="btn-covar justify-center w-full flex"
+        >
+          Login
 
-              <span className="btn-icon">
-                <ArrowUpRight className="w-4 h-4" />
-              </span>
-            </Link>
-          ) : (
-            <button
-              onClick={() => {
-                logout();
-                nav("/");
-              }}
-              className="btn-covar mt-4 justify-center"
-            >
-              Logout
-            </button>
-          )}
+          <span className="btn-icon">
+            <ArrowUpRight className="w-4 h-4" />
+          </span>
+        </Link>
+      </div>
+
+    ) : (
+
+      <div className="mt-6 border-t border-gray-200 pt-5">
+
+        {/* USER INFO */}
+        <div className="flex items-center gap-3 px-2 mb-4">
+
+          <div className="w-11 h-11 bg-[#DEB25E] text-black rounded-full flex items-center justify-center text-lg font-semibold">
+            {user.full_name?.[0] || "U"}
+          </div>
+
+          <div>
+            <div className="text-sm text-gray-500">
+              Logged in as
+            </div>
+
+            <div className="font-semibold text-black">
+              {user.full_name}
+            </div>
+          </div>
+
+        </div>
+
+        {/* MENU ITEMS */}
+        <div className="flex flex-col gap-2">
+
+          <button
+            onClick={() => {
+              setOpen(false);
+              nav("/dashboard");
+            }}
+            className="text-left px-4 py-3 rounded-xl hover:bg-white transition"
+          >
+            Dashboard
+          </button>
+
+          <button
+            onClick={() => {
+              setOpen(false);
+              nav("/policies");
+            }}
+            className="text-left px-4 py-3 rounded-xl hover:bg-white transition"
+          >
+            Policies
+          </button>
+
+          <button
+            onClick={() => {
+              setOpen(false);
+              nav("/claims");
+            }}
+            className="text-left px-4 py-3 rounded-xl hover:bg-white transition"
+          >
+            Claims
+          </button>
+
+          {/* LOGOUT BUTTON */}
+          <button
+            onClick={() => {
+              logout();
+              nav("/");
+            }}
+            className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white rounded-2xl py-3 font-medium transition"
+          >
+            Logout
+          </button>
 
         </div>
       </div>
+
+    )}
+
+  </div>
+</div>
     </header>
   );
 }
