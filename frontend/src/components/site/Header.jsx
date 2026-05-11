@@ -1,11 +1,17 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { Phone, Menu, X, ArrowUpRight } from "lucide-react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Phone, Menu, X, ArrowUpRight, LogOut, LayoutDashboard, FileText, Hammer } from "lucide-react";
+import { useAuth } from "../../lib/auth";
+import CurrencyPicker from "./CurrencyPicker";
 
 export default function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [userMenuOpen, setUserMenuOpen] = React.useState(false);
+  const userMenuRef = React.useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -16,7 +22,23 @@ export default function Header() {
 
   React.useEffect(() => {
     setOpen(false);
+    setUserMenuOpen(false);
   }, [location.pathname]);
+
+  React.useEffect(() => {
+    const onDoc = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target))
+        setUserMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const onLogout = () => {
+    logout?.();
+    setUserMenuOpen(false);
+    navigate("/");
+  };
 
   const links = [
     { to: "/", label: "Home" },
@@ -59,7 +81,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
           <a
             href="tel:+60123456789"
             data-testid="header-phone"
@@ -73,12 +95,61 @@ export default function Header() {
               <span className="block">+60 12 345 6789</span>
             </span>
           </a>
-          <Link to="/contact" className="btn-covar" data-testid="cta-quote">
-            Free Quote
-            <span className="btn-icon">
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </Link>
+
+          <CurrencyPicker variant="light" />
+
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen((v) => !v)}
+                data-testid="user-menu-toggle"
+                className="flex items-center gap-2 rounded-full pl-1 pr-3 py-1 border border-ink/10 bg-white/60 backdrop-blur-md hover:bg-white transition"
+              >
+                <div className="w-8 h-8 rounded-full bg-ink text-lime flex items-center justify-center text-sm font-semibold">
+                  {(user.full_name || user.email || "U")[0]?.toUpperCase()}
+                </div>
+                <span className="text-sm font-medium text-ink">
+                  {user.full_name?.split(" ")[0] || "Account"}
+                </span>
+              </button>
+              {userMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 z-50 w-56 rounded-2xl border border-ink/10 bg-white shadow-xl py-2">
+                  <div className="px-4 py-2 border-b border-ink/5">
+                    <div className="text-sm font-semibold truncate">{user.full_name}</div>
+                    <div className="text-xs text-ink/55 truncate">{user.email}</div>
+                  </div>
+                  {[
+                    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+                    { to: "/policies",  label: "My Policies", icon: FileText },
+                    { to: "/claims",    label: "Claims", icon: Hammer },
+                  ].map(({ to, label, icon: Icon }) => (
+                    <Link
+                      key={to}
+                      to={to}
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-cream transition"
+                    >
+                      <Icon className="w-4 h-4 text-ink/60" /> {label}
+                    </Link>
+                  ))}
+                  <button
+                    onClick={onLogout}
+                    data-testid="user-menu-logout"
+                    className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition border-t border-ink/5 mt-1"
+                  >
+                    <LogOut className="w-4 h-4" /> Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link to="/contact" className="btn-covar" data-testid="cta-quote">
+              Free Quote
+              <span className="btn-icon">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </Link>
+          )}
         </div>
 
         <button
@@ -112,12 +183,23 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn-covar mt-4 justify-center">
-            Free Quote
-            <span className="btn-icon">
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </Link>
+          <div className="mt-4 px-2"><CurrencyPicker variant="light" /></div>
+          {user ? (
+            <button
+              onClick={onLogout}
+              data-testid="mobile-logout"
+              className="btn-covar dark mt-2 justify-center"
+            >
+              Log out <span className="btn-icon"><LogOut className="w-4 h-4" /></span>
+            </button>
+          ) : (
+            <Link to="/contact" className="btn-covar mt-2 justify-center">
+              Free Quote
+              <span className="btn-icon">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </Link>
+          )}
         </div>
       </div>
     </header>

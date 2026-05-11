@@ -9,6 +9,7 @@ import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
 import { endpoints } from "../../lib/apiClient";
 import { quoteRouteFor } from "../../lib/quoteRoutes";
+import { useCurrency } from "../../lib/currency";
 
 const ICON_MAP = {
   travel: Plane,
@@ -43,6 +44,7 @@ const VALUES = [
 export default function Services() {
   const [shields, setShields] = React.useState(FALLBACK);
   const [loading, setLoading] = React.useState(true);
+  const { format } = useCurrency();
 
   React.useEffect(() => {
     endpoints

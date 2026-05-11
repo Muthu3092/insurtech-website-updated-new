@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Shield, Check } from "lucide-react";
 import PageHero from "../../components/site/PageHero";
 import Marquee from "../../components/site/Marquee";
+import { useCurrency } from "../../lib/currency";
 
 const PLANS = [
   { name: "Basic", price: 49, popular: false, desc: "Essential cover for individuals.", features: ["Aura AI claims", "Travel + PA add-on", "30-day free look", "Email & chat support"] },
@@ -11,6 +12,7 @@ const PLANS = [
 ];
 
 export default function Pricing() {
+  const { format } = useCurrency();
   return (
     <div data-testid="pricing-page">
       <PageHero
@@ -40,7 +42,7 @@ export default function Pricing() {
                 <h3 className="font-display text-3xl font-semibold mb-2">{p.name} Plan</h3>
                 <p className="text-sm text-ink/65 mb-6">{p.desc}</p>
                 <div className="font-display text-5xl font-semibold mb-7">
-                  RM {p.price}<span className="text-base text-ink/60 font-body font-normal">/mo</span>
+                  {format(p.price, { decimals: 0 })}<span className="text-base text-ink/60 font-body font-normal">/mo</span>
                 </div>
                 <ul className="space-y-3 mb-8 border-t border-ink/15 pt-6">
                   {p.features.map((f) => (

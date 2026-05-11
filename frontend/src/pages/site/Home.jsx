@@ -32,6 +32,7 @@ import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
 import { endpoints } from "../../lib/apiClient";
 import { quoteRouteFor } from "../../lib/quoteRoutes";
+import { useCurrency } from "../../lib/currency";
 
 const CATEGORY_META = {
   travel: { icon: Plane, fallbackImg: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80" },
@@ -78,6 +79,7 @@ const BLOGS = [
 export default function Home() {
   const [openFaq, setOpenFaq] = React.useState(0);
   const [shields, setShields] = React.useState(FALLBACK_SHIELDS);
+  const { format } = useCurrency();
 
   React.useEffect(() => {
     endpoints
@@ -548,7 +550,7 @@ export default function Home() {
                 <p className="text-sm text-ink/65 mb-6">
                   Essential cover with Aura AI guidance and 24/7 claims support.
                 </p>
-                <div className="font-display text-5xl font-semibold mb-1">RM {p.price}<span className="text-base text-ink/60 font-body font-normal">/mo</span></div>
+                <div className="font-display text-5xl font-semibold mb-1">{format(p.price, { decimals: 0 })}<span className="text-base text-ink/60 font-body font-normal">/mo</span></div>
                 <div className="border-t border-ink/15 my-7" />
                 <div className="text-xs uppercase tracking-widest font-semibold mb-4">What's Included</div>
                 <ul className="space-y-3 mb-8">
