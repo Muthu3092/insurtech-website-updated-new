@@ -368,7 +368,7 @@ export default function HealthQuote() {
             <Button onClick={pay} disabled={loading} data-testid="health-pay-btn" className="w-full rounded-full bg-primary hover:bg-primary-600 text-white h-11">
               {loading ? "Redirecting…" : "Pay with Stripe"} <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <button
+            {/* <button
               onClick={skipPayment}
               disabled={loading}
               data-testid="health-skip-payment-btn"
@@ -376,7 +376,7 @@ export default function HealthQuote() {
               title="Skip payment & issue policy (demo mode)"
             >
               Skip payment (demo)
-            </button>
+            </button> */}
             <div className="mt-4 text-[11px] text-gray-400 leading-relaxed">
               You'll receive your digital policy card and certificate once payment succeeds.
               A copy is also mailed to {quote.input?.email || "your email"}.

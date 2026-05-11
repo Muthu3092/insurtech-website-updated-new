@@ -420,7 +420,7 @@ export default function HomeQuote() {
             <Button onClick={pay} disabled={loading} data-testid="home-pay-btn" className="w-full rounded-full bg-[#DEB25E] hover:bg-[#C19A4A] text-white h-11">
               {loading ? "Redirecting…" : "Pay with Stripe"} <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <button
+            {/* <button
               onClick={skipPayment}
               disabled={loading}
               data-testid="home-skip-payment-btn"
@@ -428,7 +428,7 @@ export default function HomeQuote() {
               title="Skip payment & issue policy (demo mode)"
             >
               Skip payment (demo)
-            </button>
+            </button> */}
             <div className="mt-4 text-[11px] text-gray-400 leading-relaxed">
               You'll receive your digital policy card and certificate once payment succeeds.
               A copy is also mailed to {quote.input?.email || "your email"}.
