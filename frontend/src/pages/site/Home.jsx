@@ -136,7 +136,7 @@ export default function Home() {
             <AnimatedHeading
               as="h1"
               text="Reliable Insurance for Every Stage of Life"
-              italicWords={["peace", "of", "mind"]}
+              // italicWords={["peace", "of", "mind"]}
               className="display-h"
             />
 
@@ -208,7 +208,7 @@ export default function Home() {
                       <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
                     <text fill="#deb25e" fontSize="9" letterSpacing="2">
-                      <textPath href="#circle">Travel Home Pa Health  Motor </textPath>
+                      <textPath href="#circle">Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
                     </text>
                   </svg>
                 </div>
@@ -261,7 +261,7 @@ export default function Home() {
                       <path id="circle2" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
                     </defs>
                     <text fill="#f5f1e8" fontSize="9" letterSpacing="2">
-                      <textPath href="#circle2">Travel Home Pa Health  Motor · </textPath>
+                      <textPath href="#circle2">Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
                     </text>
                   </svg>
                 </div>
@@ -281,7 +281,7 @@ export default function Home() {
             <AnimatedHeading
               as="h2"
               text="Expert insurance guidance you can always trust"
-              italicWords={["always", "trust"]}
+              // italicWords={["always", "trust"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed max-w-lg">
@@ -330,7 +330,7 @@ export default function Home() {
               <AnimatedHeading
                 as="h2"
                 text="Smart protection plans for life"
-                italicWords={["for", "life"]}
+                // italicWords={["for", "life"]}
                 className="display-h mt-5"
               />
             </div>
@@ -395,7 +395,7 @@ export default function Home() {
             <AnimatedHeading
               as="h2"
               text="Smart insurance solutions backed by experience"
-              italicWords={["by", "experience"]}
+              // italicWords={["by", "experience"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed max-w-xl">
@@ -468,7 +468,7 @@ export default function Home() {
               <AnimatedHeading
                 as="h2"
                 text="Discover the journey behind our trusted AI insurance"
-                italicWords={["AI", "insurance"]}
+                // italicWords={["AI", "insurance"]}
                 className="display-h mt-5 text-cream"
               />
               <p className="mt-6 text-cream/70 max-w-lg leading-relaxed">
@@ -534,7 +534,7 @@ export default function Home() {
               <AnimatedHeading
                 as="h2"
                 text="Affordable coverage that fits"
-                italicWords={["that", "fits"]}
+                // italicWords={["that", "fits"]}
                 className="display-h mt-5"
               />
             </div>
@@ -618,7 +618,7 @@ export default function Home() {
             <AnimatedHeading
               as="h2"
               text="Right insurance plan for you"
-              italicWords={["for", "you"]}
+              // italicWords={["for", "you"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed max-w-lg">
@@ -705,7 +705,7 @@ export default function Home() {
             <AnimatedHeading
               as="h2"
               text="Answers to your insurance questions"
-              italicWords={["insurance", "questions"]}
+              // italicWords={["insurance", "questions"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed">
@@ -772,7 +772,7 @@ export default function Home() {
               <AnimatedHeading
                 as="h2"
                 text="What our clients say about their experience"
-                italicWords={["their", "experience"]}
+                // italicWords={["their", "experience"]}
                 className="display-h mt-5 text-cream"
               />
             </div>

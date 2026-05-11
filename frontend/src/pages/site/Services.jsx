@@ -83,7 +83,7 @@ export default function Services() {
             <AnimatedHeading
               as="h1"
               text="Smart protection for every stage of life"
-              italicWords={["every", "stage", "of", "life"]}
+              // italicWords={["every", "stage", "of", "life"]}
               className="display-h"
             />
             <p className="mt-7 text-lg text-ink/70 max-w-xl leading-relaxed">
@@ -146,7 +146,7 @@ export default function Services() {
               <AnimatedHeading
                 as="h2"
                 text="Smart protection plans for life"
-                italicWords={["for", "life"]}
+                // italicWords={["for", "life"]}
                 className="display-h mt-5"
               />
             </div>
@@ -206,7 +206,7 @@ export default function Services() {
               <AnimatedHeading
                 as="h2"
                 text="From browse to bound in four taps"
-                italicWords={["four", "taps"]}
+                // italicWords={["four", "taps"]}
                 className="display-h mt-5 text-cream"
               />
             </div>
@@ -239,7 +239,7 @@ export default function Services() {
               <AnimatedHeading
                 as="h2"
                 text="What makes our shields different"
-                italicWords={["our", "shields", "different"]}
+                // italicWords={["our", "shields", "different"]}
                 className="display-h mt-5"
               />
             </div>
@@ -274,7 +274,7 @@ export default function Services() {
               <AnimatedHeading
                 as="h2"
                 text="Move every policy to Afinity.AI in one weekend"
-                italicWords={["one", "weekend"]}
+                // italicWords={["one", "weekend"]}
                 className="display-h mt-5 text-cream"
               />
               <p className="mt-5 text-cream/70 max-w-xl">

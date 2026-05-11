@@ -492,8 +492,8 @@ body {
   outline: none;
   background: linear-gradient(
     90deg,
-    #1b5293 0%,
-    #1b5293 var(--progress, 50%),
+    #DEB25E 0%,
+    #DEB25E var(--progress, 50%),
     rgba(15, 23, 42, 0.08) var(--progress, 50%),
     rgba(15, 23, 42, 0.08) 100%
   );
@@ -507,8 +507,8 @@ body {
   height: 26px;
   border-radius: 50%;
   background: #fff;
-  border: 3px solid #1b5293;
-  box-shadow: 0 6px 18px -4px rgba(27, 82, 147, 0.55),
+  border: 3px solid #DEB25E;
+  box-shadow: 0 6px 18px -4px rgba(222, 178, 94, 0.55),
               0 2px 4px rgba(15, 23, 42, 0.08);
   cursor: grab;
   transition: transform 0.15s, box-shadow 0.15s;
@@ -524,8 +524,8 @@ body {
   width: 26px; height: 26px;
   border-radius: 50%;
   background: #fff;
-  border: 3px solid #1b5293;
-  box-shadow: 0 6px 18px -4px rgba(27, 82, 147, 0.55);
+  border: 3px solid #DEB25E;
+  box-shadow: 0 6px 18px -4px rgba(222, 178, 94, 0.55);
   cursor: grab;
   transition: transform 0.15s;
 }

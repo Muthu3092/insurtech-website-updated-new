@@ -23,7 +23,7 @@ export default function ServiceSingle() {
       <PageHero
         eyebrow="Shield"
         title={s.title + " coverage with Afinity.AI"}
-        italicWords={["Afinity.AI"]}
+        // italicWords={["Afinity.AI"]}
         crumbs={[{ label: "Shields", to: "/services" }, { label: s.title }]}
       />
 

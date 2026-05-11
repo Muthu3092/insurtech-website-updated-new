@@ -292,7 +292,7 @@ export default function ShieldDetail({ category }) {
             <AnimatedHeading
               as="h1"
               text={copy.title}
-              italicWords={copy.italic}
+              // italicWords={copy.italic}
               className="display-h"
             />
             <p className="mt-7 text-lg text-ink/70 max-w-xl leading-relaxed">{copy.intro}</p>
@@ -349,7 +349,7 @@ export default function ShieldDetail({ category }) {
                       <path id={`circle-${cat}`} d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
                     <text fill="#deb25e" fontSize="9" letterSpacing="2">
-                      <textPath href={`#circle-${cat}`}>Travel Home Pa Health  Motor </textPath>
+                      <textPath href={`#circle-${cat}`}>Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
                     </text>
                   </svg>
                 </div>
@@ -388,7 +388,7 @@ export default function ShieldDetail({ category }) {
               <AnimatedHeading
                 as="h2"
                 text={sh.highlights?.title || "Everything you'd expect, faster than ever"}
-                italicWords={sh.highlights?.italic || ["faster", "than", "ever"]}
+                // italicWords={sh.highlights?.italic || ["faster", "than", "ever"]}
                 className="display-h mt-5"
               />
             </div>
@@ -423,7 +423,7 @@ export default function ShieldDetail({ category }) {
               <AnimatedHeading
                 as="h2"
                 text={sh.plans?.title || `Pick the ${copy.eyebrow.toLowerCase()} plan that fits`}
-                italicWords={sh.plans?.italic || ["that", "fits"]}
+                // italicWords={sh.plans?.italic || ["that", "fits"]}
                 className="display-h mt-5"
               />
             </div>
@@ -483,7 +483,7 @@ export default function ShieldDetail({ category }) {
               <AnimatedHeading
                 as="h2"
                 text="Four taps to settlement, powered by Afinity.AI"
-                italicWords={["powered", "by", "Aura"]}
+                // italicWords={["powered", "by", "Aura"]}
                 className="display-h mt-5 text-cream"
               />
             </div>
@@ -515,7 +515,7 @@ export default function ShieldDetail({ category }) {
             <AnimatedHeading
               as="h2"
               text={sh.faq?.title || "Answers to your shield questions"}
-              italicWords={sh.faq?.italic || ["shield", "questions"]}
+              // italicWords={sh.faq?.italic || ["shield", "questions"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed">
@@ -575,7 +575,7 @@ export default function ShieldDetail({ category }) {
               <AnimatedHeading
                 as="h2"
                 text={sh.cta?.title || `Get your ${copy.eyebrow.toLowerCase()} quote in 60 seconds`}
-                italicWords={sh.cta?.italic || ["60", "seconds"]}
+                // italicWords={sh.cta?.italic || ["60", "seconds"]}
                 className="display-h mt-5 text-cream"
               />
               <p className="mt-5 text-cream/70 max-w-xl">

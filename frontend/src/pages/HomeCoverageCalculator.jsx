@@ -186,6 +186,7 @@ export default function HomeCoverageCalculator({ product, quoteHref }) {
               step={10000}
               onChange={setBuilding}
               format={(v) => format(v, { decimals: 0 })}
+              
             />
 
             <Slider
@@ -197,6 +198,7 @@ export default function HomeCoverageCalculator({ product, quoteHref }) {
               step={5000}
               onChange={setContents}
               format={(v) => format(v, { decimals: 0 })}
+              
             />
           </div>
         </div>
@@ -295,14 +297,17 @@ function Slider({
       </div>
 
       <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full"
-      />
+  type="range"
+  min={min}
+  max={max}
+  step={step}
+  value={value}
+  onChange={(e) => onChange(parseFloat(e.target.value))}
+  className="w-full home-slider"
+  style={{
+    "--progress": `${((value - min) / (max - min)) * 100}%`,
+  }}
+/>
     </div>
   );
 }

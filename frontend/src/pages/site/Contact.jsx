@@ -56,7 +56,7 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact Us"
         title="Connect with us for reliable insurance support"
-        italicWords={["reliable", "support"]}
+        // italicWords={["reliable", "support"]}
         crumbs={[{ label: "Contact" }]}
       />
 

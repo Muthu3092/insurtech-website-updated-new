@@ -1,17 +1,53 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { Phone, Menu, X, ArrowUpRight } from "lucide-react";
+import {
+  Link,
+  NavLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+
+import { useAuth } from "@/lib/auth";
+
+import {
+  Phone,
+  Menu,
+  X,
+  ArrowUpRight,
+  LayoutDashboard,
+  FileText,
+  Hammer,
+  LogOut,
+} from "lucide-react";
+
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
 export default function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+
   const location = useLocation();
+  const nav = useNavigate();
+
+  const { user, logout } = useAuth();
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    const onScroll = () =>
+      setScrolled(window.scrollY > 30);
+
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    window.addEventListener("scroll", onScroll, {
+      passive: true,
+    });
+
+    return () =>
+      window.removeEventListener("scroll", onScroll);
   }, []);
 
   React.useEffect(() => {
@@ -23,30 +59,36 @@ export default function Header() {
     { to: "/about", label: "About" },
     { to: "/services", label: "Shields" },
     { to: "/pricing", label: "Pricing" },
-    // { to: "/team", label: "Team" },
-    // { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
   ];
 
   return (
-    <header className={`site-header ${scrolled ? "scrolled" : ""}`} data-testid="site-header">
+    <header
+      className={`site-header ${
+        scrolled ? "scrolled" : ""
+      }`}
+      data-testid="site-header"
+    >
       <div className="container flex items-center justify-between">
+
+        {/* LOGO */}
         <Link
-  to="/"
-  className="flex items-center gap-2 group"
-  data-testid="logo-link"
->
-  <div className="w-40 sm:w-48 md:w-56 lg:w-40 h-16 sm:h-20 md:h-24 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
-    
-    <img
-      src="/logo.png"
-      alt="Logo"
-      className="w-full h-full object-contain"
-    />
+          to="/"
+          className="flex items-center gap-2 group"
+          data-testid="logo-link"
+        >
+          <div className="w-40 sm:w-48 md:w-56 lg:w-40 h-16 sm:h-20 md:h-24 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
 
-  </div>
-</Link>
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-full h-full object-contain"
+            />
 
+          </div>
+        </Link>
+
+        {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center gap-1 bg-white/40 backdrop-blur-md border border-ink/5 rounded-full px-2 py-1.5">
           {links.map((l) => (
             <NavLink
@@ -55,7 +97,9 @@ export default function Header() {
               data-testid={`nav-${l.label.toLowerCase()}`}
               className={({ isActive }) =>
                 `px-4 py-2 text-sm font-medium rounded-full transition-all ${
-                  isActive ? "bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-[#D6BC7E] text-cream" : "text-ink/80 hover:text-ink hover:bg-white"
+                  isActive
+                    ? "bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-[#D6BC7E] text-cream"
+                    : "text-ink/80 hover:text-ink hover:bg-white"
                 }`
               }
               end={l.to === "/"}
@@ -65,7 +109,10 @@ export default function Header() {
           ))}
         </nav>
 
+        {/* RIGHT SIDE */}
         <div className="hidden lg:flex items-center gap-4">
+
+          {/* PHONE */}
           <a
             href="tel:+60123456789"
             data-testid="header-phone"
@@ -74,43 +121,128 @@ export default function Header() {
             <span className="w-9 h-9 rounded-full bg-lime/30 flex items-center justify-center">
               <Phone className="w-4 h-4" />
             </span>
+
             <span>
-              <span className="block text-[10px] uppercase tracking-widest text-ink/50">Afinity AI support</span>
-              <span className="block">+60 12 345 6789</span>
+              <span className="block text-[10px] uppercase tracking-widest text-ink/50">
+                Afinity AI support
+              </span>
+
+              <span className="block">
+                +60 12 345 6789
+              </span>
             </span>
           </a>
-          <Link to="/login" className="btn-covar" data-testid="cta-quote">
-            Login
-            <span className="btn-icon">
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </Link>
+
+          {/* AUTH */}
+          {!user ? (
+            <>
+              <Link
+                to="/login"
+                className="hidden sm:block"
+              >
+                <button className="btn-covar">
+                  Login
+
+                  <span className="btn-icon">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </span>
+                </button>
+              </Link>
+            </>
+          ) : (
+            <div className="hidden sm:block">
+              <DropdownMenu>
+
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 border rounded-full px-3 py-2 bg-white">
+
+                    <div className="w-8 h-8 bg-[#DEB25E] text-black rounded-full flex items-center justify-center text-sm font-semibold">
+                      {user.full_name?.[0] || "U"}
+                    </div>
+
+                    <span className="text-sm font-medium">
+                      {user.full_name?.split(" ")[0]}
+                    </span>
+
+                  </button>
+                </DropdownMenuTrigger>
+
+                <DropdownMenuContent align="end">
+
+                  <DropdownMenuItem
+                    onClick={() => nav("/dashboard")}
+                  >
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem
+                    onClick={() => nav("/policies")}
+                  >
+                    <FileText className="w-4 h-4 mr-2" />
+                    Policies
+                  </DropdownMenuItem>
+
+                  <DropdownMenuItem
+                    onClick={() => nav("/claims")}
+                  >
+                    <Hammer className="w-4 h-4 mr-2" />
+                    Claims
+                  </DropdownMenuItem>
+
+                  <DropdownMenuSeparator />
+
+                  <DropdownMenuItem
+                    onClick={() => {
+                      logout();
+                      nav("/");
+                    }}
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </DropdownMenuItem>
+
+                </DropdownMenuContent>
+
+              </DropdownMenu>
+            </div>
+          )}
         </div>
 
+        {/* MOBILE MENU BUTTON */}
         <button
           className="lg:hidden w-11 h-11 rounded-full bg-ink text-cream flex items-center justify-center"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
           data-testid="mobile-menu-toggle"
         >
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {open ? (
+            <X className="w-5 h-5" />
+          ) : (
+            <Menu className="w-5 h-5" />
+          )}
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* MOBILE DRAWER */}
       <div
         className={`lg:hidden fixed inset-x-0 top-[72px] mx-4 rounded-3xl bg-cream border border-ink/10 overflow-hidden transition-all duration-500 ${
-          open ? "max-h-[80vh] opacity-100 mt-2" : "max-h-0 opacity-0"
+          open
+            ? "max-h-[80vh] opacity-100 mt-2"
+            : "max-h-0 opacity-0"
         }`}
       >
         <div className="p-6 flex flex-col gap-1">
+
           {links.map((l) => (
             <NavLink
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
                 `px-4 py-3 rounded-xl font-display text-2xl ${
-                  isActive ? "[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)]text-cream" : "text-ink hover:bg-white"
+                  isActive
+                    ? "[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)]text-cream"
+                    : "text-ink hover:bg-white"
                 }`
               }
               end={l.to === "/"}
@@ -118,12 +250,30 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn-covar mt-4 justify-center">
-            Free Quote
-            <span className="btn-icon">
-              <ArrowUpRight className="w-4 h-4" />
-            </span>
-          </Link>
+
+          {!user ? (
+            <Link
+              to="/login"
+              className="btn-covar mt-4 justify-center"
+            >
+              Login
+
+              <span className="btn-icon">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </Link>
+          ) : (
+            <button
+              onClick={() => {
+                logout();
+                nav("/");
+              }}
+              className="btn-covar mt-4 justify-center"
+            >
+              Logout
+            </button>
+          )}
+
         </div>
       </div>
     </header>

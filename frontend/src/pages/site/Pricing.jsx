@@ -16,7 +16,7 @@ export default function Pricing() {
       <PageHero
         eyebrow="Pricing"
         title="Affordable coverage that fits"
-        italicWords={["that", "fits"]}
+        // italicWords={["that", "fits"]}
         crumbs={[{ label: "Pricing" }]}
       />
 

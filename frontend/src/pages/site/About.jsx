@@ -12,7 +12,7 @@ export default function About() {
       <PageHero
         eyebrow="About Us"
         title="A modern insurance company built around real AI"
-        italicWords={["modern", "real", "AI"]}
+        // italicWords={["modern", "real", "AI"]}
         crumbs={[{ label: "About" }]}
       />
 
@@ -33,7 +33,7 @@ export default function About() {
             <AnimatedHeading
               as="h2"
               text="Building insurance that actually feels human"
-              italicWords={["actually", "feels", "human"]}
+              // italicWords={["actually", "feels", "human"]}
               className="display-h mt-5"
             />
             <p className="mt-6 text-ink/70 leading-relaxed">
@@ -72,12 +72,12 @@ export default function About() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { num: 120, suf: "K+", label: "Protected" },
+              { num: 10, suf: "K+", label: "Protected" },
               { num: 25, suf: "K+", label: "Policies" },
               { num: 80, suf: "+", label: "Awards" },
               { num: 50, suf: "+", label: "AI Experts" },
             ].map((s) => (
-              <div key={s.label} className="bg-ink text-cream rounded-3xl p-8">
+              <div key={s.label} className="bg-[linear-gradient(145deg,#444444,#3D3C3C_40%,#383838)] text-cream rounded-3xl p-8">
                 <div className="font-display text-5xl font-semibold mb-2">
                   <Counter to={s.num} suffix={s.suf} />
                 </div>
@@ -95,7 +95,7 @@ export default function About() {
             <AnimatedHeading
               as="h2"
               text="What guides everything we build"
-              italicWords={["everything", "we", "build"]}
+              // italicWords={["everything", "we", "build"]}
               className="display-h mt-5"
             />
           </div>
