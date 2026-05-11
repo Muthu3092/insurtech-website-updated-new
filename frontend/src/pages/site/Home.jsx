@@ -208,7 +208,7 @@ export default function Home() {
                       <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
                     <text fill="#deb25e" fontSize="9" letterSpacing="2">
-                      <textPath href="#circle">Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
+                      <textPath href="#circle">Motor   .   Health   .   Travel   .   Home    .    PA    .</textPath>
                     </text>
                   </svg>
                 </div>
@@ -261,7 +261,7 @@ export default function Home() {
                       <path id="circle2" d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0" />
                     </defs>
                     <text fill="#f5f1e8" fontSize="9" letterSpacing="2">
-                      <textPath href="#circle2">Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
+                      <textPath href="#circle2">Motor   .   Health   .   Travel   .   Home    .    PA    .</textPath>
                     </text>
                   </svg>
                 </div>

@@ -65,7 +65,7 @@ export default function Contact() {
           <div className="lg:col-span-5 space-y-5">
             {[
               { icon: MapPin, title: "Our Location", text: "Level 12, Menara KL, Jalan Punchak, 50250 Kuala Lumpur, Malaysia" },
-              { icon: Phone, title: "Phone", text: "+60 12 345 6789", href: "tel:+60123456789" },
+              { icon: Phone, title: "Phone", text: "+60 18 377 0888", href: "tel:++6018 377 0888" },
               { icon: Mail, title: "Email", text: "hello@afinity.ai", href: "mailto:hello@afinity.ai" },
             ].map((c) => (
               <div key={c.title} className="card-soft p-7 flex gap-5">

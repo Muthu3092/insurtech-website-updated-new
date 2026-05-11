@@ -114,7 +114,7 @@ export default function Header() {
 
           {/* PHONE */}
           <a
-            href="tel:+60123456789"
+            href="tel:++6018 377 0888"
             data-testid="header-phone"
             className="flex items-center gap-2 text-sm font-medium text-ink/80 hover:text-ink transition"
           >
@@ -128,7 +128,7 @@ export default function Header() {
               </span>
 
               <span className="block">
-                +60 12 345 6789
+                +60 18 377 0888
               </span>
             </span>
           </a>

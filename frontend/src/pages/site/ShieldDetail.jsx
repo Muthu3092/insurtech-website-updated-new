@@ -349,7 +349,7 @@ export default function ShieldDetail({ category }) {
                       <path id={`circle-${cat}`} d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
                     </defs>
                     <text fill="#deb25e" fontSize="9" letterSpacing="2">
-                      <textPath href={`#circle-${cat}`}>Motor   .   Health   .   Travel   .   Home    .    PA</textPath>
+                      <textPath href={`#circle-${cat}`}>Motor   .   Health   .   Travel   .   Home    .    PA    .</textPath>
                     </text>
                   </svg>
                 </div>
