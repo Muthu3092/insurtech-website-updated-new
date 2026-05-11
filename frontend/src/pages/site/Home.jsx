@@ -129,7 +129,7 @@ export default function Home() {
                 ))}
               </div>
               <span className="eyebrow">
-                <Sparkles className="w-3.5 h-3.5" /> AI-powered · Insurance-first
+                <Sparkles className="w-3.5 h-3.5" /> AI-powered · Insurance
               </span>
             </div>
 
