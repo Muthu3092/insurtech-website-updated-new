@@ -1216,8 +1216,22 @@ export default function Leads() {
                       <td className="px-2 overflow-hidden">
                         <span className="text-sm text-muted-foreground truncate block">{lead.office_number || '-'}</span>
                       </td>
-                      <td className="px-2 overflow-hidden">
-                        <span className="text-sm text-muted-foreground truncate block">{lead.email || '-'}</span>
+                      <td className="px-2 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                        {(lead.email && lead.email.trim()) ? (
+                          <span className="text-sm text-muted-foreground truncate block">{lead.email}</span>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => openEditDialog(lead)}
+                            data-testid={`lead-add-email-${lead.id}`}
+                            className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 text-xs hover:bg-amber-100 transition-colors whitespace-nowrap"
+                            title="No email on file — click to add"
+                          >
+                            <Mail className="w-3 h-3" />
+                            Add email
+                            <Edit className="w-3 h-3" />
+                          </button>
+                        )}
                       </td>
                       <td className="px-2 overflow-hidden">
                         <span className="text-sm text-muted-foreground truncate block">{lead.city || '-'}</span>
