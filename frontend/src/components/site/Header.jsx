@@ -26,6 +26,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import CurrencyPicker from "./CurrencyPicker";
 
 export default function Header() {
   const [scrolled, setScrolled] = React.useState(false);
@@ -114,7 +115,7 @@ export default function Header() {
 
           {/* PHONE */}
           <a
-            href="tel:++6018 377 0888"
+            href="tel:+6018 377 0888"
             data-testid="header-phone"
             className="flex items-center gap-2 text-sm font-medium text-ink/80 hover:text-ink transition"
           >
@@ -128,10 +129,11 @@ export default function Header() {
               </span>
 
               <span className="block">
-                +60 18 377 0888
+                +6018 377 0888
               </span>
             </span>
           </a>
+          <CurrencyPicker variant="light" />
 
           {/* AUTH */}
           {!user ? (
@@ -225,7 +227,7 @@ export default function Header() {
       </div>
 
       {/* MOBILE DRAWER */}
-      {/* MOBILE DRAWER */}
+      
 <div
   className={`lg:hidden fixed inset-x-0 top-[72px] mx-4 rounded-3xl bg-cream border border-ink/10 overflow-hidden transition-all duration-500 ${
     open
@@ -252,7 +254,7 @@ export default function Header() {
         {l.label}
       </NavLink>
     ))}
-
+<div className="mt-4 px-2"><CurrencyPicker variant="light" /></div>
     {/* MOBILE AUTH */}
     {!user ? (
 

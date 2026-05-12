@@ -9,6 +9,7 @@ import Counter from "../../components/site/Counter";
 import Marquee from "../../components/site/Marquee";
 import { endpoints } from "../../lib/apiClient";
 import { quoteRouteFor } from "../../lib/quoteRoutes";
+import { useCurrency } from "../../lib/currency";
 
 const ICON_MAP = {
   travel: Plane,
@@ -41,6 +42,7 @@ const VALUES = [
 ];
 
 export default function Services() {
+   const { format } = useCurrency();
   const [shields, setShields] = React.useState(FALLBACK);
   const [loading, setLoading] = React.useState(true);
 
@@ -180,7 +182,7 @@ export default function Services() {
                           <Icon className="w-6 h-6 text-ink" />
                         </div>
                         <span className="text-xs uppercase tracking-widest text-ink/50">
-                          From {s.currency || "RM"} {s.price}/yr
+                          From {s.currency || "RM"} {format(s.price, { decimals: 0 })}/yr
                         </span>
                       </div>
                       <h3 className="font-display text-2xl mb-2">{s.title}</h3>

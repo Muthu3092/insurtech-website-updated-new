@@ -12,6 +12,7 @@ import PageHero from "../../components/site/PageHero";
 import { endpoints } from "../../lib/apiClient";
 import HomeCoverageCalculator from "../HomeCoverageCalculator";
 import HealthCoverageCalculator from "../HealthCoverageCalculator";
+import { useCurrency } from "../../lib/currency";
 
 /**
  * Covar-style shield-detail/landing page.
@@ -239,6 +240,7 @@ function quoteHrefFor(category, productId) {
 }
 
 export default function ShieldDetail({ category }) {
+  const { format } = useCurrency();
   const params = useParams();
   const loc = useLocation();
   const [product, setProduct] = React.useState(null);
@@ -286,7 +288,7 @@ export default function ShieldDetail({ category }) {
               <span className="eyebrow">
                 <Icon className="w-3.5 h-3.5" /> {copy.eyebrow}
               </span>
-              <span className="text-xs uppercase tracking-widest text-ink/50">From RM {fromPrice}/yr</span>
+              <span className="text-xs uppercase tracking-widest text-ink/50">From {format(fromPrice, { decimals: 0 })}/yr</span>
             </div>
 
             <AnimatedHeading
@@ -453,7 +455,7 @@ export default function ShieldDetail({ category }) {
                 </div>
                 <h3 className="font-display text-3xl font-semibold mb-2">{p.name} Plan</h3>
                 <div className="font-display text-5xl font-semibold mb-7">
-                  RM {p.price}<span className="text-base text-ink/60 font-body font-normal">/mo</span>
+                  {format(p.price, { decimals: 0 })}<span className="text-base text-ink/60 font-body font-normal">/mo</span>
                 </div>
                 <ul className="space-y-3 mb-8 border-t border-ink/15 pt-6">
                   {p.features.map((f) => (

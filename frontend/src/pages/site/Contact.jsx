@@ -64,7 +64,7 @@ export default function Contact() {
         <div className="container grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 space-y-5">
             {[
-              { icon: MapPin, title: "Our Location", text: "Level 12, Menara KL, Jalan Punchak, 50250 Kuala Lumpur, Malaysia" },
+              { icon: MapPin, title: "Our Location", text: "A-G-13A & A-01-13A, Block A, Merchant Square, No.1, Jalan Tropicana Selatan 1, PJU 3, 47410 Petaling Jaya, Selangor Darul Ehsan, Malaysia" },
               { icon: Phone, title: "Phone", text: "+60 18 377 0888", href: "tel:++6018 377 0888" },
               { icon: Mail, title: "Email", text: "hello@afinity.ai", href: "mailto:hello@afinity.ai" },
             ].map((c) => (
