@@ -30,6 +30,9 @@ template.
 - ✅ Contact page with working form (client-side confirmation)
 - ✅ 404 NotFound
 
+## What's been implemented (Feb 2026 — fork)
+- ✅ **P0 fix: Lead → Customer conversion for existing emails.** In `LeadDetailPage.jsx` (`handleConvertToCustomer`) and `Leads.jsx` (`handleConvertSubmit`), when `POST /api/auth/signup` returns 400 ("Email already registered") after `POST /api/leads/{id}/convert`, we now fall back to `GET /api/crm/customers?q=<email>`, match the row by exact email, and link that existing `user_id`. The success toast becomes "Lead converted. Existing account linked as customer." and the deep link points to `/admin/customers/<userId>`. The conversion activity entry records whether the customer was newly created or an existing one was linked. Verified end-to-end against the live backend (`endpoint.afinity.ai`).
+
 ## Backlog / Future
 - P1: Wire contact form to backend (FastAPI + MongoDB) for real lead capture
 - P1: CMS integration so the marketing team can edit Blog & Testimonials without code

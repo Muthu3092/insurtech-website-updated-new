@@ -843,8 +843,10 @@ export default function Leads() {
       if (response.ok) {
         const clientRec = await response.json().catch(() => ({}));
 
-        // Also auto-provision a user account so they show up in /admin/customers list
+        // Also auto-provision a user account so they show up in /admin/customers list.
+        // If signup returns 400 (email already registered), link the existing user instead.
         let userId = null;
+        let linkedExisting = false;
         const email = (selectedLead.email || clientRec?.email || '').trim();
         const phone = selectedLead.phone || clientRec?.phone || '+60100000000';
         const fullName = selectedLead.pic_name || selectedLead.name || clientRec?.name || 'Converted Customer';
@@ -859,6 +861,23 @@ export default function Leads() {
             if (signupRes.ok) {
               const su = await signupRes.json().catch(() => ({}));
               userId = su?.user?.id;
+            } else if (signupRes.status === 400) {
+              try {
+                const lookup = await fetch(
+                  `${API}/api/crm/customers?q=${encodeURIComponent(email)}`,
+                  { headers: { Authorization: `Bearer ${token}` } }
+                );
+                if (lookup.ok) {
+                  const rows = await lookup.json().catch(() => []);
+                  const match = (Array.isArray(rows) ? rows : []).find(
+                    (u) => (u.email || '').toLowerCase() === email.toLowerCase()
+                  );
+                  if (match?.id) {
+                    userId = match.id;
+                    linkedExisting = true;
+                  }
+                }
+              } catch (_) { /* swallow */ }
             }
           } catch (_) { /* ignore */ }
         }
@@ -869,14 +888,18 @@ export default function Leads() {
             body: JSON.stringify({
               type: 'converted',
               description: `Lead converted to customer${fullName ? ' (' + fullName + ')' : ''}`,
-              notes: userId ? `Customer profile: ${userId}` : 'No matching user profile created',
+              notes: userId
+                ? `${linkedExisting ? 'Linked existing' : 'New'} customer profile: ${userId}`
+                : 'No matching user profile created',
             }),
           });
         } catch (_) {}
 
         toast.success(
           <span>
-            Lead converted to customer.{' '}
+            {linkedExisting
+              ? 'Lead converted. Existing account linked as customer. '
+              : 'Lead converted to customer. '}
             <a
               href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
               className="underline font-medium"
