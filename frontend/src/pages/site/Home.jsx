@@ -205,7 +205,7 @@ export default function Home() {
                   <div>
                     <div className="text-[10px] uppercase tracking-widest text-ink/50">Active cover</div>
                     <div className="font-semibold text-sm">
-  Travel Shield Global · {format(100000, { decimals: 0 })}
+  Travel Shield Global
 </div>
                   </div>
                   <span className="ml-auto bg-ink text-lime text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
