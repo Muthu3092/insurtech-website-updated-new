@@ -452,7 +452,7 @@ export default function TravelQuote() {
           <div className="flex flex-wrap justify-between gap-3">
             <button onClick={() => setStep(1)} className="px-4 py-2.5 rounded-xl text-sm text-gray-500 hover:bg-gray-50 inline-flex items-center gap-2"><ArrowLeft className="w-4 h-4" /> Edit</button>
             <div className="flex gap-2">
-              <button
+              {/* <button
                 onClick={async () => {
                   setLoading(true);
                   try {
@@ -471,7 +471,7 @@ export default function TravelQuote() {
                 title="Skip payment & issue policy (demo mode)"
               >
                 Skip payment (demo)
-              </button>
+              </button> */}
               <button
                 onClick={checkout}
                 disabled={loading}

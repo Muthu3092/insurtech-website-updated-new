@@ -717,7 +717,7 @@ export default function Home() {
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-widest text-ink/50">Phone Number</div>
-                <a href="tel:+60123456789" className="font-display text-xl">+60 12 345 6789</a>
+                <a href="tel:+60183770888" className="font-display text-xl">+60 18 377 0888</a>
               </div>
             </div>
           </div>
