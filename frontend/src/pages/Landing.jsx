@@ -69,7 +69,7 @@ export default function Landing() {
                     />
                   ))}
                 </div>
-                <span className="font-medium text-gray-700">120k+ protected</span>
+                <span className="font-medium text-gray-700">10k+ protected</span>
               </div>
               <div className="flex items-center gap-1 text-primary-700 font-medium">
                 <Star className="w-4 h-4 fill-primary text-primary" /> 4.9 / 5 · App Store
