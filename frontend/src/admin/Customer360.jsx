@@ -144,7 +144,7 @@ export default function Customer360() {
             </div>
           </div>
 
-          <div className="flex flex-row sm:flex-col gap-2 w-full sm:w-auto sm:min-w-[180px]">
+          {/* <div className="flex flex-row sm:flex-col gap-2 w-full sm:w-auto sm:min-w-[180px]">
             <Button
               onClick={simulateCall}
               data-testid="simulate-call-btn"
@@ -162,7 +162,7 @@ export default function Customer360() {
                 <option key={s} value={s}>Stage: {s}</option>
               ))}
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
 
