@@ -988,9 +988,9 @@ export default function Pipeline() {
             {/* Linked Companies - matching Picture 3 */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider">LINKED COMPANIES</h3>
+                <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider">LINKED Customer Name</h3>
                 <span className="text-xs text-muted-foreground">
-                  {selectedDeal.linked_companies?.length || 0} companies
+                  {selectedDeal.full_name?.length || 0} companies
                 </span>
               </div>
               
