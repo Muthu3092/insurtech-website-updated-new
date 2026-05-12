@@ -847,7 +847,12 @@ export default function Leads() {
         // If signup returns 400 (email already registered), link the existing user instead.
         let userId = null;
         let linkedExisting = false;
-        const email = (selectedLead.email || clientRec?.email || '').trim();
+        let usedPlaceholderEmail = false;
+        const rawEmail = (selectedLead.email || clientRec?.email || '').trim();
+        // Bulk-imported leads often have blank emails. Generate a placeholder so the
+        // customer still appears in /admin/customers; the admin can edit it later.
+        const email = rawEmail || `lead-${selectedLead.id}@noemail.afinity.ai`;
+        if (!rawEmail) usedPlaceholderEmail = true;
         const phone = selectedLead.phone || clientRec?.phone || '+60100000000';
         const fullName = selectedLead.pic_name || selectedLead.name || clientRec?.name || 'Converted Customer';
         if (email) {
@@ -899,7 +904,9 @@ export default function Leads() {
           <span>
             {linkedExisting
               ? 'Lead converted. Existing account linked as customer. '
-              : 'Lead converted to customer. '}
+              : usedPlaceholderEmail
+                ? 'Lead converted. Customer added with placeholder email — update it from the profile. '
+                : 'Lead converted to customer. '}
             <a
               href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
               className="underline font-medium"

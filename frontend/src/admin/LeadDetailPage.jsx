@@ -754,7 +754,9 @@ export default function LeadDetailPage() {
           <span>
             {linkedExisting
               ? 'Lead converted. Existing account linked as customer. '
-              : 'Lead converted to customer. '}
+              : usedPlaceholderEmail
+                ? 'Lead converted. Customer added with placeholder email — update it from the profile. '
+                : 'Lead converted to customer. '}
             <a
               href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
               className="underline font-medium"
