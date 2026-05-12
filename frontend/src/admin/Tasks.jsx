@@ -448,33 +448,39 @@ export default function Tasks() {
           <>
             <div className="overflow-x-auto -webkit-overflow-scrolling-touch">
               <table className="w-full table-fixed min-w-[960px]">
-                 <thead>
-    <tr className="border-b border-border">
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        NO.
-      </th>
+                <thead>
+  <tr className="border-b border-border">
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      NO.
+    </th>
 
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        CUSTOMER NAME
-      </th>
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      CUSTOMER NAME
+    </th>
 
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        DEAL
-      </th>
+    {/* <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      PIC
+    </th> */}
 
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        STATUS
-      </th>
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      DEAL
+    </th>
 
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        DATE
-      </th>
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      STATUS
+    </th>
 
-      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
-        PAYMENT
-      </th>
-    </tr>
-  </thead>
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      DATE
+    </th>
+
+    <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+      PAYMENT
+    </th>
+
+    <th className="w-1/6 text-left px-3 py-3"></th>
+  </tr>
+</thead>
                 <tbody>
                   {tasks.map((task, index) => {
                     const statusDisplay = getStatusDisplay(task);
