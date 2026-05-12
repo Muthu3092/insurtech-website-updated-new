@@ -448,18 +448,33 @@ export default function Tasks() {
           <>
             <div className="overflow-x-auto -webkit-overflow-scrolling-touch">
               <table className="w-full table-fixed min-w-[960px]">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-12">NO.</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase whitespace-nowrap">CUSTOMER NAME</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-28">PIC</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-32">DEAL</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-24">STATUS</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-20">DATE</th>
-                    <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground uppercase w-24">PAYMENT</th>
-                    <th className="w-10"></th>
-                  </tr>
-                </thead>
+                 <thead>
+    <tr className="border-b border-border">
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        NO.
+      </th>
+
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        CUSTOMER NAME
+      </th>
+
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        DEAL
+      </th>
+
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        STATUS
+      </th>
+
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        DATE
+      </th>
+
+      <th className="w-1/6 text-left px-3 py-3 text-xs font-medium text-muted-foreground uppercase">
+        PAYMENT
+      </th>
+    </tr>
+  </thead>
                 <tbody>
                   {tasks.map((task, index) => {
                     const statusDisplay = getStatusDisplay(task);
@@ -489,9 +504,9 @@ export default function Tasks() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-2 py-1.5 text-sm">
+                        {/* <td className="px-2 py-1.5 text-sm">
                           <span className="truncate block">{task.pic_name || '-'}</span>
-                        </td>
+                        </td> */}
                         <td className="px-2 py-1.5">
                           <span className="text-sm text-primary truncate block">{task.deal_name || '-'}</span>
                         </td>
