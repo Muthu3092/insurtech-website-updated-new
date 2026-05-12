@@ -7,7 +7,7 @@ import {
   MessageCircle, Check, CheckCheck, Clock, User, ArrowLeft, X
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 // Sample contacts data (will be populated from leads/customers)
 const MESSAGE_TEMPLATES = [

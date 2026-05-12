@@ -13,7 +13,7 @@ import {
   CalendarPlus, Eye, ExternalLink
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 const statusConfig = {
   lead: { label: 'Lead', class: 'bg-blue-500/20 text-blue-400' },

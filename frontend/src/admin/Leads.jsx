@@ -12,7 +12,7 @@ import {
   DollarSign, PhoneCall, MessageCircle, Globe, MapPin, Check
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 const statusConfig = {
   new: { label: 'New', class: 'elstar-badge-info' },
@@ -690,7 +690,32 @@ export default function Leads() {
         body: JSON.stringify(formData)
       });
       if (response.ok) {
+        const created = await response.json().catch(() => null);
         toast.success('Lead created successfully');
+
+        // 🔁 Auto-create a follow-up task so it shows up in /admin/tasks
+        if (created?.id) {
+          try {
+            const due = new Date();
+            due.setDate(due.getDate() + 1); // tomorrow
+            await fetch(`${API}/api/tasks`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+              body: JSON.stringify({
+                title: `Follow up with ${created.name || formData.name}`,
+                description: `New lead from ${formData.source || 'website'}. Contact ${formData.pic_name || formData.name} at ${formData.phone || formData.email || ''}.`,
+                lead_id: created.id,
+                priority: 'medium',
+                status: 'open',
+                due_date: due.toISOString(),
+              }),
+            });
+          } catch (taskErr) {
+            // non-fatal — surface as a soft warning only
+            console.warn('Lead created but task creation failed', taskErr);
+          }
+        }
+
         setIsCreateOpen(false);
         setFormData(initialFormData);
         fetchLeads();
@@ -816,7 +841,14 @@ export default function Leads() {
       });
       
       if (response.ok) {
-        toast.success('Lead converted to client successfully');
+        toast.success(
+          <span>
+            Lead converted to customer.{' '}
+            <a href="/admin/customers" className="underline font-medium">
+              View in Customers →
+            </a>
+          </span>
+        );
         setIsConvertOpen(false);
         setSelectedLead(null);
         fetchLeads();

@@ -12,7 +12,7 @@ import {
   Download, Play, Pause, Volume2
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 const PIPELINE_STAGES = [
   { id: 'lead', label: 'Lead' },
@@ -683,7 +683,18 @@ export default function LeadDetailPage() {
       });
       
       if (response.ok) {
-        toast.success('Lead converted to customer');
+        const data = await response.json().catch(() => ({}));
+        toast.success(
+          <span>
+            Lead converted to customer.{' '}
+            <a
+              href={data?.customer_id ? `/admin/customers/${data.customer_id}` : '/admin/customers'}
+              className="underline font-medium"
+            >
+              View in Customers →
+            </a>
+          </span>
+        );
         fetchLead();
       } else {
         const errorData = await response.json();

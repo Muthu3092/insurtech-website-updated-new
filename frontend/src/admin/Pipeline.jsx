@@ -8,7 +8,7 @@ import ActionDropdown from '../components/elstar/ActionDropdown';
 import Modal from '../components/elstar/Modal';
 import { Plus, Loader2, DollarSign, Calendar, Trash2, Edit, Sparkles, Building2, Search, Eye, X, FileText, Upload, Bot, Shuffle, RotateCcw, User } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 // Pipeline stages matching Picture 1
 const STAGES = [
