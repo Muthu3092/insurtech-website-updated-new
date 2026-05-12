@@ -686,10 +686,11 @@ export default function LeadDetailPage() {
         const clientRec = await response.json().catch(() => ({}));
 
         // The /leads/{id}/convert endpoint creates a Client record (separate table).
-        // To make the conversion visible on /admin/customers (which lists users),
-        // we also auto-provision a user account for them. If the email is already
-        // a registered user, signup fails silently — that's fine, they already exist.
+        // To make the conversion visible on /admin/customers (which lists users via
+        // /api/crm/customers), we also auto-provision a user account. If signup returns
+        // 400 "Email already registered", we look the user up and link them instead.
         let userId = null;
+        let linkedExisting = false;
         const email = (lead.email || clientRec?.email || '').trim();
         const phone = lead.phone || clientRec?.phone || '+60100000000';
         const fullName = lead.pic_name || lead.name || clientRec?.name || 'Converted Customer';
@@ -710,6 +711,24 @@ export default function LeadDetailPage() {
             if (signupRes.ok) {
               const su = await signupRes.json().catch(() => ({}));
               userId = su?.user?.id;
+            } else if (signupRes.status === 400) {
+              // Email already exists — find them in the customer list and link.
+              try {
+                const lookup = await fetch(
+                  `${API}/api/crm/customers?q=${encodeURIComponent(email)}`,
+                  { headers: { Authorization: `Bearer ${token}` } }
+                );
+                if (lookup.ok) {
+                  const rows = await lookup.json().catch(() => []);
+                  const match = (Array.isArray(rows) ? rows : []).find(
+                    (u) => (u.email || '').toLowerCase() === email.toLowerCase()
+                  );
+                  if (match?.id) {
+                    userId = match.id;
+                    linkedExisting = true;
+                  }
+                }
+              } catch (_) { /* swallow */ }
             }
           } catch (e) {
             // ignore — best-effort. The Client record is already persisted.
@@ -724,14 +743,20 @@ export default function LeadDetailPage() {
             body: JSON.stringify({
               type: 'converted',
               description: `Lead converted to customer${fullName ? ' (' + fullName + ')' : ''}`,
-              notes: userId ? `Customer profile: ${userId}` : 'No matching user profile created',
+              notes: userId
+                ? `${linkedExisting ? 'Linked existing' : 'New'} customer profile: ${userId}`
+                : 'No matching user profile created',
             }),
           });
         } catch (_) {}
 
         toast.success(
           <span>
-            Lead converted to customer.{' '}
+            {linkedExisting
+              ? 'Lead converted. Existing account linked as customer. '
+              : usedPlaceholderEmail
+                ? 'Lead converted. Customer added with placeholder email — update it from the profile. '
+                : 'Lead converted to customer. '}
             <a
               href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
               className="underline font-medium"
@@ -1105,7 +1130,7 @@ export default function LeadDetailPage() {
                   onClick={() => setPipelineStatus(stage.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     pipelineStatus === stage.id
-                      ? stage.id === 'lost' ? 'bg-gray-600 text-white' : 'bg-amber-500 text-black'
+                      ? stage.id === 'lost' ? 'bg-gray-600 text-white' : 'bg-primary text-black'
                       : 'bg-secondary hover:bg-secondary/80 text-foreground'
                   }`}
                   data-testid={`stage-${stage.id}`}
@@ -1351,7 +1376,7 @@ export default function LeadDetailPage() {
                 <p className="text-xs text-muted-foreground">WhatsApp</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-purple-600">{lead.ai_score || 0}</p>
+                <p className="text-2xl font-bold text-blue-600">{lead.ai_score || 0}</p>
                 <p className="text-xs text-muted-foreground">AI Score</p>
               </div>
             </div>
