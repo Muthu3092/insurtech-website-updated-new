@@ -691,7 +691,12 @@ export default function LeadDetailPage() {
         // 400 "Email already registered", we look the user up and link them instead.
         let userId = null;
         let linkedExisting = false;
-        const email = (lead.email || clientRec?.email || '').trim();
+        let usedPlaceholderEmail = false;
+        const rawEmail = (lead.email || clientRec?.email || '').trim();
+        // Bulk-imported leads often have blank emails. Generate a placeholder so the
+        // customer still appears in /admin/customers; the admin can edit it later.
+        const email = rawEmail || `lead-${id}@noemail.afinity.ai`;
+        if (!rawEmail) usedPlaceholderEmail = true;
         const phone = lead.phone || clientRec?.phone || '+60100000000';
         const fullName = lead.pic_name || lead.name || clientRec?.name || 'Converted Customer';
         if (email) {
