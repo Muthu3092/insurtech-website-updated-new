@@ -202,18 +202,22 @@ body {
     z-index: 9998; animation: overlayFadeIn 0.2s ease-out;
   }
   .elstar-modal {
-    @apply bg-card rounded-xl shadow-xl w-full;
-    max-width: 500px; max-height: calc(100vh - 2rem);
+    @apply bg-card shadow-xl w-full rounded-t-2xl sm:rounded-xl;
+    max-width: 100%; max-height: calc(100vh - 0rem);
     z-index: 9999;
     border: 1px solid hsl(var(--border));
     animation: modalSlideIn 0.3s cubic-bezier(0.4,0,0.2,1);
   }
-  .elstar-modal-header {
-    @apply px-6 py-4 border-b border-border rounded-t-xl bg-card;
+
+  @media (min-width: 640px) {
+    .elstar-modal { max-width: 500px; max-height: calc(100vh - 2rem); }
   }
-  .elstar-modal-body { @apply px-6 py-4 overflow-y-auto bg-card; max-height: calc(100vh - 14rem); }
+  .elstar-modal-header {
+    @apply px-4 sm:px-6 py-4 border-b border-border rounded-t-2xl sm:rounded-t-xl bg-card sticky top-0 z-10;
+  }
+  .elstar-modal-body { @apply px-4 sm:px-6 py-4 overflow-y-auto bg-card; max-height: calc(100vh - 10rem); }
   .elstar-modal-footer {
-    @apply px-6 py-4 border-t border-border flex justify-end gap-3 rounded-b-xl bg-card;
+     @apply px-4 sm:px-6 py-4 border-t border-border flex flex-col-reverse sm:flex-row justify-end gap-2 sm:gap-3 sm:rounded-b-xl bg-card sticky bottom-0;
   }
   .elstar-dropdown-item {
     @apply px-4 py-2.5 text-sm text-foreground cursor-pointer;

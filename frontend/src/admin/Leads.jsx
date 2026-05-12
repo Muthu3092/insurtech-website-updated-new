@@ -64,7 +64,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
             data-testid="lead-name-input" 
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">Country *</label>
             <select 
@@ -93,7 +93,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">City</label>
             <input 
@@ -178,7 +178,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
             data-testid="lead-title-input" 
           />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">IC Number</label>
             <input
@@ -200,7 +200,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
             />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">Date of Birth</label>
             <input
@@ -249,7 +249,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
     <div>
       <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider mb-4">CONTACT DETAILS</h3>
       <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">Mobile Number *</label>
             <input 
@@ -271,7 +271,7 @@ const LeadFormFields = memo(({ data, onChange, isEdit = false }) => (
             />
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-2">Fax Number</label>
             <input 
