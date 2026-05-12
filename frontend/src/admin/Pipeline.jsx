@@ -8,7 +8,7 @@ import ActionDropdown from '../components/elstar/ActionDropdown';
 import Modal from '../components/elstar/Modal';
 import { Plus, Loader2, DollarSign, Calendar, Trash2, Edit, Sparkles, Building2, Search, Eye, X, FileText, Upload, Bot, Shuffle, RotateCcw, User } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 // Pipeline stages matching Picture 1
 const STAGES = [
@@ -435,13 +435,46 @@ export default function Pipeline() {
   const handleDragStart = (e, deal) => { setDraggedDeal(deal); };
   const handleLinkageDragStart = (e, linkage) => { setDraggedLinkage(linkage); };
   const handleDragOver = (e) => { e.preventDefault(); };
-  
+
+  /**
+   * Mirror the linkage pipeline_status onto the lead itself AND log an activity
+   * so the change shows up on the Lead Detail page's activity timeline.
+   * Fire-and-forget; failures are non-fatal.
+   */
+  const syncLeadPipelineStatus = async (leadId, fromStage, toStage) => {
+    if (!leadId || !toStage || fromStage === toStage) return;
+    const fromLabel = STAGES.find((s) => s.id === fromStage)?.label || fromStage || '—';
+    const toLabel = STAGES.find((s) => s.id === toStage)?.label || toStage;
+    try {
+      await Promise.all([
+        fetch(`${API}/api/leads/${leadId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ pipeline_status: toStage }),
+        }),
+        fetch(`${API}/api/leads/${leadId}/activities`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({
+            type: 'status_change',
+            description: `Pipeline status changed from ${fromLabel} to ${toLabel}`,
+            notes: 'Updated from Pipeline board',
+          }),
+        }),
+      ]);
+    } catch (err) {
+      console.warn('syncLeadPipelineStatus failed', err);
+    }
+  };
+
   const handleDrop = async (e, newStage) => {
     e.preventDefault();
     
     // Handle linkage drag (individual lead-deal combination)
     if (draggedLinkage) {
       if (draggedLinkage.pipeline_status === newStage) { setDraggedLinkage(null); return; }
+      const prevStage = draggedLinkage.pipeline_status;
+      const leadId = draggedLinkage.lead_id;
       
       // Optimistic update
       setLinkages(prev => prev.map(l => l.id === draggedLinkage.id ? {...l, pipeline_status: newStage} : l));
@@ -453,6 +486,7 @@ export default function Pipeline() {
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ pipeline_status: newStage })
         });
+        await syncLeadPipelineStatus(leadId, prevStage, newStage);
         toast.success(`Moved to ${STAGES.find(s => s.id === newStage)?.label || newStage}`);
         fetchLinkages();
       } catch (error) { 
@@ -515,11 +549,13 @@ export default function Pipeline() {
   const handleLinkageEditSave = async () => {
     if (!selectedLinkage) return;
     try {
+      const prevStage = selectedLinkage.pipeline_status;
       await fetch(`${API}/api/lead-deal-linkages/${selectedLinkage.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ pipeline_status: linkageEditStatus })
       });
+      await syncLeadPipelineStatus(selectedLinkage.lead_id, prevStage, linkageEditStatus);
       toast.success('Status updated');
       setIsLinkageEditOpen(false);
       setSelectedLinkage(null);
@@ -899,6 +935,7 @@ export default function Pipeline() {
                     key={stage.id}
                     onClick={async () => {
                       if (selectedDeal.stage === stage.id) return;
+                      const prevStage = selectedDeal.stage;
                       try {
                         // If this is a linkage-specific view, only update this linkage
                         if (selectedDeal._linkage_id) {
@@ -907,6 +944,7 @@ export default function Pipeline() {
                             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
                             body: JSON.stringify({ pipeline_status: stage.id })
                           });
+                          await syncLeadPipelineStatus(selectedDeal._lead_id, prevStage, stage.id);
                           toast.success(`${selectedDeal._lead_name} moved to ${stage.label}`);
                         } else {
                           // Otherwise update the deal and all linkages
@@ -923,6 +961,7 @@ export default function Pipeline() {
                               headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
                               body: JSON.stringify({ pipeline_status: stage.id })
                             });
+                            await syncLeadPipelineStatus(linkage.lead_id, linkage.pipeline_status, stage.id);
                           }
                           toast.success(`Stage updated to ${stage.label}`);
                         }

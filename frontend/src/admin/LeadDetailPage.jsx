@@ -24,11 +24,11 @@ const PIPELINE_STAGES = [
 ];
 
 const LOG_ACTIVITY_TYPES = [
-  { id: 'task', label: 'Task', icon: CheckSquare, color: 'text-blue-500' },
+  { id: 'task', label: 'Task', icon: CheckSquare, color: 'text-[#A0C4FF]' },
   { id: 'call', label: 'Call', icon: PhoneCall, color: 'text-green-500' },
-  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, color: 'text-green-600' },
+  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, color: 'text-[#A0C4FF]' },
   { id: 'email', label: 'Email', icon: Mail, color: 'text-amber-500' },
-  { id: 'meeting', label: 'Meeting', icon: Calendar, color: 'text-purple-500' }
+  { id: 'meeting', label: 'Meeting', icon: Calendar, color: 'text-[#A0C4FF]' }
 ];
 
 export default function LeadDetailPage() {
@@ -831,7 +831,7 @@ export default function LeadDetailPage() {
           </button>
           <button 
             onClick={openScheduleMeetingModal}
-            className="elstar-btn-ghost flex items-center gap-1 sm:gap-2 text-sm px-2 sm:px-4 text-purple-500 border-purple-500 hover:bg-purple-500/10"
+            className="elstar-btn-ghost flex items-center gap-1 sm:gap-2 text-sm px-2 sm:px-4 text-blue-500 border-blue-500 hover:bg-blue-500/10"
             data-testid="schedule-meeting-btn"
           >
             <Calendar className="w-4 h-4" />
@@ -864,7 +864,7 @@ export default function LeadDetailPage() {
           <div className="bg-white dark:bg-card rounded-xl p-4 shadow-sm border border-border">
             <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider mb-4">Contact Information</h3>
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
+              {/* <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
                   <User className="w-4 h-4 text-purple-600" />
                 </div>
@@ -872,7 +872,7 @@ export default function LeadDetailPage() {
                   <p className="text-xs text-muted-foreground">PIC Name</p>
                   <p className="text-sm font-medium break-words">{lead.pic_name || lead.name || '-'}</p>
                 </div>
-              </div>
+              </div> */}
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
                   <Building2 className="w-4 h-4 text-amber-600" />
@@ -883,8 +883,8 @@ export default function LeadDetailPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
-                  <UserCheck className="w-4 h-4 text-rose-600" />
+                <div className="w-8 h-8 rounded-full bg-[#A0C4FF] flex items-center justify-center flex-shrink-0">
+                  <UserCheck className="w-4 h-4 text-indigo-600" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">IC Number</p>
@@ -892,8 +892,8 @@ export default function LeadDetailPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-                  <UserCheck className="w-4 h-4 text-indigo-600" />
+                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                  <UserCheck className="w-4 h-4 text-amber-600" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">Passport Number</p>
@@ -901,7 +901,7 @@ export default function LeadDetailPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-[#A0C4FF] flex items-center justify-center flex-shrink-0">
                   <Mail className="w-4 h-4 text-blue-600" />
                 </div>
                 <div className="min-w-0">
@@ -910,8 +910,8 @@ export default function LeadDetailPage() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-4 h-4 text-emerald-600" />
+                <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-4 h-4 text-amber-600" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-xs text-muted-foreground">Phone</p>
@@ -1287,15 +1287,15 @@ export default function LeadDetailPage() {
                 <p className="text-xs text-muted-foreground">Total Activities</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-blue-600">{aiCallsCount}</p>
+                <p className="text-2xl font-bold text-[#A0C4FF]">{aiCallsCount}</p>
                 <p className="text-xs text-muted-foreground">AI Calls</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-green-600">{whatsappMessages.length}</p>
+                <p className="text-2xl font-bold text-amber-600">{whatsappMessages.length}</p>
                 <p className="text-xs text-muted-foreground">WhatsApp</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-purple-600">{lead.ai_score || 0}</p>
+                <p className="text-2xl font-bold text-[#A0C4FF]">{lead.ai_score || 0}</p>
                 <p className="text-xs text-muted-foreground">AI Score</p>
               </div>
             </div>
