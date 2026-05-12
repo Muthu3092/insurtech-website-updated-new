@@ -841,10 +841,46 @@ export default function Leads() {
       });
       
       if (response.ok) {
+        const clientRec = await response.json().catch(() => ({}));
+
+        // Also auto-provision a user account so they show up in /admin/customers list
+        let userId = null;
+        const email = (selectedLead.email || clientRec?.email || '').trim();
+        const phone = selectedLead.phone || clientRec?.phone || '+60100000000';
+        const fullName = selectedLead.pic_name || selectedLead.name || clientRec?.name || 'Converted Customer';
+        if (email) {
+          try {
+            const tempPw = 'Aura' + Math.random().toString(36).slice(-8) + '!1';
+            const signupRes = await fetch(`${API}/api/auth/signup`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, phone, full_name: fullName, password: tempPw, role: 'customer' }),
+            });
+            if (signupRes.ok) {
+              const su = await signupRes.json().catch(() => ({}));
+              userId = su?.user?.id;
+            }
+          } catch (_) { /* ignore */ }
+        }
+        try {
+          await fetch(`${API}/api/leads/${selectedLead.id}/activities`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+              type: 'converted',
+              description: `Lead converted to customer${fullName ? ' (' + fullName + ')' : ''}`,
+              notes: userId ? `Customer profile: ${userId}` : 'No matching user profile created',
+            }),
+          });
+        } catch (_) {}
+
         toast.success(
           <span>
             Lead converted to customer.{' '}
-            <a href="/admin/customers" className="underline font-medium">
+            <a
+              href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
+              className="underline font-medium"
+            >
               View in Customers →
             </a>
           </span>

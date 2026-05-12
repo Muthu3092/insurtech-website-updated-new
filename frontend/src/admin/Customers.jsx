@@ -21,11 +21,18 @@ export default function Customers() {
 
   const load = async () => {
     const r = await api.get("/crm/customers", { params: q ? { q } : {} });
-    setItems(r.data);
+    const sorted = [...(r.data || [])].sort((a, b) =>
+      String(b.created_at || "").localeCompare(String(a.created_at || ""))
+    );
+    setItems(sorted);
   };
 
   useEffect(() => {
     load();
+    const onFocus = () => load();
+    window.addEventListener("focus", onFocus);
+    return () => window.removeEventListener("focus", onFocus);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

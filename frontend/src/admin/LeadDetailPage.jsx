@@ -683,12 +683,57 @@ export default function LeadDetailPage() {
       });
       
       if (response.ok) {
-        const data = await response.json().catch(() => ({}));
+        const clientRec = await response.json().catch(() => ({}));
+
+        // The /leads/{id}/convert endpoint creates a Client record (separate table).
+        // To make the conversion visible on /admin/customers (which lists users),
+        // we also auto-provision a user account for them. If the email is already
+        // a registered user, signup fails silently — that's fine, they already exist.
+        let userId = null;
+        const email = (lead.email || clientRec?.email || '').trim();
+        const phone = lead.phone || clientRec?.phone || '+60100000000';
+        const fullName = lead.pic_name || lead.name || clientRec?.name || 'Converted Customer';
+        if (email) {
+          try {
+            const tempPw = 'Aura' + Math.random().toString(36).slice(-8) + '!1';
+            const signupRes = await fetch(`${API}/api/auth/signup`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email,
+                phone,
+                full_name: fullName,
+                password: tempPw,
+                role: 'customer',
+              }),
+            });
+            if (signupRes.ok) {
+              const su = await signupRes.json().catch(() => ({}));
+              userId = su?.user?.id;
+            }
+          } catch (e) {
+            // ignore — best-effort. The Client record is already persisted.
+          }
+        }
+
+        // Log a conversion activity so the lead timeline shows it.
+        try {
+          await fetch(`${API}/api/leads/${id}/activities`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+              type: 'converted',
+              description: `Lead converted to customer${fullName ? ' (' + fullName + ')' : ''}`,
+              notes: userId ? `Customer profile: ${userId}` : 'No matching user profile created',
+            }),
+          });
+        } catch (_) {}
+
         toast.success(
           <span>
             Lead converted to customer.{' '}
             <a
-              href={data?.customer_id ? `/admin/customers/${data.customer_id}` : '/admin/customers'}
+              href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
               className="underline font-medium"
             >
               View in Customers →
