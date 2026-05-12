@@ -49,7 +49,7 @@ const DealFormFields = memo(({ data, onChange, isEdit = false, companies = [], c
         data-testid="deal-title-input"
       />
     </div>
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label className="block text-sm font-medium mb-2">Deal Value (RM) *</label>
         <input 
@@ -174,7 +174,7 @@ const DealFormFields = memo(({ data, onChange, isEdit = false, companies = [], c
         {/* Selection Mode */}
         <div className="mb-4">
           <label className="block text-xs text-muted-foreground mb-2">Agent Selection Mode</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {SELECTION_MODES.map(mode => {
               const Icon = mode.icon;
               return (

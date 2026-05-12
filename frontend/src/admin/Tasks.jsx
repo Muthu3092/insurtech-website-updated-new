@@ -548,7 +548,7 @@ export default function Tasks() {
         isOpen={isPanelOpen}
         onClose={closePanel}
         title="Add New Task"
-        width="w-[400px]"
+        width="w-full sm:w-[440px] sm:max-w-[92vw]"
       >
         <form onSubmit={isEditing ? handleUpdate : handleCreate} className="space-y-5">
           <div className="mb-6">
@@ -687,7 +687,7 @@ export default function Tasks() {
         isOpen={isPreviewOpen}
         onClose={() => { setIsPreviewOpen(false); setPreviewLead(null); }}
         title=""
-        width="w-[420px]"
+        width="w-full sm:w-[460px] sm:max-w-[92vw]"
       >
         {previewLead && (
           <div className="flex flex-col h-full -m-6">
