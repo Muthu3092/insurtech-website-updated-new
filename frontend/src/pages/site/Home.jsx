@@ -628,7 +628,7 @@ export default function Home() {
             <div className="mt-10 grid sm:grid-cols-2 gap-5">
               {[
                 { icon: Headphones, title: "Contact Us Today", text: "Speak to a real human or chat with Afinity AI — both 24/7." },
-                { icon: Phone, title: "+60 12 345 6789", text: "Call our customer Afinity AI desk anytime." },
+                { icon: Phone, title: "+60 18 377 0888", text: "Call our customer Afinity AI desk anytime." },
               ].map((c, i) => (
                 <div key={i} className="p-6 rounded-3xl bg-white border border-ink/10">
                   <c.icon className="w-7 h-7 text-ink mb-4" />

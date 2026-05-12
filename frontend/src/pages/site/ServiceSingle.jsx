@@ -88,7 +88,7 @@ export default function ServiceSingle() {
               <h3 className="font-display text-2xl mb-2">Talk to a human</h3>
               <p className="text-sm text-cream/70 mb-5">Prefer a real person? Our customer Afinity.AI team is one tap away.</p>
               <a href="tel:+60123456789" className="btn-covar w-full justify-center">
-                +60 12 345 6789 <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
+                +60 18 377 0888 <span className="btn-icon"><ArrowUpRight className="w-4 h-4" /></span>
               </a>
             </div>
           </aside>
