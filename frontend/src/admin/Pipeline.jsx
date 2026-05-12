@@ -505,13 +505,29 @@ export default function Pipeline() {
     // Create a deal-like object from linkage for the side panel
     const deal = deals.find(d => d.id === linkage.deal_id);
     if (deal) {
-      // Create a custom view with linkage-specific stage
+      // Fetch the linked lead's full record so the side panel can display rich customer info
+      let linkedCustomer = null;
+      try {
+        const resp = await fetch(`${API}/api/leads/${linkage.lead_id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (resp.ok) linkedCustomer = await resp.json();
+      } catch (e) { /* ignore */ }
+
       setSelectedDeal({
         ...deal,
         stage: linkage.pipeline_status, // Use linkage's status, not deal's
         _linkage_id: linkage.id,
         _lead_id: linkage.lead_id,
-        _lead_name: linkage.lead_company || linkage.lead_name
+        _lead_name: linkage.lead_company || linkage.lead_name,
+        _linked_customer: linkedCustomer || {
+          id: linkage.lead_id,
+          name: linkage.lead_company || linkage.lead_name,
+          pic_name: linkage.pic_name,
+          phone: linkage.phone,
+          email: linkage.email,
+          country: linkage.country,
+        },
       });
       setIsDealDetailOpen(true);
     } else {
@@ -985,55 +1001,134 @@ export default function Pipeline() {
               </div>
             </div>
 
-            {/* Linked Companies - matching Picture 3 */}
+            {/* Linked Customer(s) */}
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider">LINKED COMPANIES</h3>
-                <span className="text-xs text-muted-foreground">
-                  {selectedDeal.linked_companies?.length || 0} companies
-                </span>
-              </div>
-              
-              {selectedDeal.linked_companies && selectedDeal.linked_companies.length > 0 ? (
-                <div className="space-y-3">
-                  {selectedDeal.linked_companies.map((company, idx) => (
-                    <div key={idx} className="p-4 bg-secondary/50 rounded-lg">
-                      <div className="flex items-start gap-3">
-                        {/* Avatar with initials */}
-                        <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold flex-shrink-0">
-                          {company.name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'CO'}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-semibold truncate">{company.name}</p>
-                          <p className="text-xs text-muted-foreground">Healthcare - {company.country || 'Malaysia'}</p>
-                          
-                          <div className="grid grid-cols-2 gap-2 mt-3 text-xs">
-                            <div>
-                              <p className="text-muted-foreground uppercase">PIC</p>
-                              <p className="font-medium">{company.pic_name || '-'}</p>
+              {selectedDeal._linkage_id && selectedDeal._linked_customer ? (
+                <>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider">
+                      LINKED CUSTOMER
+                    </h3>
+                    <span className="text-xs text-muted-foreground">
+                      Stage: {STAGES.find(s => s.id === selectedDeal.stage)?.label || selectedDeal.stage}
+                    </span>
+                  </div>
+                  {(() => {
+                    const c = selectedDeal._linked_customer;
+                    const display = c.pic_name || c.name || selectedDeal._lead_name || "—";
+                    const stageObj = STAGES.find(s => s.id === selectedDeal.stage);
+                    return (
+                      <div className="p-4 bg-secondary/50 rounded-lg">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold flex-shrink-0">
+                            {display.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <p className="font-semibold break-words">{display}</p>
+                              {stageObj && (
+                                <span className="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500 border border-amber-500/30">
+                                  {stageObj.label}
+                                </span>
+                              )}
                             </div>
-                            <div>
-                              <p className="text-muted-foreground uppercase">MOBILE</p>
-                              <p className="font-medium">{company.mobile || company.phone || '-'}</p>
-                            </div>
-                            <div className="col-span-2">
-                              <p className="text-muted-foreground uppercase">LOCATION</p>
-                              <p className="font-medium">{company.city || company.location || '-'}</p>
+                            <p className="text-xs text-muted-foreground break-words">
+                              {c.name && c.pic_name && c.name !== c.pic_name ? `${c.name} · ` : ""}
+                              {c.country || "Malaysia"}
+                            </p>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs">
+                              <div>
+                                <p className="text-muted-foreground uppercase">EMAIL</p>
+                                <p className="font-medium break-all">{c.email || '-'}</p>
+                              </div>
+                              <div>
+                                <p className="text-muted-foreground uppercase">MOBILE</p>
+                                <p className="font-medium break-all">{c.mobile || c.phone || '-'}</p>
+                              </div>
+                              <div className="sm:col-span-2">
+                                <p className="text-muted-foreground uppercase">LOCATION</p>
+                                <p className="font-medium break-words">{c.city || c.state || c.location || c.country || '-'}</p>
+                              </div>
+                              {c.source && (
+                                <div>
+                                  <p className="text-muted-foreground uppercase">SOURCE</p>
+                                  <p className="font-medium capitalize">{c.source}</p>
+                                </div>
+                              )}
+                              {c.status && (
+                                <div>
+                                  <p className="text-muted-foreground uppercase">LEAD STATUS</p>
+                                  <p className="font-medium capitalize">{c.status}</p>
+                                </div>
+                              )}
                             </div>
                           </div>
+                          <button
+                            onClick={() => navigate(`/admin/leads/${c.id}`)}
+                            className="px-3 py-1 bg-amber-500 text-black text-xs font-medium rounded hover:bg-amber-400 transition-colors flex-shrink-0"
+                          >
+                            View
+                          </button>
                         </div>
-                        <button 
-                          onClick={() => navigate(`/admin/leads/${company.id}`)}
-                          className="px-3 py-1 bg-amber-500 text-black text-xs font-medium rounded hover:bg-amber-400 transition-colors flex-shrink-0"
-                        >
-                          View
-                        </button>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    );
+                  })()}
+                </>
               ) : (
-                <p className="text-sm text-muted-foreground text-center py-4">No companies linked to this deal</p>
+                <>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xs font-semibold text-amber-500 uppercase tracking-wider">
+                      LINKED CUSTOMERS
+                    </h3>
+                    <span className="text-xs text-muted-foreground">
+                      {selectedDeal.linked_companies?.length || 0} customer{(selectedDeal.linked_companies?.length || 0) === 1 ? "" : "s"}
+                    </span>
+                  </div>
+
+                  {selectedDeal.linked_companies && selectedDeal.linked_companies.length > 0 ? (
+                    <div className="space-y-3">
+                      {selectedDeal.linked_companies.map((company, idx) => (
+                        <div key={idx} className="p-4 bg-secondary/50 rounded-lg">
+                          <div className="flex items-start gap-3">
+                            <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-white font-bold flex-shrink-0">
+                              {company.name?.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'CO'}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold break-words">{company.pic_name || company.name}</p>
+                              <p className="text-xs text-muted-foreground break-words">
+                                {company.pic_name && company.name ? `${company.name} · ` : ""}{company.country || 'Malaysia'}
+                              </p>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-xs">
+                                <div>
+                                  <p className="text-muted-foreground uppercase">EMAIL</p>
+                                  <p className="font-medium break-all">{company.email || '-'}</p>
+                                </div>
+                                <div>
+                                  <p className="text-muted-foreground uppercase">MOBILE</p>
+                                  <p className="font-medium break-all">{company.mobile || company.phone || '-'}</p>
+                                </div>
+                                <div className="sm:col-span-2">
+                                  <p className="text-muted-foreground uppercase">LOCATION</p>
+                                  <p className="font-medium break-words">{company.city || company.location || '-'}</p>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => navigate(`/admin/leads/${company.id}`)}
+                              className="px-3 py-1 bg-amber-500 text-black text-xs font-medium rounded hover:bg-amber-400 transition-colors flex-shrink-0"
+                            >
+                              View
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">No customers linked to this deal</p>
+                  )}
+                </>
               )}
             </div>
 
