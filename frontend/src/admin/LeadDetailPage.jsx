@@ -12,7 +12,7 @@ import {
   Download, Play, Pause, Volume2
 } from 'lucide-react';
 
-const API = process.env.REACT_APP_BACKEND_URL;
+const API = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL;
 
 const PIPELINE_STAGES = [
   { id: 'lead', label: 'Lead' },
@@ -24,11 +24,11 @@ const PIPELINE_STAGES = [
 ];
 
 const LOG_ACTIVITY_TYPES = [
-  { id: 'task', label: 'Task', icon: CheckSquare, color: 'text-[#A0C4FF]' },
+  { id: 'task', label: 'Task', icon: CheckSquare, color: 'text-blue-500' },
   { id: 'call', label: 'Call', icon: PhoneCall, color: 'text-green-500' },
-  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, color: 'text-[#A0C4FF]' },
+  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, color: 'text-green-600' },
   { id: 'email', label: 'Email', icon: Mail, color: 'text-amber-500' },
-  { id: 'meeting', label: 'Meeting', icon: Calendar, color: 'text-[#A0C4FF]' }
+  { id: 'meeting', label: 'Meeting', icon: Calendar, color: 'text-purple-500' }
 ];
 
 export default function LeadDetailPage() {
@@ -683,7 +683,63 @@ export default function LeadDetailPage() {
       });
       
       if (response.ok) {
-        toast.success('Lead converted to customer');
+        const clientRec = await response.json().catch(() => ({}));
+
+        // The /leads/{id}/convert endpoint creates a Client record (separate table).
+        // To make the conversion visible on /admin/customers (which lists users),
+        // we also auto-provision a user account for them. If the email is already
+        // a registered user, signup fails silently — that's fine, they already exist.
+        let userId = null;
+        const email = (lead.email || clientRec?.email || '').trim();
+        const phone = lead.phone || clientRec?.phone || '+60100000000';
+        const fullName = lead.pic_name || lead.name || clientRec?.name || 'Converted Customer';
+        if (email) {
+          try {
+            const tempPw = 'Aura' + Math.random().toString(36).slice(-8) + '!1';
+            const signupRes = await fetch(`${API}/api/auth/signup`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email,
+                phone,
+                full_name: fullName,
+                password: tempPw,
+                role: 'customer',
+              }),
+            });
+            if (signupRes.ok) {
+              const su = await signupRes.json().catch(() => ({}));
+              userId = su?.user?.id;
+            }
+          } catch (e) {
+            // ignore — best-effort. The Client record is already persisted.
+          }
+        }
+
+        // Log a conversion activity so the lead timeline shows it.
+        try {
+          await fetch(`${API}/api/leads/${id}/activities`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+              type: 'converted',
+              description: `Lead converted to customer${fullName ? ' (' + fullName + ')' : ''}`,
+              notes: userId ? `Customer profile: ${userId}` : 'No matching user profile created',
+            }),
+          });
+        } catch (_) {}
+
+        toast.success(
+          <span>
+            Lead converted to customer.{' '}
+            <a
+              href={userId ? `/admin/customers/${userId}` : '/admin/customers'}
+              className="underline font-medium"
+            >
+              View in Customers →
+            </a>
+          </span>
+        );
         fetchLead();
       } else {
         const errorData = await response.json();
@@ -1287,15 +1343,15 @@ export default function LeadDetailPage() {
                 <p className="text-xs text-muted-foreground">Total Activities</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-[#A0C4FF]">{aiCallsCount}</p>
+                <p className="text-2xl font-bold text-blue-600">{aiCallsCount}</p>
                 <p className="text-xs text-muted-foreground">AI Calls</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-amber-600">{whatsappMessages.length}</p>
+                <p className="text-2xl font-bold text-green-600">{whatsappMessages.length}</p>
                 <p className="text-xs text-muted-foreground">WhatsApp</p>
               </div>
               <div className="bg-gray-50 dark:bg-secondary rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-[#A0C4FF]">{lead.ai_score || 0}</p>
+                <p className="text-2xl font-bold text-purple-600">{lead.ai_score || 0}</p>
                 <p className="text-xs text-muted-foreground">AI Score</p>
               </div>
             </div>
