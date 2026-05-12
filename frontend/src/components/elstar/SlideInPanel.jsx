@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 
-export default function SlideInPanel({ isOpen, onClose, title, children, width = 'w-[480px]' }) {
+export default function SlideInPanel({ isOpen, onClose, title, children, width = 'w-full sm:w-[480px] sm:max-w-[92vw]' }) {
   const panelRef = useRef(null);
   const overlayRef = useRef(null);
 
@@ -43,11 +43,11 @@ export default function SlideInPanel({ isOpen, onClose, title, children, width =
         data-testid="slide-panel"
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border flex-shrink-0">
-          <h2 className="text-lg font-semibold">{title}</h2>
+        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border flex-shrink-0">
+          <h2 className="text-base sm:text-lg font-semibold truncate pr-4">{title}</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-secondary rounded-lg transition-colors"
+            className="p-2 hover:bg-secondary rounded-lg transition-colors flex-shrink-0"
             data-testid="close-slide-panel"
           >
             <X className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function SlideInPanel({ isOpen, onClose, title, children, width =
         </div>
         
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           {children}
         </div>
       </div>

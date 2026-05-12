@@ -913,7 +913,7 @@ export default function Pipeline() {
       </SlideInPanel>
 
       {/* Deal Detail Slide-in Panel - matching Picture 3 */}
-      <SlideInPanel isOpen={isDealDetailOpen} onClose={() => setIsDealDetailOpen(false)} title={selectedDeal?.title || 'Deal Details'} width="w-[520px]">
+      <SlideInPanel isOpen={isDealDetailOpen} onClose={() => setIsDealDetailOpen(false)} title={selectedDeal?.title || 'Deal Details'} width="w-full sm:w-[520px] sm:max-w-[92vw]">
         {selectedDeal && (
           <div className="space-y-6">
             {/* Deal Info */}
@@ -922,14 +922,14 @@ export default function Pipeline() {
                 <p className="text-xs text-muted-foreground uppercase">DEAL TITLE</p>
                 <p className="font-semibold">{selectedDeal.title}</p>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-muted-foreground uppercase">DEAL VALUE</p>
-                  <p className="font-semibold text-lg">{formatCurrency(selectedDeal.value)}</p>
+                  <p className="font-semibold text-lg break-words">{formatCurrency(selectedDeal.value)}</p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground uppercase">EXPECTED CLOSE</p>
-                  <p className="font-medium">{selectedDeal.expected_close_date || 'Not set'}</p>
+                  <p className="font-medium break-words">{selectedDeal.expected_close_date || 'Not set'}</p>
                 </div>
               </div>
             </div>
