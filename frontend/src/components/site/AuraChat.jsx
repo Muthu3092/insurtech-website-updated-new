@@ -20,7 +20,7 @@ export default function AuraChat() {
   );
   const [messages, setMessages] = React.useState([
     {
-      from: "aura",
+      from: "Afinity.AI",
       text:
         "Hi, I'm Afinity.AI — your AI insurance copilot. Ask me anything about Travel, Health, Motor, PA or Home cover.",
     },
@@ -44,8 +44,8 @@ export default function AuraChat() {
     const res = await endpoints.signup({
       email: `guest_${ts}@aura.afinity.ai`,
       phone: `+60100${ts.toString().slice(-7)}`,
-      full_name: "Aura Guest",
-      password: "Aura" + Math.random().toString(36).slice(-8) + "!1",
+      full_name: "Afinity.AI Guest",
+      password: "Afinity.AI" + Math.random().toString(36).slice(-8) + "!1",
       role: "customer",
     });
     auth.setSession(res.data.token, res.data.user);
@@ -67,14 +67,14 @@ export default function AuraChat() {
       );
       const reply =
         res.data?.message || res.data?.reply || res.data?.response || JSON.stringify(res.data);
-      setMessages((m) => [...m, { from: "aura", text: reply }]);
+      setMessages((m) => [...m, { from: "Afinity.AI", text: reply }]);
     } catch (err) {
       setMessages((m) => [
         ...m,
         {
-          from: "aura",
+          from: "Afinity.AI",
           text:
-            "Aura's AI engine is briefly offline. In the meantime, here's a quick steer: for short trips → Travel Shield Global from RM 29; for car cover → Motor Easy with 10% online rebate; for KLIA hospital cashless → Health Secure Plus. Or tap any shield on the home page to start a 60-second quote.",
+            "Afinity.AI's AI engine is briefly offline. In the meantime, here's a quick steer: for short trips → Travel Shield Global from RM 29; for car cover → Motor Easy with 10% online rebate; for KLIA hospital cashless → Health Secure Plus. Or tap any shield on the home page to start a 60-second quote.",
         },
       ]);
     } finally {
@@ -95,7 +95,7 @@ export default function AuraChat() {
         onClick={() => setOpen((v) => !v)}
         data-testid="aura-chat-fab"
         className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full bg-ink text-lime flex items-center justify-center shadow-xl hover:scale-105 transition"
-        aria-label="Chat with Aura"
+        aria-label="Chat with Afinity.AI"
       >
         {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
         {!open && (
@@ -114,7 +114,7 @@ export default function AuraChat() {
             <Sparkles className="w-5 h-5 text-lime" />
           </div>
           <div className="flex-1">
-            <div className="font-display text-lg leading-none">Aura</div>
+            <div className="font-display text-lg leading-none">Afinity.AI</div>
             <div className="text-[11px] text-cream/60 uppercase tracking-widest mt-0.5">
               AI insurance copilot
             </div>
@@ -158,7 +158,7 @@ export default function AuraChat() {
             onKeyDown={onKey}
             data-testid="aura-chat-input"
             rows={1}
-            placeholder="Ask Aura anything…"
+            placeholder="Ask Afinity.AI anything…"
             className="flex-1 resize-none px-4 py-3 rounded-2xl border border-ink/10 bg-white text-sm focus:border-ink outline-none max-h-24"
           />
           <button
